@@ -1,4 +1,4 @@
-export const colors = {
+export const Colors = {
   ForumPurple: '#6537FF',
   ForumCharcoal: '#383939',
   ForumCharcoal20: '#38393933',
