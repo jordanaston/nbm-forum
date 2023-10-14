@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Svg, {Path} from 'react-native-svg';
+import { colors } from '../../constants/Colors';
 
 export interface Props {
   color: string;

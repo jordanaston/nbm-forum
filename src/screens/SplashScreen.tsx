@@ -3,7 +3,7 @@ import RocketLogo from '../assets/svg/RocketLogo';
 import {useNavigation} from '@react-navigation/native';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {Colors} from '../constants/Colors';
+import {colors} from '../constants/Colors';
 
 type NavigationList = NativeStackNavigationProp<
   MainStackParamList,
@@ -21,7 +21,7 @@ const SplashScreen: React.FC = (): JSX.Element => {
     <SafeAreaView className="flex-1 bg-ForumPurple">
       <StatusBar barStyle="light-content" />
       <View className="flex-1 justify-center items-center">
-        <RocketLogo color={Colors.White} width="120" height="179" />
+        <RocketLogo color={colors.white} width="120" height="179" />
       </View>
     </SafeAreaView>
   );

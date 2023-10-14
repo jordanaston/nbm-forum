@@ -1,7 +1,6 @@
-export const Colors = {
-  ForumPurple: '#6537FF',
-  ForumCharcoal: '#383939',
-  ForumCharcoal20: '#38393933',
-  White: '#FFFFFF',
-  ForumBlack: '#010214',
+export const colors = {
+  forumPurple: '#6537FF',
+  forumCharcoal: '#383939',
+  white: '#FFFFFF',
+  forumBlack: '#010214',
 };
