@@ -1,0 +1,61 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Lexend-Black.ttf",
+      "sha1": "e7ce003e94ca32c8be251e4cd3ee6dd7dc3fae28"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-Bold.ttf",
+      "sha1": "1a8d4599190b5057c425db5709a40c7ef03b1202"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-ExtraBold.ttf",
+      "sha1": "dcf210f141cd92d000caaf21be70e2f112fb62c7"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-ExtraLight.ttf",
+      "sha1": "1c1050946981288343107ae1909ea1fdac1799c8"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-Light.ttf",
+      "sha1": "e0feb7da42388b73b224d80aff81ccbcf03f4af1"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-Medium.ttf",
+      "sha1": "6fc08100245a310cae59f5265d8f40f6df11f0ef"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-Regular.ttf",
+      "sha1": "bc33fa22827ac530e6bf64d3b6f412067f200d6f"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-SemiBold.ttf",
+      "sha1": "5091b81d0fce06946a1e29ca2e2c8b8642127386"
+    },
+    {
+      "path": "src/assets/fonts/Lexend-Thin.ttf",
+      "sha1": "5dcb13ee675752bc73ea62d79aac58da8424c1d8"
+    },
+    {
+      "path": "src/assets/fonts/Syne-Bold.ttf",
+      "sha1": "2830f4a34f1c36916b5a49bdf9bce409e123f28f"
+    },
+    {
+      "path": "src/assets/fonts/Syne-ExtraBold.ttf",
+      "sha1": "5cb28faab7bb8e42fe1c2cdac39f7ad13f91b275"
+    },
+    {
+      "path": "src/assets/fonts/Syne-Medium.ttf",
+      "sha1": "132da5831d2cb1cf0775971fb1cc8a24e48ed5a5"
+    },
+    {
+      "path": "src/assets/fonts/Syne-Regular.ttf",
+      "sha1": "ee7d729930a2e813f62df6205d5f0558fef66961"
+    },
+    {
+      "path": "src/assets/fonts/Syne-SemiBold.ttf",
+      "sha1": "d41ca670a1e7fda88747fc54a709a5cb50febb46"
+    }
+  ]
+}

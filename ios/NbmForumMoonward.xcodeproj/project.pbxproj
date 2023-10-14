@@ -8,12 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* NbmForumMoonwardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* NbmForumMoonwardTests.m */; };
+		039565C0169B460BB8F8D556 /* Lexend-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A71B7388F7D49809CD7A979 /* Lexend-SemiBold.ttf */; };
 		0C80B921A6F3F58F76C31292 /* libPods-NbmForumMoonward.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-NbmForumMoonward.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		17BC0374A41E4B4E826487F1 /* Lexend-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 25C77DE124AF4AEDB611D500 /* Lexend-Thin.ttf */; };
+		337F6CCBD7E1429F8846CF17 /* Lexend-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2F243111B31D48B5BC344244 /* Lexend-Bold.ttf */; };
+		4E5FEA4026994775AD337CA5 /* Syne-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4FA7F8EB552A4187894BBCF1 /* Syne-Bold.ttf */; };
+		682D261519054814AA588E4A /* Lexend-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46E8BDED1DB0453FB59F8B83 /* Lexend-ExtraLight.ttf */; };
+		6AC6A45C550C4FB6AAC7309F /* Syne-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D0F196B04B04F60A2FC1B49 /* Syne-ExtraBold.ttf */; };
+		6C03E6004B1D4BBB9791D107 /* Syne-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA2DB3508D59416B9BAEBF87 /* Syne-SemiBold.ttf */; };
+		6F1151B71A6F4AE3AF8801E4 /* Syne-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35E3BF8B3DA243318B568B13 /* Syne-Medium.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-NbmForumMoonward-NbmForumMoonwardTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-NbmForumMoonward-NbmForumMoonwardTests.a */; };
+		7753835574FA40B69B98017C /* Lexend-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D7FAB134D5FE4861B3DC5EDA /* Lexend-Medium.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8F32FF93752E441BB3283FA5 /* Lexend-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3F458AE91C144480992E276A /* Lexend-ExtraBold.ttf */; };
+		A1EB4751322C4F0D88A88C19 /* Lexend-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ED773CC331F44334B61B7235 /* Lexend-Light.ttf */; };
+		D2DF17AD4F2F40CD9F9EDD25 /* Lexend-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1FEB283053164883A7239DEC /* Lexend-Black.ttf */; };
+		D8FDB39B671E428EB86C1137 /* Lexend-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D2DADBFCB1384C609F6BB1D3 /* Lexend-Regular.ttf */; };
+		DB59041A22D247C8AD3F8BB0 /* Syne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4BB992735724DBD9EC6C2F9 /* Syne-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +51,27 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = NbmForumMoonward/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = NbmForumMoonward/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-NbmForumMoonward-NbmForumMoonwardTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NbmForumMoonward-NbmForumMoonwardTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FEB283053164883A7239DEC /* Lexend-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Black.ttf"; path = "../src/assets/fonts/Lexend-Black.ttf"; sourceTree = "<group>"; };
+		25C77DE124AF4AEDB611D500 /* Lexend-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Thin.ttf"; path = "../src/assets/fonts/Lexend-Thin.ttf"; sourceTree = "<group>"; };
+		2F243111B31D48B5BC344244 /* Lexend-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Bold.ttf"; path = "../src/assets/fonts/Lexend-Bold.ttf"; sourceTree = "<group>"; };
+		35E3BF8B3DA243318B568B13 /* Syne-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Syne-Medium.ttf"; path = "../src/assets/fonts/Syne-Medium.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-NbmForumMoonward.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NbmForumMoonward.debug.xcconfig"; path = "Target Support Files/Pods-NbmForumMoonward/Pods-NbmForumMoonward.debug.xcconfig"; sourceTree = "<group>"; };
+		3F458AE91C144480992E276A /* Lexend-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-ExtraBold.ttf"; path = "../src/assets/fonts/Lexend-ExtraBold.ttf"; sourceTree = "<group>"; };
+		46E8BDED1DB0453FB59F8B83 /* Lexend-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-ExtraLight.ttf"; path = "../src/assets/fonts/Lexend-ExtraLight.ttf"; sourceTree = "<group>"; };
+		4FA7F8EB552A4187894BBCF1 /* Syne-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Syne-Bold.ttf"; path = "../src/assets/fonts/Syne-Bold.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-NbmForumMoonward.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NbmForumMoonward.release.xcconfig"; path = "Target Support Files/Pods-NbmForumMoonward/Pods-NbmForumMoonward.release.xcconfig"; sourceTree = "<group>"; };
+		5A71B7388F7D49809CD7A979 /* Lexend-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-SemiBold.ttf"; path = "../src/assets/fonts/Lexend-SemiBold.ttf"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-NbmForumMoonward-NbmForumMoonwardTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NbmForumMoonward-NbmForumMoonwardTests.debug.xcconfig"; path = "Target Support Files/Pods-NbmForumMoonward-NbmForumMoonwardTests/Pods-NbmForumMoonward-NbmForumMoonwardTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-NbmForumMoonward.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NbmForumMoonward.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = NbmForumMoonward/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-NbmForumMoonward-NbmForumMoonwardTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NbmForumMoonward-NbmForumMoonwardTests.release.xcconfig"; path = "Target Support Files/Pods-NbmForumMoonward-NbmForumMoonwardTests/Pods-NbmForumMoonward-NbmForumMoonwardTests.release.xcconfig"; sourceTree = "<group>"; };
+		8D0F196B04B04F60A2FC1B49 /* Syne-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Syne-ExtraBold.ttf"; path = "../src/assets/fonts/Syne-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AA2DB3508D59416B9BAEBF87 /* Syne-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Syne-SemiBold.ttf"; path = "../src/assets/fonts/Syne-SemiBold.ttf"; sourceTree = "<group>"; };
+		C4BB992735724DBD9EC6C2F9 /* Syne-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Syne-Regular.ttf"; path = "../src/assets/fonts/Syne-Regular.ttf"; sourceTree = "<group>"; };
+		D2DADBFCB1384C609F6BB1D3 /* Lexend-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Regular.ttf"; path = "../src/assets/fonts/Lexend-Regular.ttf"; sourceTree = "<group>"; };
+		D7FAB134D5FE4861B3DC5EDA /* Lexend-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Medium.ttf"; path = "../src/assets/fonts/Lexend-Medium.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED773CC331F44334B61B7235 /* Lexend-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Lexend-Light.ttf"; path = "../src/assets/fonts/Lexend-Light.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +150,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				C78376CBBDC443DBAD45B132 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -146,6 +175,28 @@
 				89C6BE57DB24E9ADA2F236DE /* Pods-NbmForumMoonward-NbmForumMoonwardTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C78376CBBDC443DBAD45B132 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1FEB283053164883A7239DEC /* Lexend-Black.ttf */,
+				2F243111B31D48B5BC344244 /* Lexend-Bold.ttf */,
+				3F458AE91C144480992E276A /* Lexend-ExtraBold.ttf */,
+				46E8BDED1DB0453FB59F8B83 /* Lexend-ExtraLight.ttf */,
+				ED773CC331F44334B61B7235 /* Lexend-Light.ttf */,
+				D7FAB134D5FE4861B3DC5EDA /* Lexend-Medium.ttf */,
+				D2DADBFCB1384C609F6BB1D3 /* Lexend-Regular.ttf */,
+				5A71B7388F7D49809CD7A979 /* Lexend-SemiBold.ttf */,
+				25C77DE124AF4AEDB611D500 /* Lexend-Thin.ttf */,
+				4FA7F8EB552A4187894BBCF1 /* Syne-Bold.ttf */,
+				8D0F196B04B04F60A2FC1B49 /* Syne-ExtraBold.ttf */,
+				35E3BF8B3DA243318B568B13 /* Syne-Medium.ttf */,
+				C4BB992735724DBD9EC6C2F9 /* Syne-Regular.ttf */,
+				AA2DB3508D59416B9BAEBF87 /* Syne-SemiBold.ttf */,
+			);
+			name = Resources;
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +295,20 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				D2DF17AD4F2F40CD9F9EDD25 /* Lexend-Black.ttf in Resources */,
+				337F6CCBD7E1429F8846CF17 /* Lexend-Bold.ttf in Resources */,
+				8F32FF93752E441BB3283FA5 /* Lexend-ExtraBold.ttf in Resources */,
+				682D261519054814AA588E4A /* Lexend-ExtraLight.ttf in Resources */,
+				A1EB4751322C4F0D88A88C19 /* Lexend-Light.ttf in Resources */,
+				7753835574FA40B69B98017C /* Lexend-Medium.ttf in Resources */,
+				D8FDB39B671E428EB86C1137 /* Lexend-Regular.ttf in Resources */,
+				039565C0169B460BB8F8D556 /* Lexend-SemiBold.ttf in Resources */,
+				17BC0374A41E4B4E826487F1 /* Lexend-Thin.ttf in Resources */,
+				4E5FEA4026994775AD337CA5 /* Syne-Bold.ttf in Resources */,
+				6AC6A45C550C4FB6AAC7309F /* Syne-ExtraBold.ttf in Resources */,
+				6F1151B71A6F4AE3AF8801E4 /* Syne-Medium.ttf in Resources */,
+				DB59041A22D247C8AD3F8BB0 /* Syne-Regular.ttf in Resources */,
+				6C03E6004B1D4BBB9791D107 /* Syne-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
