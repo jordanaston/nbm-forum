@@ -37,7 +37,6 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             <Button
               onPress={goToCreateAccountScreen}
               text="Create an Account"
-              backgroundColor="bg-ForumPurple"
             />
             <View className="mt-2">
               <Button
@@ -45,6 +44,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                 text="Sign In"
                 arrowColor={colors.forumPurple}
                 textColor="text-ForumPurple"
+                backgroundColor="bg-white"
               />
             </View>
           </View>

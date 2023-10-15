@@ -18,11 +18,11 @@ const Button: React.FC<Props> = ({
   onPress,
   text,
   arrowColor = colors.white,
-  backgroundColor = 'bg-white',
+  backgroundColor = 'bg-ForumPurple',
   textColor = 'text-white',
   fontStyle = 'font-syne-regular',
   fontSize = 'text-[16px]',
-  height = 'h-[50px]',
+  height = 'h-[47px]',
 }: Props): JSX.Element => {
   return (
     <TouchableOpacity className={`${backgroundColor}`} onPress={onPress}>
