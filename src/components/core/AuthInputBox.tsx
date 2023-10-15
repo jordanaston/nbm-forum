@@ -1,8 +1,7 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput} from 'react-native';
 import {colors} from '../../constants/Colors';
-import ShowPasswordIcon from '../../assets/svg/ShowPasswordIcon';
-import HidePasswordIcon from '../../assets/svg/HidePasswordIcon';
 import {useState} from 'react';
+import PasswordToggle from '../auth/PasswordToggle';
 
 type Props = {
   placeholder: string;
@@ -21,7 +20,7 @@ const AuthInputBox: React.FC<Props> = ({
   inputBoxTitle,
   isPasswordField = false,
 }: Props): JSX.Element => {
-
+    
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   return (
@@ -37,29 +36,11 @@ const AuthInputBox: React.FC<Props> = ({
           className={`h-[50px] ml-3 ${textSize} ${fontStyle}`}
         />
 
-        {isPasswordField && (
-          <View className="justify-center mr-2">
-            {passwordVisible ? (
-              <TouchableOpacity
-                onPress={() => setPasswordVisible(!passwordVisible)}>
-                <ShowPasswordIcon
-                  color={colors.forumCharcoal}
-                  width="24"
-                  height="24"
-                />
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() => setPasswordVisible(!passwordVisible)}>
-                <HidePasswordIcon
-                  color={colors.forumCharcoal}
-                  width="24"
-                  height="24"
-                />
-              </TouchableOpacity>
-            )}
-          </View>
-        )}
+        <PasswordToggle
+          isPasswordField={isPasswordField}
+          passwordVisible={passwordVisible}
+          setPasswordVisible={setPasswordVisible}
+        />
       </View>
     </View>
   );

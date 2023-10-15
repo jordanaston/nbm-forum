@@ -29,10 +29,7 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           />
         </View>
         <View className="mt-10">
-          <AuthInputBox
-            placeholder="you@email.com"
-            inputBoxTitle="Email"
-          />
+          <AuthInputBox placeholder="you@email.com" inputBoxTitle="Email" />
 
           <View className="mt-2">
             <AuthInputBox
@@ -45,10 +42,10 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             <Text className="font-syne-regular text-[14px] text-ForumPurple">
               Forgot your password?
             </Text>
-            <View className="w-full mt-10">
-              <Button onPress={() => {}} text="Log In" />
-            </View>
           </TouchableOpacity>
+          <View className="w-full mt-10">
+            <Button onPress={() => {}} text="Log In" />
+          </View>
           <View className="mt-[250px] flex justify-center flex-row">
             <Text className="text-ForumPurple font-syne-regular text-[14px]">
               Don't have an account?
