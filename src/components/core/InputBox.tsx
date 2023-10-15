@@ -12,9 +12,10 @@ type Props = {
   isPasswordField?: boolean;
   value: string;
   onChangeText: (text: string) => void;
+  onBlur?: (e: any) => void;
 };
 
-const AuthInputBox: React.FC<Props> = ({
+const InputBox: React.FC<Props> = ({
   placeholder,
   placeholderTextColor = colors.forumCharcoal,
   textSize = 'text-[16px]',
@@ -23,6 +24,7 @@ const AuthInputBox: React.FC<Props> = ({
   isPasswordField = false,
   value,
   onChangeText,
+  onBlur,
 }: Props): JSX.Element => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
@@ -36,11 +38,12 @@ const AuthInputBox: React.FC<Props> = ({
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           secureTextEntry={isPasswordField && !passwordVisible}
-          value={value} 
-          onChangeText={onChangeText} 
+          autoCapitalize="none"
+          value={value}
+          onChangeText={onChangeText}
+          onBlur={onBlur}
           className={`h-[50px] ml-3 ${textSize} ${fontStyle}`}
         />
-
         <PasswordToggle
           isPasswordField={isPasswordField}
           passwordVisible={passwordVisible}
@@ -51,4 +54,4 @@ const AuthInputBox: React.FC<Props> = ({
   );
 };
 
-export default AuthInputBox;
+export default InputBox;

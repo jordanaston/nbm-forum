@@ -8,6 +8,7 @@ module.exports = {
         ForumPurple: '#6537FF',
         ForumLightGray: '#E8E8E8',
         ForumCharcoal: '#383939',
+        ErrorRed: '#FA6464'
       },
       textColor: {
         ForumCharcoal: '#383939',

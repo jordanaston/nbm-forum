@@ -5,17 +5,14 @@ import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {colors} from '../constants/Colors';
 
-type NavigationList = NativeStackNavigationProp<
-  MainStackParamList,
-  'SplashScreen'
->;
+type NavigationList = NativeStackNavigationProp<MainStackParamList>;
 
 const SplashScreen: React.FC = (): JSX.Element => {
   const navigation = useNavigation<NavigationList>();
 
   setTimeout(() => {
     navigation.navigate('WelcomeScreen');
-  }, 2000);
+  }, 1000);
 
   return (
     <SafeAreaView className="flex-1 bg-ForumPurple">
