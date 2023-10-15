@@ -10,6 +10,8 @@ type Props = {
   fontStyle?: string;
   inputBoxTitle?: string;
   isPasswordField?: boolean;
+  value: string;
+  onChangeText: (text: string) => void;
 };
 
 const AuthInputBox: React.FC<Props> = ({
@@ -19,8 +21,9 @@ const AuthInputBox: React.FC<Props> = ({
   fontStyle = 'font-syne-regular',
   inputBoxTitle,
   isPasswordField = false,
+  value,
+  onChangeText,
 }: Props): JSX.Element => {
-    
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   return (
@@ -33,6 +36,8 @@ const AuthInputBox: React.FC<Props> = ({
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           secureTextEntry={isPasswordField && !passwordVisible}
+          value={value} 
+          onChangeText={onChangeText} 
           className={`h-[50px] ml-3 ${textSize} ${fontStyle}`}
         />
 
