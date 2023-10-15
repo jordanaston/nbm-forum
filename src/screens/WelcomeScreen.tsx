@@ -1,9 +1,10 @@
-import {StatusBar, View, Text} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import RocketLogo from '../assets/svg/RocketLogo';
 import Button from '../components/core/Button';
 import {colors} from '../constants/Colors';
+import AuthTitleDescription from '../components/core/AuthTitleDescription';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList, 'WelcomeScreen'>;
@@ -26,14 +27,12 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             <RocketLogo color={colors.white} width={'169'} height={'256'} />
           </View>
         </View>
-        <View className="mx-[24px] h-[50pt] w-[354pt] mt-[45px]">
-          <Text className="font-syne-bold text-ForumCharcoal text-[24px] pt-2">
-            Welcome to{'\n'}the NBM Forum
-          </Text>
-          <Text className="font-syne-regular text-ForumCharcoal text-[16px] mt-[16px]">
-            Time to get all the answers you need in a forum made for designers
-            and developers!
-          </Text>
+        <View className="mx-6 mt-12">
+          <AuthTitleDescription
+            title={`Welcome to\nthe NBM Forum`}
+            description="Time to get all the answers you need in a forum made for designers
+            and developers!"
+          />
           <View className="mt-8">
             <Button
               onPress={goToCreateAccountScreen}
