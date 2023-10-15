@@ -34,18 +34,20 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             Time to get all the answers you need in a forum made for designers
             and developers!
           </Text>
-          <View>
+          <View className="mt-8">
             <Button
               onPress={goToCreateAccountScreen}
-              text={'Create an Account'}
+              text="Create an Account"
+              backgroundColor="bg-ForumPurple"
             />
-            <Button
-              onPress={goToSignInScreen}
-              text={'Sign In'}
-              bgColor={'white'}
-              textColor={'ForumPurple'}
-              arrowColor={colors.forumPurple}
-            />
+            <View className="mt-2">
+              <Button
+                onPress={goToSignInScreen}
+                text="Sign In"
+                arrowColor={colors.forumPurple}
+                textColor="text-ForumPurple"
+              />
+            </View>
           </View>
         </View>
       </View>

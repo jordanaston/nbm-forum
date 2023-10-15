@@ -16,7 +16,6 @@ module.exports = {
       borderColor: {
         ForumPurple: '#6537FF',
         ForumLightGray: '#E8E8E8',
-        ForumBlack: '010214',
         ForumCharcoal: '#383939',
         ForumBlack: '#010214',
       },
@@ -41,3 +40,4 @@ module.exports = {
   },
   plugins: [],
 };
+

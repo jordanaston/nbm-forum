@@ -6,32 +6,29 @@ import {colors} from '../../constants/Colors';
 type Props = {
   onPress: () => void;
   text: string;
-  bgColor?: string;
-  borderColor?: string;
+  arrowColor?: string;
+  backgroundColor?: string;
+  textColor?: string;
   fontStyle?: string;
   fontSize?: string;
-  textColor?: string;
-  arrowColor?: string;
   height?: string;
 };
 
 const Button: React.FC<Props> = ({
   onPress,
   text,
-  bgColor = 'ForumPurple',
-  borderColor = 'ForumPurple',
-  fontStyle = 'syne-regular',
-  fontSize = '[16px]',
-  textColor = 'white',
   arrowColor = colors.white,
-  height = '[50px]',
+  backgroundColor = 'bg-white',
+  textColor = 'text-white',
+  fontStyle = 'font-syne-regular',
+  fontSize = 'text-[16px]',
+  height = 'h-[50px]',
 }: Props): JSX.Element => {
   return (
-    <TouchableOpacity className="mt-[8px]" onPress={onPress}>
+    <TouchableOpacity className={`${backgroundColor}`} onPress={onPress}>
       <View
-        className={`flex-row items-center justify-center border-2 h-${height} bg-${bgColor} border-${borderColor}`}>
-        <Text
-          className={`text-center text-${textColor} text-${fontSize} font-${fontStyle}`}>
+        className={`flex-row items-center justify-center border-2 ${height} border-ForumPurple`}>
+        <Text className={`text-center ${textColor} ${fontStyle} ${fontSize}`}>
           {text}
         </Text>
         <View className="ml-[9px]">
