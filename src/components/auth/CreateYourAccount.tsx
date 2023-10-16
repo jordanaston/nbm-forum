@@ -1,6 +1,7 @@
 import {View} from 'react-native';
 import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
+import {Text} from 'react-native-elements';
 
 type Props = {
   onNext: () => void;
@@ -8,7 +9,7 @@ type Props = {
 
 const CreateYourAccount: React.FC<Props> = ({onNext}: Props): JSX.Element => {
   return (
-    <View className="">
+    <View>
       <AuthTitleDescription
         title="Create your Account"
         description="Enter your details below to start creating your brand new account."

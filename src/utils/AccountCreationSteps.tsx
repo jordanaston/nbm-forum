@@ -12,7 +12,7 @@ type Props = {
 
 export const useAccountCreationSteps = ({
   navigation,
-}: Props): [JSX.Element | null, () => void] => {
+}: Props): [JSX.Element | null, () => void, number] => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
   const steps = [
@@ -30,5 +30,5 @@ export const useAccountCreationSteps = ({
     }
   };
 
-  return [steps[currentStep] || null, goBackOneStep];
+  return [steps[currentStep] || null, goBackOneStep, currentStep];
 };
