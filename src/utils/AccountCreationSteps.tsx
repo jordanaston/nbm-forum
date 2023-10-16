@@ -5,6 +5,8 @@ import UploadProfilePicture from '../components/auth/UploadProfilePicture';
 import WhereAreYouLocated from '../components/auth/WhereAreYouLocated';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {createAccountFormik} from '../functions/CreateAccountFormik';
+import {FormikContext} from '../context/CreateAccountFormikContext';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -15,11 +17,23 @@ export const useAccountCreationSteps = ({
 }: Props): [JSX.Element | null, () => void, number] => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
+  const formik = createAccountFormik(currentStep, values => {
+    // Handle final submission here.
+  });
+
+  const wrappedStep = (Component: React.FC<{onNext: () => void}>) => {
+    return (
+      <FormikContext.Provider value={formik}>
+        <Component onNext={() => setCurrentStep(prev => prev + 1)} />
+      </FormikContext.Provider>
+    );
+  };
+
   const steps = [
-    <CreateYourAccount onNext={() => setCurrentStep(prev => prev + 1)} />,
-    <WhereAreYouLocated onNext={() => setCurrentStep(prev => prev + 1)} />,
-    <LetsSecureYourAccount onNext={() => setCurrentStep(prev => prev + 1)} />,
-    <UploadProfilePicture onNext={() => setCurrentStep(prev => prev + 1)} />,
+    wrappedStep(CreateYourAccount),
+    wrappedStep(WhereAreYouLocated),
+    wrappedStep(LetsSecureYourAccount),
+    wrappedStep(UploadProfilePicture),
   ];
 
   const goBackOneStep = () => {

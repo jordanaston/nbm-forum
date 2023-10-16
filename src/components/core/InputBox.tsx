@@ -12,7 +12,7 @@ type Props = {
   isPasswordField?: boolean;
   value: string;
   onChangeText: (text: string) => void;
-  onBlur?: (e: any) => void;
+  onBlur: (e: any) => void;
 };
 
 const InputBox: React.FC<Props> = ({
@@ -30,9 +30,11 @@ const InputBox: React.FC<Props> = ({
 
   return (
     <View>
-      <Text className="text-[16px] font-syne-bold text-ForumCharcoal mb-2">
-        {inputBoxTitle}
-      </Text>
+      {inputBoxTitle && (
+        <Text className="text-[16px] font-syne-bold text-ForumCharcoal mb-2">
+          {inputBoxTitle}
+        </Text>
+      )}
       <View className="flex-row justify-between border border-ForumCharcoal opacity-60">
         <TextInput
           placeholder={placeholder}
