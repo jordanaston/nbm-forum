@@ -1,6 +1,7 @@
 import {View} from 'react-native';
 import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
+import ProfilePictureButton from './ProfilePictureButton';
 
 type Props = {
   onNext: () => void;
@@ -17,8 +18,13 @@ const UploadProfilePicture: React.FC<Props> = ({
           description="Let’s put a name to a face. Upload a profile picture to complete your profile. This is an optional step."
         />
       </View>
-      <Button onPress={onNext} text="Create my Account" />
-      <View className="mt-4">
+      <View className="mt-8">
+        <ProfilePictureButton />
+      </View>
+      <View className='mt-8'>
+        <Button onPress={onNext} text="Create my Account" />
+      </View>
+      <View className="mt-6">
         <Button
           onPress={() => {}}
           text="Skip for now"

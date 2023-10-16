@@ -16,6 +16,7 @@ const CreateYourAccount: React.FC<Props> = ({onNext}: Props): JSX.Element => {
           description="Enter your details below to start creating your brand new account."
         />
       </View>
+      
       <Button onPress={onNext} text="Next" />
     </View>
   );
