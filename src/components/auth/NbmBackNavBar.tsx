@@ -8,17 +8,24 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
+  onBackPress?: () => void;
 };
 
-const NbmBackNavBar: React.FC<Props> = ({navigation}: Props): JSX.Element => {
-    
-    const backToPreviousScreen = () => {
-        navigation.goBack();
-      };
+const NbmBackNavBar: React.FC<Props> = ({
+  navigation,
+  onBackPress,
+}: Props): JSX.Element => {
+  const takeUserBack = () => {
+    if (onBackPress) {
+      onBackPress();
+    } else {
+      navigation.goBack();
+    }
+  };
 
   return (
     <View className="flex flex-row items-center justify-between mt-6">
-      <TouchableOpacity onPress={backToPreviousScreen}>
+      <TouchableOpacity onPress={takeUserBack}>
         <View className="rotate-[180deg]">
           <ArrowIcon color={colors.forumCharcoal} width="24" height="24" />
         </View>

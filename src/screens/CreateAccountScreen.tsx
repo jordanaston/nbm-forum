@@ -1,12 +1,30 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, StatusBar} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import NbmBackNavBar from '../components/auth/NbmBackNavBar';
+import {MainStackParamList} from '../navigation/MainStackNavigator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useAccountCreationSteps} from '../utils/AccountCreationSteps';
 
-const CreateAccountScreen: React.FC = (): JSX.Element => {
+type Props = {
+  navigation: NativeStackNavigationProp<MainStackParamList>;
+};
+
+const CreateAccountScreen: React.FC<Props> = ({
+  navigation,
+}: Props): JSX.Element => {
+  const [currentComponent, goBackOneStep] = useAccountCreationSteps({
+    navigation,
+  });
+
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex-1 justify-center items-center">
-        <Text>Create Account Screen</Text>
+    <SafeAreaView>
+      <View className="mx-6">
+        <StatusBar barStyle="dark-content" />
+
+        <NbmBackNavBar navigation={navigation} onBackPress={goBackOneStep} />
+
+        {currentComponent}
       </View>
     </SafeAreaView>
   );

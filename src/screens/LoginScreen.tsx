@@ -9,7 +9,7 @@ import InputBox from '../components/core/InputBox';
 import Button from '../components/core/Button';
 import {useFormik} from 'formik';
 import ErrorAlertBox from '../components/auth/ErrorAlertBox';
-import {loginValidationSchema} from '../utils/validation/LoginValidationSchema';
+import {loginValidationSchema} from '../validation/LoginValidationSchema';
 import {useMutation} from 'react-query';
 import {postLoginDetails} from '../services/AuthServices';
 import LoadingScreen from './LoadingScreen';
