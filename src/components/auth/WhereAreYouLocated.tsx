@@ -9,10 +9,12 @@ type Props = {
 const WhereAreYouLocated: React.FC<Props> = ({onNext}: Props): JSX.Element => {
   return (
     <View className="">
-      <AuthTitleDescription
-        title="Where are you Located?"
-        description="Add your address. Select your address from the suggested address below. "
-      />
+      <View className="mt-10">
+        <AuthTitleDescription
+          title="Where are you Located?"
+          description="Add your address. Select your address from the suggested address below. "
+        />
+      </View>
       <Button onPress={onNext} text="Next" />
     </View>
   );

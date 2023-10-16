@@ -11,10 +11,12 @@ const UploadProfilePicture: React.FC<Props> = ({
 }: Props): JSX.Element => {
   return (
     <View className="">
-      <AuthTitleDescription
-        title="Upload a Profile Picture"
-        description="Let’s put a name to a face. Upload a profile picture to complete your profile. This is an optional step."
-      />
+      <View className="mt-10">
+        <AuthTitleDescription
+          title="Upload a Profile Picture"
+          description="Let’s put a name to a face. Upload a profile picture to complete your profile. This is an optional step."
+        />
+      </View>
       <Button onPress={onNext} text="Create my Account" />
       <View className="mt-4">
         <Button
