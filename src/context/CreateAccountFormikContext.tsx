@@ -1,13 +1,25 @@
 import React from 'react';
 import {FormikProps} from 'formik';
 
-type FormikInitialValues = {
+export type FormikInitialValues = {
   firstName: string;
   lastName: string;
   email: string;
+  telephone: string;
+  address: Address;
   password: string;
   confirmPassword: string;
 };
+
+type Address = {
+  street: string;
+  number: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+};
+
 
 export const FormikContext =
   React.createContext<FormikProps<FormikInitialValues> | null>(null);

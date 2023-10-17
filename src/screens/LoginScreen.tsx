@@ -5,7 +5,7 @@ import AuthTitleDescription from '../components/auth/AuthTitleDescription';
 import NbmBackNavBar from '../components/auth/NbmBackNavBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
-import InputBox from '../components/core/InputBox';
+import InputBox from '../components/core/Input';
 import Button from '../components/core/Button';
 import {useFormik} from 'formik';
 import ErrorAlertBox from '../components/auth/ErrorAlertBox';

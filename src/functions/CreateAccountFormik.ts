@@ -1,17 +1,7 @@
 import {useFormik} from 'formik';
 import {createPasswordValidationSchema} from '../validation/PasswordValidationSchema';
-import {nameValidationSchema} from '../validation/NameValidationSchema';
-import {emailValidationSchema} from '../validation/EmailValidationSchema';
+import {userDetailsValidationSchema} from '../validation/UserDetailsValidationSchema';
 import * as yup from 'yup';
-
-const firstStepValidationSchema = yup.object().shape({
-  ...nameValidationSchema.fields,
-  ...emailValidationSchema.fields,
-});
-
-const combinedValidationSchema = firstStepValidationSchema.concat(
-  createPasswordValidationSchema,
-);
 
 export const createAccountFormik = (
   currentStep: number,
@@ -21,7 +11,7 @@ export const createAccountFormik = (
 
   switch (currentStep) {
     case 0:
-      currentValidationSchema = firstStepValidationSchema;
+      currentValidationSchema = userDetailsValidationSchema;
       break;
     case 1:
       currentValidationSchema = yup.object({});
@@ -29,8 +19,6 @@ export const createAccountFormik = (
     case 2:
       currentValidationSchema = createPasswordValidationSchema;
       break;
-    default:
-      currentValidationSchema = combinedValidationSchema;
   }
 
   return useFormik({
@@ -38,6 +26,15 @@ export const createAccountFormik = (
       firstName: '',
       lastName: '',
       email: '',
+      telephone: '',
+      address: {
+        street: '',
+        number: '',
+        city: '',
+        state: '',
+        postalCode: '',
+        country: '',
+      },
       password: '',
       confirmPassword: '',
     },

@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
-import InputBox from '../core/InputBox';
+import InputBox from '../core/Input';
 import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
 import ErrorAlertBox from './ErrorAlertBox';
 
@@ -14,14 +14,14 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
 
   return (
     <View>
-      <View className="mt-10">
+      <View className="mt-6">
         <AuthTitleDescription
           title="Create your Account"
           description="Enter your details below to start creating your brand new account."
         />
       </View>
       <View>
-        <View className="mt-8">
+        <View className="mt-6">
           <InputBox
             placeholder="Enter your first name here"
             inputBoxTitle="Your Name"
@@ -47,8 +47,17 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
             onBlur={formik.handleBlur('email')}
           />
         </View>
+        <View className="mt-2">
+          <InputBox
+            placeholder="Enter your mobile number here"
+            inputBoxTitle="Phone"
+            value={formik.values.telephone}
+            onChangeText={formik.handleChange('telephone')}
+            onBlur={formik.handleBlur('telephone')}
+          />
+        </View>
       </View>
-      <View className="mt-8">
+      <View className="mt-6">
         <Button
           onPress={() => {
             formik.handleSubmit();
@@ -61,16 +70,20 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
             !formik.values.lastName ||
             !!formik.errors.lastName ||
             !formik.values.email ||
-            !!formik.errors.email
+            !!formik.errors.email ||
+            !formik.values.telephone ||
+            !!formik.errors.telephone
           }
         />
-        <View className="mt-7">
+        <View className="mt-6">
           {formik.touched.firstName && formik.errors.firstName ? (
             <ErrorAlertBox text={formik.errors.firstName} />
           ) : formik.touched.lastName && formik.errors.lastName ? (
             <ErrorAlertBox text={formik.errors.lastName} />
           ) : formik.touched.email && formik.errors.email ? (
             <ErrorAlertBox text={formik.errors.email} />
+          ) : formik.touched.telephone && formik.errors.telephone ? (
+            <ErrorAlertBox text={formik.errors.telephone} />
           ) : formik.status ? (
             <ErrorAlertBox text={formik.status} />
           ) : null}

@@ -3,7 +3,7 @@ import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
 import PasswordRules from './PasswordRules';
 import TermsAndConditionsCheck from './TermsAndConditionsCheck';
-import InputBox from '../core/InputBox';
+import InputBox from '../core/Input';
 import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
 
 type Props = {
@@ -28,6 +28,7 @@ const LetsSecureYourAccount: React.FC<Props> = ({
         <InputBox
           placeholder="Enter your password"
           inputBoxTitle="Create a Password"
+          isPasswordField={true}
           value={formik.values.password}
           onChangeText={formik.handleChange('password')}
           onBlur={formik.handleBlur('password')}
@@ -37,6 +38,7 @@ const LetsSecureYourAccount: React.FC<Props> = ({
         <InputBox
           placeholder="Re-enter your password"
           inputBoxTitle="Confirm Password"
+          isPasswordField={true}
           value={formik.values.confirmPassword}
           onChangeText={formik.handleChange('confirmPassword')}
           onBlur={formik.handleBlur('confirmPassword')}
