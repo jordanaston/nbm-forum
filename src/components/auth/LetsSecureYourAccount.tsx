@@ -4,15 +4,14 @@ import Button from '../core/Button';
 import PasswordRules from './PasswordRules';
 import TermsAndConditionsCheck from './TermsAndConditionsCheck';
 import InputBox from '../core/InputBox';
-import {createAccountFormik} from '../../functions/CreateAccountFormik';
 import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
 
 type Props = {
-  onNext: () => void;
+  nextStep: () => void;
 };
 
 const LetsSecureYourAccount: React.FC<Props> = ({
-  onNext,
+  nextStep,
 }: Props): JSX.Element => {
   const formik = useCreateAccountFormik();
 
@@ -54,9 +53,15 @@ const LetsSecureYourAccount: React.FC<Props> = ({
         <Button
           onPress={() => {
             formik.handleSubmit();
-            onNext();
+            nextStep();
           }}
           text="Next"
+          disabled={
+            !formik.values.password ||
+            !!formik.errors.password ||
+            !formik.values.confirmPassword ||
+            !!formik.errors.confirmPassword
+          }
         />
       </View>
     </View>

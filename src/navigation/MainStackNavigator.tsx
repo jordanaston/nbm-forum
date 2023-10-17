@@ -36,7 +36,10 @@ const MainStackNavigator: React.FC = (): JSX.Element => {
       <Stack.Screen name="FeedScreen" component={FeedScreen} />
       <Stack.Screen name="PostScreen" component={PostScreen} />
       <Stack.Screen name="CreatePostScreen" component={CreatePostScreen} />
-      <Stack.Screen name="CreateAccountScreen" component={CreateAccountScreen} />
+      <Stack.Screen
+        name="CreateAccountScreen"
+        component={CreateAccountScreen}
+      />
       <Stack.Screen name="SettingsScreen" component={SettingsScreen} />
     </Stack.Navigator>
   );

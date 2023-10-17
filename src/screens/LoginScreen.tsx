@@ -38,6 +38,7 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
       password: '',
     },
     validationSchema: loginValidationSchema,
+    validateOnMount: true,
     onSubmit: async values => {
       setDelayedLoading(true);
       setTimeout(async () => {
@@ -98,7 +99,11 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                 </Text>
               </TouchableOpacity>
               <View className="w-full mt-10">
-                <Button onPress={formik.handleSubmit} text="Log In" />
+                <Button
+                  onPress={formik.handleSubmit}
+                  disabled={!formik.isValid || formik.isSubmitting}
+                  text="Log In"
+                />
               </View>
               <View className="mt-8">
                 {formik.touched.email && formik.errors.email ? (

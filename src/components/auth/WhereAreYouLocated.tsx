@@ -3,10 +3,12 @@ import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
 
 type Props = {
-  onNext: () => void;
+  nextStep: () => void;
 };
 
-const WhereAreYouLocated: React.FC<Props> = ({onNext}: Props): JSX.Element => {
+const WhereAreYouLocated: React.FC<Props> = ({
+  nextStep,
+}: Props): JSX.Element => {
   return (
     <View className="">
       <View className="mt-10">
@@ -15,7 +17,7 @@ const WhereAreYouLocated: React.FC<Props> = ({onNext}: Props): JSX.Element => {
           description="Add your address. Select your address from the suggested address below. "
         />
       </View>
-      <Button onPress={onNext} text="Next" />
+      <Button onPress={nextStep} text="Next" />
     </View>
   );
 };

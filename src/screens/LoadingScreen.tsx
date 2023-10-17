@@ -14,4 +14,3 @@ const LoadingScreen: React.FC = (): JSX.Element => {
 };
 
 export default LoadingScreen;
-

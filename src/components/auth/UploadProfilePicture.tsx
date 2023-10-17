@@ -4,11 +4,11 @@ import Button from '../core/Button';
 import ProfilePictureButton from './ProfilePictureButton';
 
 type Props = {
-  onNext: () => void;
+  nextStep: () => void;
 };
 
 const UploadProfilePicture: React.FC<Props> = ({
-  onNext,
+  nextStep,
 }: Props): JSX.Element => {
   return (
     <View className="">
@@ -21,8 +21,8 @@ const UploadProfilePicture: React.FC<Props> = ({
       <View className="mt-8">
         <ProfilePictureButton />
       </View>
-      <View className='mt-8'>
-        <Button onPress={onNext} text="Create my Account" />
+      <View className="mt-8">
+        <Button onPress={nextStep} text="Create my Account" />
       </View>
       <View className="mt-6">
         <Button

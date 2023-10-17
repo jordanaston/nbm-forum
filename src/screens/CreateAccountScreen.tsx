@@ -21,6 +21,10 @@ const CreateAccountScreen: React.FC<Props> = ({
       navigation,
     });
 
+  const goToLoginScreen = () => {
+    navigation.navigate('LoginScreen');
+  };
+
   return (
     <SafeAreaView className="flex-1">
       <View className="mx-6">
@@ -37,7 +41,7 @@ const CreateAccountScreen: React.FC<Props> = ({
             Already have an account?{' '}
           </Text>
           <Button
-            onPress={() => {}}
+            onPress={goToLoginScreen}
             text="Log in here."
             includeArrow={false}
             backgroundColor="bg-none"

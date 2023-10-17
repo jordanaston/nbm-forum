@@ -3,5 +3,5 @@ export const colors = {
   forumCharcoal: '#383939',
   white: '#FFFFFF',
   forumBlack: '#010214',
-  errorRed: '#FA6464'
+  errorRed: '#FA6464',
 };

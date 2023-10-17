@@ -6,6 +6,7 @@ import {colors} from '../../constants/Colors';
 type Props = {
   onPress: () => void;
   text: string;
+  disabled?: boolean;
   includeArrow?: boolean;
   arrowColor?: string;
   backgroundColor?: string;
@@ -23,6 +24,7 @@ type Props = {
 const Button: React.FC<Props> = ({
   onPress,
   text,
+  disabled = false,
   includeArrow = true,
   arrowColor = colors.white,
   backgroundColor = 'bg-ForumPurple',
@@ -37,7 +39,14 @@ const Button: React.FC<Props> = ({
   underline,
 }: Props): JSX.Element => {
   return (
-    <TouchableOpacity className={`${backgroundColor}`} onPress={onPress}>
+    <TouchableOpacity
+      className={`${backgroundColor} ${disabled ? 'opacity-60' : ''}`}
+      onPress={() => {
+        if (!disabled) {
+          onPress();
+        }
+      }}
+      disabled={disabled}>
       <View className={`${position} ${border} ${height} ${borderColor}`}>
         <Text
           className={`${position2} ${textColor} ${fontStyle} ${textSize} ${underline}`}>

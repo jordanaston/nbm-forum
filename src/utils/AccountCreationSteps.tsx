@@ -21,10 +21,10 @@ export const useAccountCreationSteps = ({
     // Handle final submission here.
   });
 
-  const wrappedStep = (Component: React.FC<{onNext: () => void}>) => {
+  const wrappedStep = (Component: React.FC<{nextStep: () => void}>) => {
     return (
       <FormikContext.Provider value={formik}>
-        <Component onNext={() => setCurrentStep(prev => prev + 1)} />
+        <Component nextStep={() => setCurrentStep(prev => prev + 1)} />
       </FormikContext.Provider>
     );
   };

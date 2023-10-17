@@ -1,7 +1,6 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-
 const TermsAndConditionsCheck: React.FC = (): JSX.Element => {
   return (
     <View>

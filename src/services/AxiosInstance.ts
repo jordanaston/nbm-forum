@@ -11,11 +11,10 @@ const getToken = async () => {
   return token;
 };
 
-
 nbmApi.interceptors.request.use(async config => {
   const token = await getToken();
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
-export { nbmApi, getToken };
+export {nbmApi, getToken};

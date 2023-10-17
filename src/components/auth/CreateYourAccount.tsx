@@ -1,20 +1,15 @@
 import {View} from 'react-native';
 import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
-import {Text} from 'react-native-elements';
 import InputBox from '../core/InputBox';
-import {createPasswordValidationSchema} from '../../validation/PasswordValidationSchema';
-import {useFormik} from 'formik';
-import {nameValidationSchema} from '../../validation/NameValidationSchema';
-import {emailValidationSchema} from '../../validation/EmailValidationSchema';
-import {createAccountFormik} from '../../functions/CreateAccountFormik';
 import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
+import ErrorAlertBox from './ErrorAlertBox';
 
 type Props = {
-  onNext: () => void;
+  nextStep: () => void;
 };
 
-const CreateYourAccount: React.FC<Props> = ({onNext}: Props): JSX.Element => {
+const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   return (
@@ -57,10 +52,29 @@ const CreateYourAccount: React.FC<Props> = ({onNext}: Props): JSX.Element => {
         <Button
           onPress={() => {
             formik.handleSubmit();
-            onNext();
+            nextStep();
           }}
           text="Next"
+          disabled={
+            !formik.values.firstName ||
+            !!formik.errors.firstName ||
+            !formik.values.lastName ||
+            !!formik.errors.lastName ||
+            !formik.values.email ||
+            !!formik.errors.email
+          }
         />
+        <View className="mt-7">
+          {formik.touched.firstName && formik.errors.firstName ? (
+            <ErrorAlertBox text={formik.errors.firstName} />
+          ) : formik.touched.lastName && formik.errors.lastName ? (
+            <ErrorAlertBox text={formik.errors.lastName} />
+          ) : formik.touched.email && formik.errors.email ? (
+            <ErrorAlertBox text={formik.errors.email} />
+          ) : formik.status ? (
+            <ErrorAlertBox text={formik.status} />
+          ) : null}
+        </View>
       </View>
     </View>
   );
