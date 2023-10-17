@@ -35,6 +35,7 @@ export const createAccountFormik = (
         postalCode: '',
         country: '',
       },
+      avatar: '',
       password: '',
       confirmPassword: '',
     },

@@ -7,6 +7,7 @@ export type FormikInitialValues = {
   email: string;
   telephone: string;
   address: Address;
+  avatar: string;
   password: string;
   confirmPassword: string;
 };
@@ -19,7 +20,6 @@ type Address = {
   postalCode: string;
   country: string;
 };
-
 
 export const FormikContext =
   React.createContext<FormikProps<FormikInitialValues> | null>(null);

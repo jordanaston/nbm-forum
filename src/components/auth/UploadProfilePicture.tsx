@@ -2,14 +2,13 @@ import {View} from 'react-native';
 import AuthTitleDescription from './AuthTitleDescription';
 import Button from '../core/Button';
 import ProfilePictureButton from './ProfilePictureButton';
+import {useState} from 'react';
+import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
 
-type Props = {
-  nextStep: () => void;
-};
+const UploadProfilePicture: React.FC = (): JSX.Element => {
+  const formik = useCreateAccountFormik();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-const UploadProfilePicture: React.FC<Props> = ({
-  nextStep,
-}: Props): JSX.Element => {
   return (
     <View className="">
       <View className="mt-10">
@@ -19,10 +18,22 @@ const UploadProfilePicture: React.FC<Props> = ({
         />
       </View>
       <View className="mt-8">
-        <ProfilePictureButton />
+        <ProfilePictureButton
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+        />
       </View>
       <View className="mt-8">
-        <Button onPress={nextStep} text="Create my Account" />
+        <Button
+          onPress={() => {
+            if (selectedImage) {
+              formik.setFieldValue('avatar', selectedImage);
+              formik.handleSubmit();
+            }
+          }}
+          disabled={!selectedImage}
+          text="Create my Account"
+        />
       </View>
       <View className="mt-6">
         <Button
