@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import CreateYourAccount from './create-account-steps/CreateYourAccount';
-import LetsSecureYourAccount from './create-account-steps/LetsSecureYourAccount';
-import UploadProfilePicture from './create-account-steps/UploadProfilePicture';
-import WhereAreYouLocated from './create-account-steps/WhereAreYouLocated';
-import {MainStackParamList} from '../../navigation/MainStackNavigator';
+import CreateYourAccount from './CreateYourAccount';
+import LetsSecureYourAccount from './LetsSecureYourAccount';
+import UploadProfilePicture from './UploadProfilePicture';
+import WhereAreYouLocated from './WhereAreYouLocated';
+import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {createAccountFormik} from '../../utils/CreateAccountFormik';
-import {FormikContext} from '../../context/CreateAccountFormikContext';
-import {postCreateAccountDetails} from '../../services/AuthServices';
+import {createAccountFormik} from '../../../utils/CreateAccountFormik';
+import {FormikContext} from '../../../context/CreateAccountFormikContext';
+import {postCreateAccountDetails} from '../../../services/AuthServices';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -25,7 +25,7 @@ export const useAccountCreationSteps = ({
         navigation.navigate('LoadingScreen');
 
         setTimeout(() => {
-          navigation.navigate('LoginScreen', { accountCreationSuccess: true });
+          navigation.navigate('LoginScreen', {accountCreationSuccess: true});
         }, 2000);
       } catch (error: any) {
         console.error('Error creating account:', error);

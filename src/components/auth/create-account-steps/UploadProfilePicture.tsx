@@ -54,9 +54,13 @@ const UploadProfilePicture: React.FC = (): JSX.Element => {
           text="Create my Account"
         />
       </View>
-      <View className="mt-8">
-        {formik.status && <ErrorAlertBox text={formik.status} />}
-      </View>
+
+      {formik.status && (
+        <View className="mt-8">
+          <ErrorAlertBox text={formik.status} />
+        </View>
+      )}
+
       <View className="mt-6">
         <Button
           onPress={() => {}}

@@ -7,7 +7,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import BarSlider from '../components/auth/BarSlider';
 import {Text} from 'react-native-elements';
 import Button from '../components/core/Button';
-import {useAccountCreationSteps} from '../components/auth/AccountCreationSteps';
+import {useAccountCreationSteps} from '../components/auth/create-account-steps/AccountCreationStepsParent';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

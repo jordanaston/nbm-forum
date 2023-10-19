@@ -7,14 +7,14 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import InputBox from '../components/core/Input';
 import Button from '../components/core/Button';
-import {useFormik} from 'formik';
 import ErrorAlertBox from '../components/core/ErrorAlertBox';
-import {loginValidationSchema} from '../validation/LoginValidationSchema';
 import {useMutation} from 'react-query';
 import {postLoginDetails} from '../services/AuthServices';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
+import {useLoginFormik} from '../utils/LoginFormik';
+import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -38,13 +38,7 @@ const LoginScreen: React.FC<Props> = ({
 
   const [delayedLoading, setDelayedLoading] = useState<boolean>(false);
 
-  const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: loginValidationSchema,
-    validateOnMount: true,
+  const formik = useLoginFormik({
     onSubmit: async values => {
       setDelayedLoading(true);
       setTimeout(async () => {
@@ -135,14 +129,9 @@ const LoginScreen: React.FC<Props> = ({
             </View>
           </View>
           <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">
-            <Text className="text-ForumPurple font-syne-regular text-[14px]">
-              Don't have an account?
-            </Text>
-            <TouchableOpacity onPress={goToCreateAccountScreen}>
-              <Text className="text-ForumPurple font-syne-medium underline ml-[2px] text-[14px]">
-                Create one here.
-              </Text>
-            </TouchableOpacity>
+            <DontHaveAccountCreateOneHere
+              goToCreateAccountScreen={goToCreateAccountScreen}
+            />
           </View>
         </>
       )}
