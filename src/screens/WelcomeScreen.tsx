@@ -5,15 +5,13 @@ import RocketLogo from '../assets/svg/RocketLogo';
 import Button from '../components/core/Button';
 import {colors} from '../constants/Colors';
 import AuthTitleDescription from '../components/auth/AuthTitleDescription';
+import {goToLoginScreen} from '../utils/GoToLoginScreen';
 
 type Props = {
-  navigation: NativeStackNavigationProp<MainStackParamList, 'WelcomeScreen'>;
+  navigation: NativeStackNavigationProp<MainStackParamList>;
 };
 
 const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
-  const goToSignInScreen = () => {
-    navigation.navigate('LoginScreen');
-  };
   const goToCreateAccountScreen = () => {
     navigation.navigate('CreateAccountScreen');
   };
@@ -40,7 +38,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             />
             <View className="mt-2">
               <Button
-                onPress={goToSignInScreen}
+                onPress={() => goToLoginScreen({navigation})}
                 text="Sign In"
                 arrowColor={colors.forumPurple}
                 textColor="text-ForumPurple"

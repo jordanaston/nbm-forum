@@ -6,8 +6,11 @@ export const handleImageUpload = async (
   selectedImage: string,
   folder: string = 'avatar',
 ) => {
-  const fileKey = `${new Date().toISOString()}-${selectedImage.split('/').pop()!}`;
-  const mimeType = mime.getType(fileKey?.split('.').pop()!) || 'application/octet-stream';
+  const fileKey = `${new Date().toISOString()}-${selectedImage
+    .split('/')
+    .pop()!}`;
+  const mimeType =
+    mime.getType(fileKey?.split('.').pop()!) || 'application/octet-stream';
 
   if (!fileKey) return;
 
@@ -27,7 +30,6 @@ export const handleImageUpload = async (
 
   return response;
 };
-
 
 export const fetchResizedImage = async (
   fileName: string,

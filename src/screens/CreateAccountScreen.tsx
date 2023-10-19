@@ -8,6 +8,7 @@ import BarSlider from '../components/auth/BarSlider';
 import {Text} from 'react-native-elements';
 import Button from '../components/core/Button';
 import {useAccountCreationSteps} from '../components/auth/create-account-steps/AccountCreationStepsParent';
+import {goToLoginScreen} from '../utils/GoToLoginScreen';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -20,15 +21,6 @@ const CreateAccountScreen: React.FC<Props> = ({
     useAccountCreationSteps({
       navigation,
     });
-
-  const goToLoginScreen = () => {
-    navigation.navigate({
-      name: 'LoginScreen',
-      params: {
-        accountCreationSuccess: undefined,
-      },
-    });
-  };
 
   return (
     <SafeAreaView className="flex-1">
@@ -46,7 +38,7 @@ const CreateAccountScreen: React.FC<Props> = ({
             Already have an account?{' '}
           </Text>
           <Button
-            onPress={goToLoginScreen}
+            onPress={() => goToLoginScreen({navigation})}
             text="Log in here."
             includeArrow={false}
             backgroundColor="bg-none"

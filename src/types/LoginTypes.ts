@@ -13,4 +13,3 @@ export interface LoginResponse {
     telephone: string;
   };
 }
-

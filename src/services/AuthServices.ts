@@ -24,8 +24,7 @@ export const postLoginDetails = async ({
       ['accessToken', JSON.stringify(data.accessToken)],
     ]);
 
-    const storedToken = await AsyncStorage.getItem('accessToken');
-    console.log('STORED ACCESS TOKEN: ', storedToken);
+    await AsyncStorage.getItem('accessToken');
 
     return data;
   } catch (error) {

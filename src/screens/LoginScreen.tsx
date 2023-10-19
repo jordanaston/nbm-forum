@@ -8,13 +8,12 @@ import {MainStackParamList} from '../navigation/MainStackNavigator';
 import InputBox from '../components/core/Input';
 import Button from '../components/core/Button';
 import ErrorAlertBox from '../components/core/ErrorAlertBox';
-import {useMutation} from 'react-query';
-import {postLoginDetails} from '../services/AuthServices';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
 import {useLoginFormik} from '../utils/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
+import {useLoginMutation} from '../hooks/LoginMutation';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -29,12 +28,7 @@ const LoginScreen: React.FC<Props> = ({
     navigation.navigate('CreateAccountScreen');
   };
 
-  const mutation = useMutation(postLoginDetails, {
-    onSuccess: () => {
-      navigation.navigate('FeedScreen');
-      formik.setStatus(null);
-    },
-  });
+  const mutation = useLoginMutation({navigation});
 
   const [delayedLoading, setDelayedLoading] = useState<boolean>(false);
 
