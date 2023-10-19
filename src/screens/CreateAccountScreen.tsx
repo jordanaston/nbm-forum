@@ -4,10 +4,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import NbmBackNavBar from '../components/auth/NbmBackNavBar';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {useAccountCreationSteps} from '../utils/AccountCreationSteps';
+import {useAccountCreationSteps} from '../components/auth/AccountCreationSteps';
 import BarSlider from '../components/auth/BarSlider';
 import {Text} from 'react-native-elements';
 import Button from '../components/core/Button';
+import {HARDCODED_TOKEN} from '@env';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

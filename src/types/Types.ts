@@ -13,3 +13,13 @@ export interface LoginResponse {
     telephone: string;
   };
 }
+
+export interface UploadImageArgs {
+  fileName: string;
+  folder: string;
+}
+
+export interface UploadImageResponse {
+  fileName: string;
+  url: string;
+}

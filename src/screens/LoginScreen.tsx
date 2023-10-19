@@ -60,6 +60,8 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
     },
   });
 
+
+
   return (
     <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" />

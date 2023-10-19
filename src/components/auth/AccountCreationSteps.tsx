@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import CreateYourAccount from '../components/auth/CreateYourAccount';
-import LetsSecureYourAccount from '../components/auth/LetsSecureYourAccount';
-import UploadProfilePicture from '../components/auth/UploadProfilePicture';
-import WhereAreYouLocated from '../components/auth/WhereAreYouLocated';
-import {MainStackParamList} from '../navigation/MainStackNavigator';
+import CreateYourAccount from './CreateYourAccount';
+import LetsSecureYourAccount from './LetsSecureYourAccount';
+import UploadProfilePicture from './UploadProfilePicture';
+import WhereAreYouLocated from './WhereAreYouLocated';
+import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {createAccountFormik} from '../functions/CreateAccountFormik';
-import {FormikContext} from '../context/CreateAccountFormikContext';
+import {createAccountFormik} from '../../utils/CreateAccountFormik';
+import {FormikContext} from '../../context/CreateAccountFormikContext';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

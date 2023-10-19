@@ -4,13 +4,36 @@ import Button from '../core/Button';
 import ProfilePictureButton from './ProfilePictureButton';
 import {useState} from 'react';
 import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
+import {fetchResizedImage, handleImageUpload} from '../../utils/ImageUtils';
 
 const UploadProfilePicture: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
+
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const [displayImage, setDisplayImage] = useState<string | null>(null);
+
+  const handleSetAvatar = async () => {
+    if (!selectedImage) return;
+
+    const uploadResponse = await handleImageUpload(selectedImage);
+    if (uploadResponse && uploadResponse.fileName) {
+      formik.setFieldValue('avatar', uploadResponse.fileName);
+      setResizedDisplayImage(uploadResponse.fileName);
+    }
+
+    formik.handleSubmit();
+  };
+
+  const setResizedDisplayImage = async (fileName: string) => {
+    const imageUrl = await fetchResizedImage(fileName);
+    if (imageUrl) {
+      setDisplayImage(imageUrl);
+    }
+  };
+
   return (
-    <View className="">
+    <View>
       <View className="mt-10">
         <AuthTitleDescription
           title="Upload a Profile Picture"
@@ -25,12 +48,7 @@ const UploadProfilePicture: React.FC = (): JSX.Element => {
       </View>
       <View className="mt-8">
         <Button
-          onPress={() => {
-            if (selectedImage) {
-              formik.setFieldValue('avatar', selectedImage);
-              formik.handleSubmit();
-            }
-          }}
+          onPress={handleSetAvatar}
           disabled={!selectedImage}
           text="Create my Account"
         />
