@@ -13,7 +13,9 @@ import SettingsScreen from '../screens/SettingsScreen';
 export type MainStackParamList = {
   SplashScreen: undefined;
   WelcomeScreen: undefined;
-  LoginScreen: undefined;
+  LoginScreen: {
+    accountCreationSuccess?: boolean;
+  };
   LoadingScreen: undefined;
   FeedScreen: undefined;
   PostScreen: undefined;

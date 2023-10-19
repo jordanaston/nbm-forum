@@ -24,12 +24,17 @@ export const useAccountCreationSteps = ({
         await postCreateAccountDetails(values);
         navigation.navigate('LoadingScreen');
 
-        // Set a timeout for 2000ms (2 seconds)
         setTimeout(() => {
-          navigation.navigate('LoginScreen');
+          navigation.navigate('LoginScreen', { accountCreationSuccess: true });
         }, 2000);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Error creating account:', error);
+
+        if (error.response && error.response.status === 409) {
+          formik.setStatus('Email or phone number already exists.');
+        } else {
+          formik.setStatus('An unexpected error occurred.');
+        }
       }
     } else {
       setCurrentStep(prev => prev + 1);
@@ -57,6 +62,7 @@ export const useAccountCreationSteps = ({
     } else if (currentStep > 0) {
       setCurrentStep(prev => prev - 1);
     }
+    formik.setStatus(null);
   };
 
   return [steps[currentStep] || null, goBackOneStep, currentStep];

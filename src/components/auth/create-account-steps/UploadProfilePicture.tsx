@@ -5,6 +5,7 @@ import ProfilePictureButton from '../ProfilePictureButton';
 import {useState} from 'react';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import {fetchResizedImage, handleImageUpload} from '../../../utils/ImageUtils';
+import ErrorAlertBox from '../../core/ErrorAlertBox';
 
 const UploadProfilePicture: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
@@ -52,6 +53,9 @@ const UploadProfilePicture: React.FC = (): JSX.Element => {
           disabled={!selectedImage}
           text="Create my Account"
         />
+      </View>
+      <View className="mt-8">
+        {formik.status && <ErrorAlertBox text={formik.status} />}
       </View>
       <View className="mt-6">
         <Button

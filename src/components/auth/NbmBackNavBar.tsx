@@ -8,15 +8,19 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
+  backToWelcome?: boolean;
   onBackPress?: () => void;
 };
 
 const NbmBackNavBar: React.FC<Props> = ({
   navigation,
   onBackPress,
+  backToWelcome,
 }: Props): JSX.Element => {
   const takeUserBack = () => {
-    if (onBackPress) {
+    if (backToWelcome) {
+      navigation.navigate('WelcomeScreen');
+    } else if (onBackPress) {
       onBackPress();
     } else {
       navigation.goBack();

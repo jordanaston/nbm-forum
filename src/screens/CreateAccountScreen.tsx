@@ -22,7 +22,12 @@ const CreateAccountScreen: React.FC<Props> = ({
     });
 
   const goToLoginScreen = () => {
-    navigation.navigate('LoginScreen');
+    navigation.navigate({
+      name: 'LoginScreen',
+      params: {
+        accountCreationSuccess: undefined,
+      },
+    });
   };
 
   return (

@@ -5,11 +5,7 @@ import InputBox from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
 
-type Props = {
-  nextStep: () => void;
-};
-
-const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
+const CreateYourAccount: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   return (
@@ -43,7 +39,10 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
             placeholder="you@email.com"
             inputBoxTitle="Email"
             value={formik.values.email}
-            onChangeText={formik.handleChange('email')}
+            onChangeText={text => {
+              formik.handleChange('email')(text);
+              formik.setStatus(null);
+            }}
             onBlur={formik.handleBlur('email')}
           />
         </View>
@@ -52,7 +51,10 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
             placeholder="Enter your mobile number here"
             inputBoxTitle="Phone"
             value={formik.values.telephone}
-            onChangeText={formik.handleChange('telephone')}
+            onChangeText={text => {
+              formik.handleChange('telephone')(text);
+              formik.setStatus(null);
+            }}
             onBlur={formik.handleBlur('telephone')}
           />
         </View>

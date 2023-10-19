@@ -13,12 +13,18 @@ import {loginValidationSchema} from '../validation/LoginValidationSchema';
 import {useMutation} from 'react-query';
 import {postLoginDetails} from '../services/AuthServices';
 import LoadingScreen from './LoadingScreen';
+import {RouteProp} from '@react-navigation/native';
+import SuccessAlertBox from '../components/core/SuccessAlertBox';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
+  route: RouteProp<MainStackParamList, 'LoginScreen'>;
 };
 
-const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
+const LoginScreen: React.FC<Props> = ({
+  navigation,
+  route,
+}: Props): JSX.Element => {
   const goToCreateAccountScreen = () => {
     navigation.navigate('CreateAccountScreen');
   };
@@ -60,6 +66,8 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
     },
   });
 
+  const accountCreationSuccess = route.params?.accountCreationSuccess;
+
   return (
     <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" />
@@ -68,7 +76,7 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
       ) : (
         <>
           <View className="mx-6">
-            <NbmBackNavBar navigation={navigation} />
+            <NbmBackNavBar navigation={navigation} backToWelcome={true} />
             <View className="mt-6">
               <AuthTitleDescription
                 title={`Log In`}
@@ -114,6 +122,12 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                   <ErrorAlertBox text={formik.status} />
                 ) : null}
               </View>
+
+              {accountCreationSuccess && (
+                <View>
+                  <SuccessAlertBox text="Account created successfully! Please log in." />
+                </View>
+              )}
             </View>
           </View>
           <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">

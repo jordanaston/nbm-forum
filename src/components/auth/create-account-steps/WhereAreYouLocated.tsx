@@ -4,13 +4,7 @@ import Button from '../../core/Button';
 import GooglePlacesInput from '../GooglePlacesInput';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 
-type Props = {
-  nextStep: () => void;
-};
-
-const WhereAreYouLocated: React.FC<Props> = ({
-  nextStep,
-}: Props): JSX.Element => {
+const WhereAreYouLocated: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   return (

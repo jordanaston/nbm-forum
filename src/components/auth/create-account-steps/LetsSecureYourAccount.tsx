@@ -6,13 +6,7 @@ import TermsAndConditionsCheck from '../TermsAndConditionsCheck';
 import InputBox from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 
-type Props = {
-  nextStep: () => void;
-};
-
-const LetsSecureYourAccount: React.FC<Props> = ({
-  nextStep,
-}: Props): JSX.Element => {
+const LetsSecureYourAccount: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   return (
