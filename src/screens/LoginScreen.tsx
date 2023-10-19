@@ -123,14 +123,15 @@ const LoginScreen: React.FC<Props> = ({
                 ) : null}
               </View>
 
-              {accountCreationSuccess &&
-                !formik.errors.email &&
-                !formik.errors.password &&
-                !formik.status && (
-                  <View>
+              {accountCreationSuccess && (
+                <View>
+                  {(!formik.touched.email || !formik.errors.email) &&
+                  (!formik.touched.password || !formik.errors.password) &&
+                  !formik.status ? (
                     <SuccessAlertBox text="Account created successfully! Please log in." />
-                  </View>
-                )}
+                  ) : null}
+                </View>
+              )}
             </View>
           </View>
           <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">
