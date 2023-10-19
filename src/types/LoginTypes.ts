@@ -14,12 +14,3 @@ export interface LoginResponse {
   };
 }
 
-export interface UploadImageArgs {
-  fileName: string;
-  folder: string;
-}
-
-export interface UploadImageResponse {
-  fileName: string;
-  url: string;
-}

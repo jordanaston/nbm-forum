@@ -1,10 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {LoginArgs, LoginResponse} from '../types/LoginTypes';
 import {
-  LoginArgs,
-  LoginResponse,
+  DownloadImageArgs,
+  DownloadImageResponse,
   UploadImageArgs,
   UploadImageResponse,
-} from '../types/Types';
+} from '../types/ProfilePictureTypes';
 import {nbmApi} from './AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
@@ -16,8 +17,7 @@ export const postLoginDetails = async ({
   try {
     const {data} = await nbmApi.post('/auth/login', {email, password});
     await AsyncStorage.multiSet([
-      ['accessToken', data.accessToken],
-      ['loginData', data],
+      ['accessToken', JSON.stringify(data.accessToken)],
     ]);
 
     const storedToken = await AsyncStorage.getItem('accessToken');
@@ -43,76 +43,32 @@ export const getAwsUrl = async ({
         folder,
       },
     });
-
     return data;
   } catch (error: any) {
     throw error;
   }
 };
 
-type Props = {
-  fileName: string;
-  height: number;
-  width: number;
-};
-
-export const getProfilePicture = async ({fileName, height, width}: Props) => {
+export const getProfilePicture = async ({
+  fileName,
+  height,
+  width,
+}: DownloadImageArgs): Promise<DownloadImageResponse> => {
   try {
-    const {data} = await axios.get('https://api.development.forum.mike-automations.link/files/download/resize', {
-      headers: {
-        Authorization: `Bearer ${HARDCODED_TOKEN}`,
+    const {data} = await axios.get(
+      'https://api.development.forum.mike-automations.link/files/download/resize',
+      {
+        headers: {
+          Authorization: `Bearer ${HARDCODED_TOKEN}`,
+        },
+        params: {
+          fileName,
+          height,
+          width,
+        },
       },
-      params: {
-        fileName,
-        height,
-        width
-      },
-    });
+    );
     return data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-export const getManyPosts = async () => {
-  try {
-    const requestBody = {
-      page: 1,
-      limit: 10,
-      tags: [],
-    };
-
-    const {data} = await nbmApi.post('/posts/_search', requestBody);
-    console.log('GET POSTS: ', JSON.stringify(data.data, null, 3));
-    return data.data;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
-
-export const postCreatedPost = async (
-  title: string,
-  content: string,
-  tags: string[],
-) => {
-  try {
-    const {data} = await nbmApi.post('/posts', {
-      title,
-      content,
-      tags,
-    });
-    return data.data;
   } catch (error) {
     throw error;
   }

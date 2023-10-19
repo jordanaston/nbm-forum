@@ -1,10 +1,14 @@
 import {Text, View} from 'react-native';
 import React from 'react';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import {
+  GooglePlaceData,
+  GooglePlaceDetail,
+  GooglePlacesAutocomplete,
+} from 'react-native-google-places-autocomplete';
 import {colors} from '../../constants/Colors';
 import Config from 'react-native-config';
 import {FormikProps} from 'formik';
-import {FormikInitialValues} from '../../context/CreateAccountFormikContext';
+import {FormikInitialValues} from '../../types/CreateAccountTypes';
 
 type Props = {
   formik: FormikProps<FormikInitialValues>;
@@ -22,6 +26,7 @@ const GooglePlacesInput: React.FC<Props> = ({formik}: Props): JSX.Element => {
         <GooglePlacesAutocomplete
           placeholder="Start typing..."
           enablePoweredByContainer={false}
+          fetchDetails={true}
           textInputProps={{
             placeholderTextColor: `${colors.forumCharcoal}`,
             returnKeyType: 'search',
