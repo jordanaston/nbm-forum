@@ -1,11 +1,11 @@
 import React from 'react';
 import {FormikProps} from 'formik';
-import {FormikInitialValues} from '../types/CreateAccountTypes';
+import {CreateAccountArgs} from '../types/CreateAccountTypes';
 
 export const FormikContext =
-  React.createContext<FormikProps<FormikInitialValues> | null>(null);
+  React.createContext<FormikProps<CreateAccountArgs> | null>(null);
 
-export const useCreateAccountFormik = (): FormikProps<FormikInitialValues> => {
+export const useCreateAccountFormik = (): FormikProps<CreateAccountArgs> => {
   const context = React.useContext(FormikContext);
   if (!context) {
     throw new Error(

@@ -8,7 +8,7 @@ import {MainStackParamList} from '../navigation/MainStackNavigator';
 import InputBox from '../components/core/Input';
 import Button from '../components/core/Button';
 import {useFormik} from 'formik';
-import ErrorAlertBox from '../components/auth/ErrorAlertBox';
+import ErrorAlertBox from '../components/core/ErrorAlertBox';
 import {loginValidationSchema} from '../validation/LoginValidationSchema';
 import {useMutation} from 'react-query';
 import {postLoginDetails} from '../services/AuthServices';
@@ -59,8 +59,6 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
       }, 1000);
     },
   });
-
-
 
   return (
     <SafeAreaView className="flex-1">

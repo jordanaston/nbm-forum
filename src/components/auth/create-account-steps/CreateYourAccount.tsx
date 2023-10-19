@@ -1,9 +1,9 @@
 import {View} from 'react-native';
-import AuthTitleDescription from './AuthTitleDescription';
-import Button from '../core/Button';
-import InputBox from '../core/Input';
-import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
-import ErrorAlertBox from './ErrorAlertBox';
+import AuthTitleDescription from '../AuthTitleDescription';
+import Button from '../../core/Button';
+import InputBox from '../../core/Input';
+import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
+import ErrorAlertBox from '../../core/ErrorAlertBox';
 
 type Props = {
   nextStep: () => void;
@@ -59,10 +59,7 @@ const CreateYourAccount: React.FC<Props> = ({nextStep}: Props): JSX.Element => {
       </View>
       <View className="mt-6">
         <Button
-          onPress={() => {
-            formik.handleSubmit();
-            nextStep();
-          }}
+          onPress={formik.handleSubmit}
           text="Next"
           disabled={
             !formik.values.firstName ||

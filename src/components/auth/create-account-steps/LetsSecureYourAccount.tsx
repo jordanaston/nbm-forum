@@ -1,10 +1,10 @@
 import {View} from 'react-native';
-import AuthTitleDescription from './AuthTitleDescription';
-import Button from '../core/Button';
-import PasswordRules from './PasswordRules';
-import TermsAndConditionsCheck from './TermsAndConditionsCheck';
-import InputBox from '../core/Input';
-import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
+import AuthTitleDescription from '../AuthTitleDescription';
+import Button from '../../core/Button';
+import PasswordRules from '../PasswordRules';
+import TermsAndConditionsCheck from '../TermsAndConditionsCheck';
+import InputBox from '../../core/Input';
+import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 
 type Props = {
   nextStep: () => void;
@@ -53,10 +53,7 @@ const LetsSecureYourAccount: React.FC<Props> = ({
       </View>
       <View className="mt-6">
         <Button
-          onPress={() => {
-            formik.handleSubmit();
-            nextStep();
-          }}
+          onPress={formik.handleSubmit}
           text="Next"
           disabled={
             !formik.values.password ||

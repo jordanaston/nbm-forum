@@ -8,10 +8,10 @@ import {
 import {colors} from '../../constants/Colors';
 import Config from 'react-native-config';
 import {FormikProps} from 'formik';
-import {FormikInitialValues} from '../../types/CreateAccountTypes';
+import {CreateAccountArgs} from '../../types/CreateAccountTypes';
 
 type Props = {
-  formik: FormikProps<FormikInitialValues>;
+  formik: FormikProps<CreateAccountArgs>;
 };
 
 const GooglePlacesInput: React.FC<Props> = ({formik}: Props): JSX.Element => {

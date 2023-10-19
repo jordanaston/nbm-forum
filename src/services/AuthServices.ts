@@ -9,6 +9,10 @@ import {
 import {nbmApi} from './AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
+import {
+  CreateAccountArgs,
+  CreateAccountResponse,
+} from '../types/CreateAccountTypes';
 
 export const postLoginDetails = async ({
   email,
@@ -23,6 +27,33 @@ export const postLoginDetails = async ({
     const storedToken = await AsyncStorage.getItem('accessToken');
     console.log('STORED ACCESS TOKEN: ', storedToken);
 
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postCreateAccountDetails = async ({
+  firstName,
+  lastName,
+  email,
+  telephone,
+  address,
+  avatar,
+  password,
+  confirmPassword,
+}: CreateAccountArgs): Promise<CreateAccountResponse> => {
+  try {
+    const {data} = await nbmApi.post('/auth/register', {
+      firstName,
+      lastName,
+      email,
+      telephone,
+      address,
+      avatar,
+      password,
+      confirmPassword,
+    });
     return data;
   } catch (error) {
     throw error;

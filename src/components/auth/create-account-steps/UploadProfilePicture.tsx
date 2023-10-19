@@ -1,10 +1,10 @@
 import {View} from 'react-native';
-import AuthTitleDescription from './AuthTitleDescription';
-import Button from '../core/Button';
-import ProfilePictureButton from './ProfilePictureButton';
+import AuthTitleDescription from '../AuthTitleDescription';
+import Button from '../../core/Button';
+import ProfilePictureButton from '../ProfilePictureButton';
 import {useState} from 'react';
-import {useCreateAccountFormik} from '../../context/CreateAccountFormikContext';
-import {fetchResizedImage, handleImageUpload} from '../../utils/ImageUtils';
+import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
+import {fetchResizedImage, handleImageUpload} from '../../../utils/ImageUtils';
 
 const UploadProfilePicture: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
