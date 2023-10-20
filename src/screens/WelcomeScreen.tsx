@@ -5,7 +5,7 @@ import RocketLogo from '../assets/svg/RocketLogo';
 import Button from '../components/core/Button';
 import {colors} from '../constants/Colors';
 import AuthTitleDescription from '../components/auth/AuthTitleDescription';
-import {goToLoginScreen} from '../utils/GoToLoginScreen';
+import {goToLoginScreen} from '../utils/GoToLoginScreenFunction';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
