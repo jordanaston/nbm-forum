@@ -4,9 +4,16 @@ import Button from '../../core/Button';
 import InputBox from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
+import {renderErrors} from '../../../utils/RenderErrorsFunction';
 
 const CreateYourAccount: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
+
+  const errorMessage = renderErrors({
+    touched: formik.touched,
+    errors: formik.errors,
+    status: formik.status,
+  });
 
   return (
     <View>
@@ -75,17 +82,7 @@ const CreateYourAccount: React.FC = (): JSX.Element => {
           }
         />
         <View className="mt-6">
-          {formik.touched.firstName && formik.errors.firstName ? (
-            <ErrorAlertBox text={formik.errors.firstName} />
-          ) : formik.touched.lastName && formik.errors.lastName ? (
-            <ErrorAlertBox text={formik.errors.lastName} />
-          ) : formik.touched.email && formik.errors.email ? (
-            <ErrorAlertBox text={formik.errors.email} />
-          ) : formik.touched.telephone && formik.errors.telephone ? (
-            <ErrorAlertBox text={formik.errors.telephone} />
-          ) : formik.status ? (
-            <ErrorAlertBox text={formik.status} />
-          ) : null}
+          {errorMessage && <ErrorAlertBox text={errorMessage} />}
         </View>
       </View>
     </View>

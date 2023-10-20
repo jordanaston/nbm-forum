@@ -15,6 +15,7 @@ import {useLoginFormik} from '../utils/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 import {useLoginMutation} from '../hooks/LoginMutation';
 import {sleep} from '../utils/SleepFunction';
+import {renderErrors} from '../utils/RenderErrorsFunction';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -51,6 +52,12 @@ const LoginScreen: React.FC<Props> = ({
         formik.setSubmitting(false);
       }
     },
+  });
+
+  const errorMessage = renderErrors({
+    touched: formik.touched,
+    errors: formik.errors,
+    status: formik.status,
   });
 
   return (
@@ -99,13 +106,7 @@ const LoginScreen: React.FC<Props> = ({
                 />
               </View>
               <View className="mt-8">
-                {formik.touched.email && formik.errors.email ? (
-                  <ErrorAlertBox text={formik.errors.email} />
-                ) : formik.touched.password && formik.errors.password ? (
-                  <ErrorAlertBox text={formik.errors.password} />
-                ) : formik.status ? (
-                  <ErrorAlertBox text={formik.status} />
-                ) : null}
+                {errorMessage && <ErrorAlertBox text={errorMessage} />}
               </View>
 
               {accountCreationSuccess && (
