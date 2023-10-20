@@ -8,6 +8,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {createAccountFormik} from '../../../utils/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
 import {postCreateAccountDetails} from '../../../services/AuthServices';
+import {useMutation} from 'react-query';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -15,27 +16,25 @@ type Props = {
 
 export const useAccountCreationSteps = ({
   navigation,
-}: Props): [JSX.Element | null, () => void, number] => {
+}: Props): [JSX.Element | null, () => void, number, boolean] => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
-  const handleSubmit = async (values: any) => {
-    if (currentStep === 3) {
-      try {
-        await postCreateAccountDetails(values);
-        navigation.navigate('LoadingScreen');
-
-        setTimeout(() => {
-          navigation.navigate('LoginScreen', {accountCreationSuccess: true});
-        }, 2000);
-      } catch (error: any) {
-        console.error('Error creating account:', error);
-
-        if (error.response && error.response.status === 409) {
-          formik.setStatus('Email or phone number already exists.');
-        } else {
-          formik.setStatus('An unexpected error occurred.');
-        }
+  const mutation = useMutation(postCreateAccountDetails, {
+    onSuccess: () => {
+      navigation.navigate('LoginScreen', {accountCreationSuccess: true});
+    },
+    onError: (error: any) => {
+      if (error.response && error.response.status === 409) {
+        formik.setStatus('Email or phone number already exists.');
+      } else {
+        formik.setStatus('An unexpected error occurred.');
       }
+    },
+  });
+
+  const handleSubmit = (values: any) => {
+    if (currentStep === 3) {
+      mutation.mutate(values);
     } else {
       setCurrentStep(prev => prev + 1);
     }
@@ -43,9 +42,9 @@ export const useAccountCreationSteps = ({
 
   const formik = createAccountFormik(currentStep, handleSubmit);
 
-  const wrappedStep = (Component: React.FC<{nextStep: () => void}>) => (
+  const wrappedStep = (Component: React.FC) => (
     <FormikContext.Provider value={formik}>
-      <Component nextStep={() => handleSubmit(formik.values)} />
+      <Component />
     </FormikContext.Provider>
   );
 
@@ -65,5 +64,10 @@ export const useAccountCreationSteps = ({
     formik.setStatus(null);
   };
 
-  return [steps[currentStep] || null, goBackOneStep, currentStep];
+  return [
+    steps[currentStep] || null,
+    goBackOneStep,
+    currentStep,
+    mutation.isLoading,
+  ];
 };

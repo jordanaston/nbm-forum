@@ -14,6 +14,8 @@ import SuccessAlertBox from '../components/core/SuccessAlertBox';
 import {useLoginFormik} from '../utils/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 import {useLoginMutation} from '../hooks/LoginMutation';
+import { sleep } from '../utils/SleepFunction';
+
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -30,27 +32,24 @@ const LoginScreen: React.FC<Props> = ({
 
   const mutation = useLoginMutation({navigation});
 
-  const [delayedLoading, setDelayedLoading] = useState<boolean>(false);
-
   const formik = useLoginFormik({
     onSubmit: async values => {
-      setDelayedLoading(true);
-      setTimeout(async () => {
-        try {
-          await mutation.mutateAsync({
-            email: values.email,
-            password: values.password,
-          });
-        } catch (error: any) {
-          if (error.response && error.response.status === 401) {
-            formik.setStatus('Incorrect password for this email.');
-          } else {
-            formik.setStatus('An unexpected error occurred.');
-          }
-        } finally {
-          setDelayedLoading(false);
+      formik.setSubmitting(true);
+      try {
+        await sleep(1000);
+        await mutation.mutateAsync({
+          email: values.email,
+          password: values.password,
+        });
+      } catch (error: any) {
+        if (error.response && error.response.status === 401) {
+          formik.setStatus('Incorrect password for this email.');
+        } else {
+          formik.setStatus('An unexpected error occurred.');
         }
-      }, 1000);
+      } finally {
+        formik.setSubmitting(false);
+      }
     },
   });
 
@@ -59,7 +58,7 @@ const LoginScreen: React.FC<Props> = ({
   return (
     <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" />
-      {delayedLoading ? (
+      {mutation.isLoading || formik.isSubmitting ? (
         <LoadingScreen />
       ) : (
         <>
