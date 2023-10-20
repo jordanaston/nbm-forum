@@ -35,7 +35,7 @@ const LoginScreen: React.FC<Props> = ({
     onSubmit: async values => {
       formik.setSubmitting(true);
       try {
-        await sleep(1000);
+        await sleep(2000);
         await loginMutation.mutateAsync({
           email: values.email,
           password: values.password,

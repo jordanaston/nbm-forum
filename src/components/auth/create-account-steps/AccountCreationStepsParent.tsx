@@ -7,8 +7,7 @@ import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {createAccountFormik} from '../../../utils/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
-import {postCreateAccountDetails} from '../../../services/AuthServices';
-import {useMutation} from 'react-query';
+import {useCreateAccountMutation} from '../../../hooks/CreateAccountMutation';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -21,30 +20,19 @@ export const useAccountCreationSteps = ({
 }: Props): [JSX.Element | null, () => void, number, boolean] => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
-  const createAccountMutation = useMutation(postCreateAccountDetails, {
-    onSuccess: () => {
-      navigation.navigate('LoginScreen', {accountCreationSuccess: true});
-      setCurrentStep(0);
-      formik.resetForm();
-    },
-    onError: (error: any) => {
-      if (error.response && error.response.status === 409) {
-        formik.setStatus('Email or phone number already exists.');
-      } else {
-        formik.setStatus('An unexpected error occurred.');
-      }
-    },
-  });
-
-  const handleSubmit = (values: any) => {
+  const formik = createAccountFormik(currentStep, values => {
     if (currentStep === 3) {
       createAccountMutation.mutate(values);
     } else {
       setCurrentStep(prev => prev + 1);
     }
-  };
+  });
 
-  const formik = createAccountFormik(currentStep, handleSubmit);
+  const createAccountMutation = useCreateAccountMutation({
+    navigation,
+    setCurrentStep,
+    formik,
+  });
 
   const wrappedStep = (Component: React.FC) => (
     <FormikContext.Provider value={formik}>
