@@ -9,7 +9,7 @@ export interface CreateAccountArgs {
   confirmPassword: string;
 }
 
-interface Address {
+export interface Address {
   street: string;
   number: string;
   city: string;

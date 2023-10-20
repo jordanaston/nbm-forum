@@ -2,7 +2,7 @@ import {useFormik} from 'formik';
 import {loginValidationSchema} from '../validation/LoginValidationSchema';
 import {LoginArgs} from '../types/LoginTypes';
 
-interface Props {
+type Props = {
   onSubmit: (values: LoginArgs) => Promise<void>;
 }
 

@@ -1,11 +1,16 @@
 import mime from 'mime';
 import {getAwsUrl} from '../services/AuthServices';
 import {getProfilePicture} from '../services/AuthServices';
+import {
+  DownloadImageArgs,
+  DownloadImageResponse,
+  UploadImageResponse,
+} from '../types/ProfilePictureTypes';
 
 export const handleImageUpload = async (
   selectedImage: string,
   folder: string = 'avatar',
-) => {
+): Promise<UploadImageResponse | undefined> => {
   const fileKey = `${new Date().toISOString()}-${selectedImage
     .split('/')
     .pop()!}`;
@@ -28,7 +33,7 @@ export const handleImageUpload = async (
     body: blob,
   });
 
-  return response;
+  return response as UploadImageResponse;
 };
 
 export const fetchResizedImage = async (
@@ -40,6 +45,7 @@ export const fetchResizedImage = async (
     fileName,
     height,
     width,
-  });
-  return resizedImage?.url || null;
+  } as DownloadImageArgs);
+
+  return (resizedImage as DownloadImageResponse)?.url || null;
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import {View} from 'react-native';
 
-type BarSliderProps = {
+type Props = {
   currentStep: number;
 };
 
-const BarSlider: React.FC<BarSliderProps> = ({currentStep}): JSX.Element => {
+const BarSlider: React.FC<Props> = ({currentStep}: Props): JSX.Element => {
   const getColor = (index: number) => {
     return index <= currentStep + 1
       ? 'bg-ForumPurple'

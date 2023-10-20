@@ -2,10 +2,11 @@ import {useFormik} from 'formik';
 import {createPasswordValidationSchema} from '../validation/PasswordValidationSchema';
 import {userDetailsValidationSchema} from '../validation/UserDetailsValidationSchema';
 import * as yup from 'yup';
+import { CreateAccountArgs } from '../types/CreateAccountTypes';
 
 export const createAccountFormik = (
   currentStep: number,
-  onSubmit: (values: any) => void,
+  onSubmit: (values: CreateAccountArgs) => void,
 ) => {
   let currentValidationSchema;
 

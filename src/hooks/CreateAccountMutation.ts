@@ -1,18 +1,24 @@
-import { useMutation } from 'react-query';
-import { postCreateAccountDetails } from '../services/AuthServices';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { MainStackParamList } from '../navigation/MainStackNavigator';
+import {useMutation} from 'react-query';
+import {postCreateAccountDetails} from '../services/AuthServices';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {MainStackParamList} from '../navigation/MainStackNavigator';
+import {FormikProps} from 'formik';
+import {CreateAccountArgs} from '../types/CreateAccountTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
   setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
-  formik: any; 
+  formik: FormikProps<CreateAccountArgs>;
 };
 
-export const useCreateAccountMutation = ({ navigation, setCurrentStep, formik }: Props) => {
+export const useCreateAccountMutation = ({
+  navigation,
+  setCurrentStep,
+  formik,
+}: Props) => {
   return useMutation(postCreateAccountDetails, {
     onSuccess: () => {
-      navigation.navigate('LoginScreen', { accountCreationSuccess: true });
+      navigation.navigate('LoginScreen', {accountCreationSuccess: true});
       setCurrentStep(0);
       formik.resetForm();
     },

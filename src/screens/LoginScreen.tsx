@@ -30,6 +30,7 @@ const LoginScreen: React.FC<Props> = ({
   };
 
   const loginMutation = useLoginMutation({navigation});
+  const accountCreationSuccess = route.params?.accountCreationSuccess;
 
   const formik = useLoginFormik({
     onSubmit: async values => {
@@ -51,8 +52,6 @@ const LoginScreen: React.FC<Props> = ({
       }
     },
   });
-
-  const accountCreationSuccess = route.params?.accountCreationSuccess;
 
   return (
     <SafeAreaView className="flex-1">
