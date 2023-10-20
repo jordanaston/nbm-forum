@@ -7,7 +7,13 @@ import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContex
 import {fetchResizedImage, handleImageUpload} from '../../../utils/ImageUtils';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
 
-const UploadProfilePicture: React.FC = (): JSX.Element => {
+type Props = {
+  setImageUploading: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+const UploadProfilePicture: React.FC<Props> = ({
+  setImageUploading,
+}: Props): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -16,13 +22,13 @@ const UploadProfilePicture: React.FC = (): JSX.Element => {
 
   const handleSetAvatar = async () => {
     if (!selectedImage) return;
-
+    setImageUploading(true);
     const uploadResponse = await handleImageUpload(selectedImage);
     if (uploadResponse && uploadResponse.fileName) {
       formik.setFieldValue('avatar', uploadResponse.fileName);
       setResizedDisplayImage(uploadResponse.fileName);
     }
-
+    setImageUploading(false);
     formik.handleSubmit();
   };
 

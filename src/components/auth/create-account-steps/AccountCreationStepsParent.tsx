@@ -12,16 +12,20 @@ import {useMutation} from 'react-query';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
+  setIsImageUploading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const useAccountCreationSteps = ({
   navigation,
+  setIsImageUploading,
 }: Props): [JSX.Element | null, () => void, number, boolean] => {
   const [currentStep, setCurrentStep] = useState<number>(0);
 
-  const mutation = useMutation(postCreateAccountDetails, {
+  const createAccountMutation = useMutation(postCreateAccountDetails, {
     onSuccess: () => {
       navigation.navigate('LoginScreen', {accountCreationSuccess: true});
+      setCurrentStep(0);
+      formik.resetForm();
     },
     onError: (error: any) => {
       if (error.response && error.response.status === 409) {
@@ -34,7 +38,7 @@ export const useAccountCreationSteps = ({
 
   const handleSubmit = (values: any) => {
     if (currentStep === 3) {
-      mutation.mutate(values);
+      createAccountMutation.mutate(values);
     } else {
       setCurrentStep(prev => prev + 1);
     }
@@ -52,7 +56,9 @@ export const useAccountCreationSteps = ({
     wrappedStep(CreateYourAccount),
     wrappedStep(WhereAreYouLocated),
     wrappedStep(LetsSecureYourAccount),
-    wrappedStep(UploadProfilePicture),
+    wrappedStep(() => (
+      <UploadProfilePicture setImageUploading={setIsImageUploading} />
+    )),
   ];
 
   const goBackOneStep = () => {
@@ -68,6 +74,6 @@ export const useAccountCreationSteps = ({
     steps[currentStep] || null,
     goBackOneStep,
     currentStep,
-    mutation.isLoading,
+    createAccountMutation.isLoading,
   ];
 };

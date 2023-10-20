@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StatusBar} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import NbmBackNavBar from '../components/auth/NbmBackNavBar';
@@ -18,12 +18,13 @@ type Props = {
 const CreateAccountScreen: React.FC<Props> = ({
   navigation,
 }: Props): JSX.Element => {
+  const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
   const [currentComponent, goBackOneStep, currentStep, isLoading] =
-    useAccountCreationSteps({navigation});
+    useAccountCreationSteps({navigation, setIsImageUploading});
 
   return (
     <SafeAreaView className="flex-1">
-      {isLoading ? (
+      {isLoading || isImageUploading ? (
         <LoadingScreen />
       ) : (
         <>

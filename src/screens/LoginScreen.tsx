@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, StatusBar, TouchableOpacity} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AuthTitleDescription from '../components/auth/AuthTitleDescription';
@@ -14,8 +14,7 @@ import SuccessAlertBox from '../components/core/SuccessAlertBox';
 import {useLoginFormik} from '../utils/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 import {useLoginMutation} from '../hooks/LoginMutation';
-import { sleep } from '../utils/SleepFunction';
-
+import {sleep} from '../utils/SleepFunction';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -30,14 +29,14 @@ const LoginScreen: React.FC<Props> = ({
     navigation.navigate('CreateAccountScreen');
   };
 
-  const mutation = useLoginMutation({navigation});
+  const loginMutation = useLoginMutation({navigation});
 
   const formik = useLoginFormik({
     onSubmit: async values => {
       formik.setSubmitting(true);
       try {
         await sleep(1000);
-        await mutation.mutateAsync({
+        await loginMutation.mutateAsync({
           email: values.email,
           password: values.password,
         });
@@ -58,7 +57,7 @@ const LoginScreen: React.FC<Props> = ({
   return (
     <SafeAreaView className="flex-1">
       <StatusBar barStyle="dark-content" />
-      {mutation.isLoading || formik.isSubmitting ? (
+      {loginMutation.isLoading || formik.isSubmitting ? (
         <LoadingScreen />
       ) : (
         <>
