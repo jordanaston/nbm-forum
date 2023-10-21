@@ -11,11 +11,12 @@ import ErrorAlertBox from '../components/core/ErrorAlertBox';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
-import {useLoginFormik} from '../utils/LoginFormik';
+import {useLoginFormik} from '../utils/formik/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 import {useLoginMutation} from '../hooks/LoginMutation';
-import {sleep} from '../utils/SleepFunction';
-import {renderErrors} from '../utils/RenderErrorsFunction';
+import {sleep} from '../utils/SleepUtil';
+import {renderErrors} from '../utils/RenderErrorsUtil';
+import {renderSuccesses} from '../utils/RenderSuccessesUtil';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -26,10 +27,6 @@ const LoginScreen: React.FC<Props> = ({
   navigation,
   route,
 }: Props): JSX.Element => {
-  const goToCreateAccountScreen = () => {
-    navigation.navigate('CreateAccountScreen');
-  };
-
   const loginMutation = useLoginMutation({navigation});
   const accountCreationSuccess = route.params?.accountCreationSuccess;
 
@@ -55,6 +52,12 @@ const LoginScreen: React.FC<Props> = ({
   });
 
   const errorMessage = renderErrors({
+    touched: formik.touched,
+    errors: formik.errors,
+    status: formik.status,
+  });
+
+  const successMessage = renderSuccesses({
     touched: formik.touched,
     errors: formik.errors,
     status: formik.status,
@@ -109,21 +112,13 @@ const LoginScreen: React.FC<Props> = ({
                 {errorMessage && <ErrorAlertBox text={errorMessage} />}
               </View>
 
-              {accountCreationSuccess && (
-                <View>
-                  {(!formik.touched.email || !formik.errors.email) &&
-                  (!formik.touched.password || !formik.errors.password) &&
-                  !formik.status ? (
-                    <SuccessAlertBox text="Account created successfully! Please log in." />
-                  ) : null}
-                </View>
+              {accountCreationSuccess && successMessage && (
+                <SuccessAlertBox text="Account created successfully! Please log in." />
               )}
             </View>
           </View>
           <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">
-            <DontHaveAccountCreateOneHere
-              goToCreateAccountScreen={goToCreateAccountScreen}
-            />
+            <DontHaveAccountCreateOneHere navigation={navigation} />
           </View>
         </>
       )}

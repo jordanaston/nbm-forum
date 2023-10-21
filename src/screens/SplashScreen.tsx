@@ -4,14 +4,15 @@ import {useNavigation} from '@react-navigation/native';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {colors} from '../constants/Colors';
+import {goToWelcomeScreen} from '../utils/NavigationUtils';
 
-type NavigationList = NativeStackNavigationProp<MainStackParamList>;
+type Props = {
+  navigation: NativeStackNavigationProp<MainStackParamList>;
+};
 
-const SplashScreen: React.FC = (): JSX.Element => {
-  const navigation = useNavigation<NavigationList>();
-
+const SplashScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   setTimeout(() => {
-    navigation.navigate('WelcomeScreen');
+    goToWelcomeScreen({navigation});
   }, 1000);
 
   return (

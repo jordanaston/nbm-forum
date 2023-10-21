@@ -5,9 +5,10 @@ import UploadProfilePicture from './UploadProfilePicture';
 import WhereAreYouLocated from './WhereAreYouLocated';
 import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {createAccountFormik} from '../../../utils/CreateAccountFormik';
+import {createAccountFormik} from '../../../utils/formik/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
 import {useCreateAccountMutation} from '../../../hooks/CreateAccountMutation';
+import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -51,7 +52,7 @@ export const useAccountCreationSteps = ({
 
   const goBackOneStep = () => {
     if (currentStep === 0) {
-      navigation.navigate('WelcomeScreen');
+      goToWelcomeScreen({navigation});
     } else if (currentStep > 0) {
       setCurrentStep(prev => prev - 1);
     }

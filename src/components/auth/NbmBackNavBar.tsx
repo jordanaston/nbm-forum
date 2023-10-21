@@ -5,6 +5,7 @@ import {colors} from '../../constants/Colors';
 import ArrowIcon from '../../assets/svg/ArrowIcon';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {goToWelcomeScreen} from '../../utils/NavigationUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -19,7 +20,7 @@ const NbmBackNavBar: React.FC<Props> = ({
 }: Props): JSX.Element => {
   const takeUserBack = () => {
     if (backToWelcome) {
-      navigation.navigate('WelcomeScreen');
+      goToWelcomeScreen({navigation});
     } else if (onBackPress) {
       onBackPress();
     } else {

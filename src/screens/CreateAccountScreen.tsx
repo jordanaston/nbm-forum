@@ -8,7 +8,7 @@ import BarSlider from '../components/auth/BarSlider';
 import {Text} from 'react-native-elements';
 import Button from '../components/core/Button';
 import {useAccountCreationSteps} from '../components/auth/create-account-steps/AccountCreationStepsParent';
-import {goToLoginScreen} from '../utils/GoToLoginScreenFunction';
+import {goToLoginScreen} from '../utils/NavigationUtils';
 import LoadingScreen from './LoadingScreen';
 
 type Props = {

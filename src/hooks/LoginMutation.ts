@@ -2,6 +2,7 @@ import {useMutation} from 'react-query';
 import {postLoginDetails} from '../services/AuthServices';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
+import {goToFeedScreen} from '../utils/NavigationUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -10,7 +11,7 @@ type Props = {
 export const useLoginMutation = ({navigation}: Props) => {
   return useMutation(postLoginDetails, {
     onSuccess: () => {
-      navigation.navigate('FeedScreen');
+      goToFeedScreen({navigation});
     },
   });
 };

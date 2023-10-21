@@ -1,10 +1,10 @@
 import {useFormik} from 'formik';
-import {loginValidationSchema} from '../validation/LoginValidationSchema';
-import {LoginArgs} from '../types/LoginTypes';
+import {loginValidationSchema} from '../../validation/LoginValidationSchema';
+import {LoginArgs} from '../../types/LoginTypes';
 
 type Props = {
   onSubmit: (values: LoginArgs) => Promise<void>;
-}
+};
 
 export const useLoginFormik = ({onSubmit}: Props) => {
   return useFormik<LoginArgs>({

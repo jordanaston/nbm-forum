@@ -4,7 +4,7 @@ import Button from '../../core/Button';
 import InputBox from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
-import {renderErrors} from '../../../utils/RenderErrorsFunction';
+import {renderErrors} from '../../../utils/RenderErrorsUtil';
 
 const CreateYourAccount: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();

@@ -4,10 +4,12 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {FormikProps} from 'formik';
 import {CreateAccountArgs} from '../types/CreateAccountTypes';
+import {goToLoginScreen} from '../utils/NavigationUtils';
+import {Dispatch, SetStateAction} from 'react';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  setCurrentStep: React.Dispatch<React.SetStateAction<number>>;
+  setCurrentStep: Dispatch<SetStateAction<number>>;
   formik: FormikProps<CreateAccountArgs>;
 };
 
@@ -18,7 +20,7 @@ export const useCreateAccountMutation = ({
 }: Props) => {
   return useMutation(postCreateAccountDetails, {
     onSuccess: () => {
-      navigation.navigate('LoginScreen', {accountCreationSuccess: true});
+      goToLoginScreen({navigation, accountCreationSuccess: true});
       setCurrentStep(0);
       formik.resetForm();
     },
