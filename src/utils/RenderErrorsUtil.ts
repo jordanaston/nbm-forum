@@ -8,7 +8,7 @@ type FormikValuesWithErrors = {
   telephone?: string;
 };
 
-type RenderErrorsArgs = {
+type Props = {
   touched: FormikTouched<FormikValuesWithErrors>;
   errors: FormikErrors<FormikValuesWithErrors>;
   status: string | undefined;
@@ -18,7 +18,7 @@ export const renderErrors = ({
   touched,
   errors,
   status,
-}: RenderErrorsArgs): string | undefined => {
+}: Props): string | undefined => {
   switch (true) {
     case touched.firstName && !!errors.firstName:
       return errors.firstName;

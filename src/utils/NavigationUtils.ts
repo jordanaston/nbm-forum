@@ -37,5 +37,3 @@ export const goToSettingsScreen = ({navigation}: Props) => {
 export const goToFeedScreen = ({navigation}: Props) => {
   navigation.navigate('FeedScreen');
 };
-
-

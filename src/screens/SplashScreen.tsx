@@ -1,19 +1,20 @@
 import {SafeAreaView, View, StatusBar} from 'react-native';
 import RocketLogo from '../assets/svg/RocketLogo';
-import {useNavigation} from '@react-navigation/native';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {colors} from '../constants/Colors';
 import {goToWelcomeScreen} from '../utils/NavigationUtils';
+import {sleep} from '../utils/SleepUtil';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
 };
 
 const SplashScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
-  setTimeout(() => {
+  (async () => {
+    await sleep(2000);
     goToWelcomeScreen({navigation});
-  }, 1000);
+  })();
 
   return (
     <SafeAreaView className="flex-1 bg-ForumPurple">
