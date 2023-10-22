@@ -15,6 +15,7 @@ import ArrowIcon from '../assets/svg/ArrowIcon';
 import PostCard from '../components/feed/PostCard';
 import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
+import CommentList from '../components/feed/CommentList';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -45,6 +46,12 @@ const PostScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
         <View>
           <PostCard post={route.params.post} navigation={navigation} />
         </View>
+        <View className="mx-6">
+          <Text className="text-[16px] font-syne-bold text-ForumCharcoal mt-4 mb-2 ">
+            Comments
+          </Text>
+        </View>
+        <CommentList post={route.params.post} />
       </ScrollView>
     </SafeAreaView>
   );

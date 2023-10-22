@@ -1,4 +1,6 @@
 import {
+  GetCommentsFromPostArgs,
+  GetCommentsFromPostResponse,
   GetPostsArgs,
   GetPostsResponse,
   GetTagsArgs,
@@ -50,17 +52,19 @@ export const getAllTags = async (): Promise<GetTagsResponse[]> => {
   }
 };
 
-export const postCreatedPost = async (
-  title: string,
-  content: string,
-  tags: string[],
-) => {
+export const getCommentsFromPost = async (
+  postId: number,
+): Promise<GetCommentsFromPostResponse[]> => {
   try {
-    const {data} = await nbmApi.post('/posts', {
-      title,
-      content,
-      tags,
+    const requestParams: GetCommentsFromPostArgs = {
+      page: 1,
+      limit: 10,
+    };
+
+    const {data} = await nbmApi.get(`/posts/${postId}/comments`, {
+      params: requestParams,
     });
+    console.log('getCommentsFromPost: ', JSON.stringify(data.data, null, 3));
     return data.data;
   } catch (error) {
     throw error;

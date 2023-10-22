@@ -23,11 +23,26 @@ export interface GetTagsResponse {
   name: string;
 }
 
+export interface GetCommentsFromPostArgs {
+  page: number;
+  limit: number;
+}
+
+export interface GetCommentsFromPostResponse {
+  id: number;
+  text: string;
+  userId: number;
+  postId: number;
+  createdAt: string;
+  user: User;
+  comments: number[];
+}
+
 export interface User {
   id: number;
   firstName: string;
   lastName: string;
-  avatar: null | string;
+  avatar: string | null;
   email: string;
   telephone: string;
 }
