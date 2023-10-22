@@ -12,6 +12,9 @@ import {goToPostScreen} from '../../utils/NavigationUtils';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useGetCommentDataQuery from '../../hooks/GetCommentDataQuery';
+import ProfilePictureIcon from '../../assets/svg/ProfilePictureIcon';
+import {Image} from 'react-native';
+import {fetchResizedAvatar} from '../../utils/AvatarUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -23,20 +26,36 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
 
   const {commentData, commentLoading} = useGetCommentDataQuery(post.id);
 
+  const {data: resizedAvatar} = fetchResizedAvatar(post.user.avatar);
+
   return (
     <TouchableOpacity onPress={() => goToPostScreen({navigation, post})}>
       <View className="mx-6">
-        <View className="flex-row  text-[14px] text-ForumCharcoal mt-4">
-          <Text className="font-syne-bold mr-2 opacity-70">
-            {post.user.firstName} {post.user.lastName}
-          </Text>
-          <View className="mt-[6.5px]">
-            <PurpleDotPoint />
+        <View className="flex-row items-center text-[14px] text-ForumCharcoal mt-4">
+          <View className="mr-2">
+            {resizedAvatar ? (
+              <Image
+                source={{uri: resizedAvatar}}
+                style={{width: 25, height: 25, borderRadius: 12.5}}
+              />
+            ) : (
+              <View className="opacity-70">
+                <ProfilePictureIcon />
+              </View>
+            )}
           </View>
+          <View className="flex-row">
+            <Text className="font-syne-bold mr-2 opacity-70">
+              {post.user.firstName} {post.user.lastName}
+            </Text>
+            <View className="mt-[6.5px]">
+              <PurpleDotPoint />
+            </View>
 
-          <Text className="ml-2 font-syne-regular opacity-50">
-            {format(new Date(post.createdAt), 'dd-MM-yyyy')}
-          </Text>
+            <Text className="ml-2 font-syne-regular opacity-50">
+              {format(new Date(post.createdAt), 'dd-MM-yyyy')}
+            </Text>
+          </View>
 
           {post.user.id === loggedInUserId && (
             <View className="flex-1 items-end opacity-80">

@@ -6,8 +6,9 @@ import {
   DownloadImageResponse,
   UploadImageResponse,
 } from '../types/ProfilePictureTypes';
+import {UseQueryResult, useQuery} from 'react-query';
 
-export const handleImageUpload = async (
+export const handleAvatarUpload = async (
   selectedImage: string,
   folder: string = 'avatar',
 ): Promise<UploadImageResponse | undefined> => {
@@ -36,16 +37,26 @@ export const handleImageUpload = async (
   return response as UploadImageResponse;
 };
 
-export const fetchResizedImage = async (
-  fileName: string,
-  width: number = 200,
-  height: number = 200,
-): Promise<string | null> => {
-  const resizedImage = await getProfilePicture({
-    fileName,
-    height,
-    width,
-  } as DownloadImageArgs);
+export const fetchResizedAvatar = (
+  fileName?: string | null,
+  width: number = 25,
+  height: number = 25,
+): UseQueryResult<string | null, unknown> => {
+  return useQuery<string | null, unknown>(
+    ['resizedImage', fileName, width, height],
+    async () => {
+      if (!fileName) return null;
 
-  return (resizedImage as DownloadImageResponse)?.url || null;
+      const resizedImage = await getProfilePicture({
+        fileName,
+        height,
+        width,
+      } as DownloadImageArgs);
+
+      return (resizedImage as DownloadImageResponse)?.url || null;
+    },
+    {
+      enabled: !!fileName,
+    },
+  );
 };

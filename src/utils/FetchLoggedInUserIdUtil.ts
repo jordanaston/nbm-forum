@@ -1,20 +1,24 @@
+import {useQuery} from 'react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useState, useEffect} from 'react';
+
+const fetchLoggedInUserId = async (): Promise<number | null> => {
+  const id = await AsyncStorage.getItem('loggedInUserId');
+  if (id) {
+    return parseInt(id, 10);
+  } else {
+    return null;
+  }
+};
 
 export const useLoggedInUserId = (): number | null => {
-  const [userId, setUserId] = useState<number | null>(null);
+  const {data: userId} = useQuery<number | null, Error>(
+    'loggedInUserId',
+    fetchLoggedInUserId,
+    {
+      staleTime: Infinity,
+      cacheTime: Infinity,
+    },
+  );
 
-  useEffect(() => {
-    const fetchId = async () => {
-      const id = await AsyncStorage.getItem('loggedInUserId');
-      if (id) {
-        setUserId(parseInt(id, 10));
-      } else {
-        setUserId(null);
-      }
-    };
-    fetchId();
-  }, []);
-
-  return userId;
+  return userId ?? null;
 };

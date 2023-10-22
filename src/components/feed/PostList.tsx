@@ -1,7 +1,5 @@
 import React from 'react';
 import {View} from 'react-native';
-import {getAllPosts} from '../../services/FeedServices';
-import {useQuery} from 'react-query';
 import StatusMessage from '../core/StatusMessage';
 import PostCard from './PostCard';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';

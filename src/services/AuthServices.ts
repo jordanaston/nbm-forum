@@ -22,7 +22,6 @@ export const postLoginDetails = async ({
       ['accessToken', data.accessToken],
       ['loggedInUserId', String(data.user.id)],
     ]);
-    console.log('loggedInUserId: ', JSON.stringify(data.user.id, null, 3));
     return data;
   } catch (error) {
     throw error;

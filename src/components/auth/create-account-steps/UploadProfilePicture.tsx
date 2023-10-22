@@ -4,7 +4,7 @@ import Button from '../../core/Button';
 import ProfilePictureButton from '../ProfilePictureButton';
 import {useState} from 'react';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
-import {fetchResizedImage, handleImageUpload} from '../../../utils/ImageUtils';
+import {handleAvatarUpload} from '../../../utils/AvatarUtils';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
 
 type Props = {
@@ -18,25 +18,15 @@ const UploadProfilePicture: React.FC<Props> = ({
 
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
-  const [displayImage, setDisplayImage] = useState<string | null>(null);
-
   const handleSetAvatar = async () => {
     if (!selectedImage) return;
     setImageUploading(true);
-    const uploadResponse = await handleImageUpload(selectedImage);
+    const uploadResponse = await handleAvatarUpload(selectedImage);
     if (uploadResponse && uploadResponse.fileName) {
       formik.setFieldValue('avatar', uploadResponse.fileName);
-      setResizedDisplayImage(uploadResponse.fileName);
     }
     setImageUploading(false);
     formik.handleSubmit();
-  };
-
-  const setResizedDisplayImage = async (fileName: string) => {
-    const imageUrl = await fetchResizedImage(fileName);
-    if (imageUrl) {
-      setDisplayImage(imageUrl);
-    }
   };
 
   return (
