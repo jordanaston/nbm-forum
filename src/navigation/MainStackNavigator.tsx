@@ -9,6 +9,7 @@ import PostScreen from '../screens/PostScreen';
 import CreatePostScreen from '../screens/CreatePostScreen';
 import CreateAccountScreen from '../screens/CreateAccountScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import {GetPostsResponse} from '../types/FeedTypes';
 
 export type MainStackParamList = {
   SplashScreen: undefined;
@@ -18,7 +19,7 @@ export type MainStackParamList = {
   };
   LoadingScreen: undefined;
   FeedScreen: undefined;
-  PostScreen: undefined;
+  PostScreen: {post: GetPostsResponse};
   CreatePostScreen: undefined;
   CreateAccountScreen: undefined;
   SettingsScreen: undefined;

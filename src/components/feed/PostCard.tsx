@@ -8,18 +8,21 @@ import {format} from 'date-fns';
 import Button from '../core/Button';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import LikeIcon from '../../assets/svg/LikeIcon';
+import {goToPostScreen} from '../../utils/NavigationUtils';
+import {MainStackParamList} from '../../navigation/MainStackNavigator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type Props = {
+  navigation: NativeStackNavigationProp<MainStackParamList>;
   post: GetPostsResponse;
 };
 
-const PostCard: React.FC<Props> = ({post}: Props): JSX.Element => {
+const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
 
   return (
-    <TouchableOpacity>
-      <View>
-        <View className="h-[5] bg-ForumLightGray -mx-6" />
+    <TouchableOpacity onPress={() => goToPostScreen({navigation, post})}>
+      <View className="mx-6">
         <View className="flex-row  text-[14px] text-ForumCharcoal mt-4">
           <Text className="font-syne-bold mr-2 opacity-70">
             {post.user.firstName} {post.user.lastName}
@@ -86,6 +89,7 @@ const PostCard: React.FC<Props> = ({post}: Props): JSX.Element => {
           </View>
         </View>
       </View>
+      <View className="h-[5] bg-ForumLightGray -mx-6" />
     </TouchableOpacity>
   );
 };

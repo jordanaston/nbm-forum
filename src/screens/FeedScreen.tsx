@@ -58,11 +58,11 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
               selectedTag={selectedTag}
               setSelectedTag={setSelectedTag}
             />
-            <View className="mt-4">
-              <PostList selectedTag={selectedTag} />
-            </View>
-            <View className="h-[5] bg-ForumLightGray -mx-6" />
+            <View className="h-[5] bg-ForumLightGray -mx-6 mt-4" />
           </View>
+        </View>
+        <View>
+          <PostList selectedTag={selectedTag} navigation={navigation} />
         </View>
       </ScrollView>
     </SafeAreaView>

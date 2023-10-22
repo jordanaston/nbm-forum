@@ -17,18 +17,16 @@ import {useLoginMutation} from '../hooks/LoginMutation';
 import {sleep} from '../utils/SleepUtil';
 import {renderErrors} from '../utils/RenderErrorsUtil';
 import {renderSuccesses} from '../utils/RenderSuccessesUtil';
+import {useRoute} from '@react-navigation/native';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  route: RouteProp<MainStackParamList, 'LoginScreen'>;
 };
 
-const LoginScreen: React.FC<Props> = ({
-  navigation,
-  route,
-}: Props): JSX.Element => {
+const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const loginMutation = useLoginMutation({navigation});
-  const accountCreationSuccess = route.params?.accountCreationSuccess;
+  const {accountCreationSuccess} =
+    useRoute<RouteProp<MainStackParamList, 'LoginScreen'>>().params || {};
 
   const formik = useLoginFormik({
     onSubmit: async values => {

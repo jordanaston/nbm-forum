@@ -1,5 +1,6 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
+import {GetPostsResponse} from '../types/FeedTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -36,4 +37,14 @@ export const goToSettingsScreen = ({navigation}: Props) => {
 
 export const goToFeedScreen = ({navigation}: Props) => {
   navigation.navigate('FeedScreen');
+};
+
+export const goToPostScreen = ({
+  navigation,
+  post,
+}: Props & {post: GetPostsResponse}) => {
+  if (!post) {
+    return;
+  }
+  navigation.navigate('PostScreen', {post});
 };

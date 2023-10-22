@@ -4,12 +4,18 @@ import {getAllPosts} from '../../services/FeedServices';
 import {useQuery} from 'react-query';
 import StatusMessage from '../core/StatusMessage';
 import PostCard from './PostCard';
+import {MainStackParamList} from '../../navigation/MainStackNavigator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type Props = {
+  navigation: NativeStackNavigationProp<MainStackParamList>;
   selectedTag: string | null;
 };
 
-const PostList: React.FC<Props> = ({selectedTag}: Props): JSX.Element => {
+const PostList: React.FC<Props> = ({
+  selectedTag,
+  navigation,
+}: Props): JSX.Element => {
   const {
     data: postDataArray,
     error: postsError,
@@ -34,7 +40,7 @@ const PostList: React.FC<Props> = ({selectedTag}: Props): JSX.Element => {
     if (!postDataArray) return null;
 
     return postDataArray.map(post => {
-      return <PostCard key={post.id} post={post} />;
+      return <PostCard key={post.id} post={post} navigation={navigation} />;
     });
   };
 
