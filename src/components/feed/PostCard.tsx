@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {Post} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
@@ -12,9 +12,10 @@ import {goToPostScreen} from '../../utils/NavigationUtils';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useGetCommentDataQuery from '../../hooks/GetCommentDataQuery';
-import ProfilePictureIcon from '../../assets/svg/ProfilePictureIcon';
 import {Image} from 'react-native';
 import {fetchResizedAvatar} from '../../utils/AvatarUtils';
+import {colors} from '../../constants/Colors';
+import ProfileIcon from '../../assets/svg/ProfileIcon';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -28,19 +29,22 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
 
   const {data: resizedAvatar} = fetchResizedAvatar(post.user.avatar);
 
+  const [avatarLoadError, setAvatarLoadError] = useState<boolean>(false);
+
   return (
     <TouchableOpacity onPress={() => goToPostScreen({navigation, post})}>
       <View className="mx-6">
         <View className="flex-row items-center text-[14px] text-ForumCharcoal mt-4">
           <View className="mr-2">
-            {resizedAvatar ? (
+            {resizedAvatar && !avatarLoadError ? (
               <Image
                 source={{uri: resizedAvatar}}
-                style={{width: 25, height: 25, borderRadius: 12.5}}
+                style={{width: 28, height: 28, borderRadius: 14}}
+                onError={() => setAvatarLoadError(true)}
               />
             ) : (
-              <View className="opacity-70">
-                <ProfilePictureIcon />
+              <View className="opacity-60 -ml-[2px]">
+                <ProfileIcon iconColor={colors.forumCharcoal} />
               </View>
             )}
           </View>
@@ -94,7 +98,7 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
         </Text>
         <View className="flex-row items-center my-4">
           <View className="flex-row items-center mr-2.5">
-            <View className="mt-[3px]">
+            <View className="mt-[3px] opacity-90">
               <CommentIcon />
             </View>
             <Text className="ml-1 my-1 text-[10px] text-ForumCharcoal">
@@ -102,7 +106,7 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
             </Text>
           </View>
           <View className="flex-row items-center">
-            <View className="opacity-90">
+            <View className="opacity-70">
               <LikeIcon />
             </View>
             <Text className="ml-0.5 my-1 text-[10px] text-ForumCharcoal">

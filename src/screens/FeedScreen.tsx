@@ -19,6 +19,7 @@ import {
 } from '../utils/NavigationUtils';
 
 import PostList from '../components/feed/PostList';
+import { colors } from '../constants/Colors';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -47,7 +48,7 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
               <TouchableOpacity
                 onPress={() => goToSettingsScreen({navigation})}>
                 <View className="mt-[15px] ml-3">
-                  <ProfileIcon />
+                  <ProfileIcon iconColor={colors.forumPurple} />
                 </View>
               </TouchableOpacity>
             </View>
