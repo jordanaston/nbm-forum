@@ -6,7 +6,7 @@ import {
   UploadImageArgs,
   UploadImageResponse,
 } from '../types/ProfilePictureTypes';
-import {nbmApi} from './AxiosInstance';
+import {nbmApi} from './axios-instance/AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
 import {
@@ -21,11 +21,10 @@ export const postLoginDetails = async ({
   try {
     const {data} = await nbmApi.post('/auth/login', {email, password});
     await AsyncStorage.multiSet([
-      ['accessToken', JSON.stringify(data.accessToken)],
+      ['accessToken', data.accessToken],
+      ['loggedInUserId', String(data.user.id)],
     ]);
-
-    await AsyncStorage.getItem('accessToken');
-
+    console.log('loggedInUserId: ', JSON.stringify(data.user.id, null, 3));
     return data;
   } catch (error) {
     throw error;
@@ -74,7 +73,7 @@ export const getAwsUrl = async ({
       },
     });
     return data;
-  } catch (error: any) {
+  } catch (error) {
     throw error;
   }
 };

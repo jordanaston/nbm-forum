@@ -8,10 +8,12 @@ const nbmApi = axios.create({
 nbmApi.interceptors.request.use(async config => {
   if (!config.headers.Authorization) {
     const token = await AsyncStorage.getItem('accessToken');
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
   }
+
   return config;
 });
 

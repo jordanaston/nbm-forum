@@ -7,12 +7,8 @@ import {
   View,
 } from 'react-native';
 import ForumSearchBar from '../components/feed/ForumSearchBar';
-// import TagFilterCarousel from '../components/core/feed/TagFilterCarousel';
+import TagFilterCarousel from '../components/feed/TagFilterCarousel';
 import {useState} from 'react';
-// import {getManyPosts} from '../services/ForumServices';
-// import {Post} from '../types/ForumTypes';
-// import PostList from '../components/core/feed/PostList';
-import {useQuery} from 'react-query';
 import ProfileIcon from '../assets/svg/ProfileIcon';
 import PlusIcon from '../assets/svg/PlusIcon';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
@@ -22,30 +18,14 @@ import {
   goToSettingsScreen,
 } from '../utils/NavigationUtils';
 
+import PostList from '../components/feed/PostList';
+
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
 };
 
 const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
-
-  // const {data: postDataArray, error} = useQuery<Post[]>('posts', getManyPosts);
-
-  // if (error) {
-  //   console.error(error);
-  //   return (
-  //     <View className="h-full justify-center items-center">
-  //       <Text>Error Loading Posts</Text>
-  //     </View>
-  //   );
-  // }
-
-  // if (!postDataArray)
-  //   return (
-  //     <View className="h-full justify-center items-center">
-  //       <Text>Loading...</Text>
-  //     </View>
-  //   );
 
   return (
     <SafeAreaView>
@@ -74,15 +54,12 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           </View>
           <View className="">
             <ForumSearchBar />
-            {/* <TagFilterCarousel
+            <TagFilterCarousel
               selectedTag={selectedTag}
               setSelectedTag={setSelectedTag}
-            /> */}
+            />
             <View className="mt-4">
-              {/* <PostList
-                postDataArray={postDataArray}
-                selectedTag={selectedTag}
-              /> */}
+              <PostList selectedTag={selectedTag} />
             </View>
             <View className="h-[5] bg-ForumLightGray -mx-6" />
           </View>

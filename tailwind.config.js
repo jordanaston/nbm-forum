@@ -13,6 +13,7 @@ module.exports = {
       textColor: {
         ForumCharcoal: '#383939',
         ForumPurple: '#6537FF',
+        ErrorRed: '#FA6464'
       },
       borderColor: {
         ForumPurple: '#6537FF',
