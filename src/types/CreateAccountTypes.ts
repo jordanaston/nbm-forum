@@ -17,11 +17,3 @@ export interface Address {
   postalCode: string;
   country: string;
 }
-
-export interface CreateAccountResponse {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  telephone: string;
-}

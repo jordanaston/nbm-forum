@@ -1,10 +1,17 @@
+import {User} from './LoginTypes';
+
+export interface RequestParams {
+  page: number;
+  limit: number;
+}
+
 export interface GetPostsArgs {
   page: number;
   limit: number;
   tags: string[];
 }
 
-export interface GetPostsResponse {
+export interface Post {
   id: number;
   title: string;
   content: string;
@@ -15,20 +22,12 @@ export interface GetPostsResponse {
   tags: Tag[];
 }
 
-export interface GetTagsArgs {
-  page: number;
-  limit: number;
-}
-export interface GetTagsResponse {
-  name: string;
+export interface GetCommentsResponse {
+  data: Comment[];
+  total: number;
 }
 
-export interface GetCommentsFromPostArgs {
-  page: number;
-  limit: number;
-}
-
-export interface GetCommentsFromPostResponse {
+export interface Comment {
   id: number;
   text: string;
   userId: number;
@@ -36,15 +35,6 @@ export interface GetCommentsFromPostResponse {
   createdAt: string;
   user: User;
   comments: number[];
-}
-
-export interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  avatar: string | null;
-  email: string;
-  telephone: string;
 }
 
 export interface Tag {

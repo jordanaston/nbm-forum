@@ -1,13 +1,13 @@
 import React from 'react';
 import {View} from 'react-native';
-import {GetCommentsFromPostResponse} from '../../types/FeedTypes';
+import {Comment} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
 
 import PurpleDotPoint from '../../assets/svg/PurpleDotPoint';
 import {format} from 'date-fns';
 
 type Props = {
-  comment: GetCommentsFromPostResponse;
+  comment: Comment;
 };
 
 const CommentCard: React.FC<Props> = ({comment}: Props): JSX.Element => {

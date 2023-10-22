@@ -1,28 +1,20 @@
 import React from 'react';
 import {View} from 'react-native';
-import {getCommentsFromPost} from '../../services/FeedServices';
-import {useQuery} from 'react-query';
 import StatusMessage from '../core/StatusMessage';
-import {GetPostsResponse} from '../../types/FeedTypes';
+import {Comment, Post} from '../../types/FeedTypes';
 import CommentCard from './CommentCard';
+import useGetCommentDataQuery from '../../hooks/GetCommentDataQuery';
 
 type Props = {
-  post: GetPostsResponse;
+  post: Post;
 };
 
 const CommentsList: React.FC<Props> = ({post}: Props): JSX.Element => {
-  const {
-    data: commentsDataArray,
-    error: commentsError,
-    isLoading: commentsLoading,
-  } = useQuery('comments', () => getCommentsFromPost(post.id));
-
-  console.log(
-    'commentsDataArray: ',
-    JSON.stringify(commentsDataArray, null, 3),
+  const {commentData, commentError, commentLoading} = useGetCommentDataQuery(
+    post.id,
   );
 
-  if (commentsLoading) {
+  if (commentLoading) {
     return (
       <StatusMessage
         message="Loading Comments..."
@@ -31,7 +23,7 @@ const CommentsList: React.FC<Props> = ({post}: Props): JSX.Element => {
     );
   }
 
-  if (commentsError) {
+  if (commentError) {
     return (
       <StatusMessage
         message="Error Loading Comments"
@@ -41,9 +33,9 @@ const CommentsList: React.FC<Props> = ({post}: Props): JSX.Element => {
   }
 
   const renderComments = () => {
-    if (!commentsDataArray) return null;
+    if (!commentData || !commentData.data) return null;
 
-    return commentsDataArray.map(comment => {
+    return commentData.data.map((comment: Comment) => {
       return <CommentCard key={comment.id} comment={comment} />;
     });
   };

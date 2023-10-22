@@ -9,10 +9,8 @@ import {
 import {nbmApi} from './axios-instance/AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
-import {
-  CreateAccountArgs,
-  CreateAccountResponse,
-} from '../types/CreateAccountTypes';
+import {CreateAccountArgs} from '../types/CreateAccountTypes';
+import {User} from '../types/LoginTypes';
 
 export const postLoginDetails = async ({
   email,
@@ -40,7 +38,7 @@ export const postCreateAccountDetails = async ({
   avatar,
   password,
   confirmPassword,
-}: CreateAccountArgs): Promise<CreateAccountResponse> => {
+}: CreateAccountArgs): Promise<User> => {
   try {
     const {data} = await nbmApi.post('/auth/register', {
       firstName,

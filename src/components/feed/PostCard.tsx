@@ -1,6 +1,6 @@
 import React from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import {GetPostsResponse} from '../../types/FeedTypes';
+import {Post} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
 import CommentIcon from '../../assets/svg/CommentIcon';
 import PurpleDotPoint from '../../assets/svg/PurpleDotPoint';
@@ -11,14 +11,17 @@ import LikeIcon from '../../assets/svg/LikeIcon';
 import {goToPostScreen} from '../../utils/NavigationUtils';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import useGetCommentDataQuery from '../../hooks/GetCommentDataQuery';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  post: GetPostsResponse;
+  post: Post;
 };
 
 const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
+
+  const {commentData, commentLoading} = useGetCommentDataQuery(post.id);
 
   return (
     <TouchableOpacity onPress={() => goToPostScreen({navigation, post})}>
@@ -76,7 +79,7 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
               <CommentIcon />
             </View>
             <Text className="ml-1 my-1 text-[10px] text-ForumCharcoal">
-              {post.comments}
+              {commentLoading ? '' : commentData ? commentData.total : ''}
             </Text>
           </View>
           <View className="flex-row items-center">

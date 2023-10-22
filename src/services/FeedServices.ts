@@ -1,17 +1,13 @@
 import {
-  GetCommentsFromPostArgs,
-  GetCommentsFromPostResponse,
+  RequestParams,
   GetPostsArgs,
-  GetPostsResponse,
-  GetTagsArgs,
-  GetTagsResponse,
+  Post,
   Tag,
+  GetCommentsResponse,
 } from '../types/FeedTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 
-export const getAllPosts = async (
-  tags: string[] = [],
-): Promise<GetPostsResponse[]> => {
+export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
   try {
     const requestBody: GetPostsArgs = {
       page: 1,
@@ -26,9 +22,9 @@ export const getAllPosts = async (
   }
 };
 
-export const getAllTags = async (): Promise<GetTagsResponse[]> => {
+export const getAllTags = async (): Promise<Tag[]> => {
   try {
-    const requestParams: GetTagsArgs = {
+    const requestParams: RequestParams = {
       page: 1,
       limit: 10,
     };
@@ -54,9 +50,9 @@ export const getAllTags = async (): Promise<GetTagsResponse[]> => {
 
 export const getCommentsFromPost = async (
   postId: number,
-): Promise<GetCommentsFromPostResponse[]> => {
+): Promise<GetCommentsResponse> => {
   try {
-    const requestParams: GetCommentsFromPostArgs = {
+    const requestParams: RequestParams = {
       page: 1,
       limit: 10,
     };
@@ -64,8 +60,7 @@ export const getCommentsFromPost = async (
     const {data} = await nbmApi.get(`/posts/${postId}/comments`, {
       params: requestParams,
     });
-    console.log('getCommentsFromPost: ', JSON.stringify(data.data, null, 3));
-    return data.data;
+    return data;
   } catch (error) {
     throw error;
   }

@@ -6,6 +6,7 @@ import StatusMessage from '../core/StatusMessage';
 import PostCard from './PostCard';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import useGetPostDataQuery from '../../hooks/GetPostDataQuery';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -16,13 +17,8 @@ const PostList: React.FC<Props> = ({
   selectedTag,
   navigation,
 }: Props): JSX.Element => {
-  const {
-    data: postDataArray,
-    error: postsError,
-    isLoading: postsLoading,
-  } = useQuery(['posts', selectedTag], () =>
-    getAllPosts(selectedTag ? [selectedTag] : []),
-  );
+  const {postDataArray, postsError, postsLoading} =
+    useGetPostDataQuery(selectedTag);
 
   if (postsLoading) {
     return (
