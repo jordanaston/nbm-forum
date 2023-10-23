@@ -29,13 +29,9 @@ const PostCard: React.FC<Props> = ({
   postRefetch,
 }: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
-
   const {commentData, commentLoading} = useGetCommentDataQuery(post.id);
-
   const {data: resizedAvatar} = fetchResizedAvatar(post.user.avatar);
-
   const [avatarLoadError, setAvatarLoadError] = useState<boolean>(false);
-
   const [hasLiked, setHasLiked] = useState<boolean>(false);
 
   return (

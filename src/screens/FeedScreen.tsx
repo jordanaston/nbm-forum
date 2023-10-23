@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import ForumSearchBar from '../components/feed/ForumSearchBar';
+import SearchBar from '../components/feed/SearchBar';
 import TagFilterCarousel from '../components/feed/TagFilterCarousel';
 import {useState} from 'react';
 import ProfileIcon from '../assets/svg/ProfileIcon';
@@ -19,7 +19,7 @@ import {
 } from '../utils/NavigationUtils';
 
 import PostList from '../components/feed/PostList';
-import { colors } from '../constants/Colors';
+import {colors} from '../constants/Colors';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -54,7 +54,7 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             </View>
           </View>
           <View className="">
-            <ForumSearchBar />
+            <SearchBar />
             <TagFilterCarousel
               selectedTag={selectedTag}
               setSelectedTag={setSelectedTag}

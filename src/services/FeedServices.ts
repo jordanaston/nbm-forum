@@ -4,7 +4,10 @@ import {
   Post,
   Tag,
   GetCommentsResponse,
+  Comment,
+  PostCommentResponse,
 } from '../types/FeedTypes';
+import {LikeResponse} from '../types/LikeTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 
 export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
@@ -14,7 +17,6 @@ export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
       limit: 40,
       tags,
     };
-
     const {data} = await nbmApi.post('/posts/_search', requestBody);
     return data.data;
   } catch (error) {
@@ -56,7 +58,6 @@ export const getCommentsFromPost = async (
       page: 1,
       limit: 10,
     };
-
     const {data} = await nbmApi.get(`/posts/${postId}/comments`, {
       params: requestParams,
     });
@@ -66,20 +67,68 @@ export const getCommentsFromPost = async (
   }
 };
 
-export const postLike = async (postId: number) => {
+export const getRepliesFromComment = async (
+  postId: number,
+  commentId: number,
+): Promise<Comment[]> => {
   try {
-    const {data} = await nbmApi.post(`/posts/${postId}/like`);
-    console.log('POST LIKE: ', JSON.stringify(data.data, null, 3));
+    const requestParams: RequestParams = {
+      page: 1,
+      limit: 10,
+    };
+    const {data} = await nbmApi.get(`/posts/${postId}/comments/${commentId}`, {
+      params: requestParams,
+    });
     return data.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const deleteLike = async (postId: number) => {
+export const postCommentOnPost = async (
+  postId: number,
+  text: string,
+): Promise<PostCommentResponse> => {
+  try {
+    const body = {
+      text,
+    };
+    const {data} = await nbmApi.post(`/posts/${postId}/comments/`, body);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postReplyOnComment = async (
+  postId: number,
+  commentId: number,
+  text: string,
+): Promise<PostCommentResponse> => {
+  try {
+    const body = {
+      text,
+      commentId,
+    };
+    const {data} = await nbmApi.post(`/posts/${postId}/comments/`, body);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postLike = async (postId: number): Promise<LikeResponse> => {
+  try {
+    const {data} = await nbmApi.post(`/posts/${postId}/like`);
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteLike = async (postId: number): Promise<LikeResponse> => {
   try {
     const {data} = await nbmApi.delete(`/posts/${postId}/like`);
-    console.log('DELETE LIKE: ', JSON.stringify(data.data, null, 3));
     return data.data;
   } catch (error) {
     throw error;

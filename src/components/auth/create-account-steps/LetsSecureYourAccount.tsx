@@ -3,7 +3,7 @@ import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
 import PasswordRules from '../PasswordRules';
 import TermsAndConditionsCheck from '../TermsAndConditionsCheck';
-import InputBox from '../../core/Input';
+import Input from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 
 const LetsSecureYourAccount: React.FC = (): JSX.Element => {
@@ -19,7 +19,7 @@ const LetsSecureYourAccount: React.FC = (): JSX.Element => {
       </View>
 
       <View className="mt-8">
-        <InputBox
+        <Input
           placeholder="Enter your password"
           inputBoxTitle="Create a Password"
           isPasswordField={true}
@@ -29,7 +29,7 @@ const LetsSecureYourAccount: React.FC = (): JSX.Element => {
         />
       </View>
       <View className="mt-2">
-        <InputBox
+        <Input
           placeholder="Re-enter your password"
           inputBoxTitle="Confirm Password"
           isPasswordField={true}

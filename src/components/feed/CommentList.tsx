@@ -9,7 +9,7 @@ type Props = {
   post: Post;
 };
 
-const CommentsList: React.FC<Props> = ({post}: Props): JSX.Element => {
+const CommentList: React.FC<Props> = ({post}: Props): JSX.Element => {
   const {commentData, commentError, commentLoading} = useGetCommentDataQuery(
     post.id,
   );
@@ -36,11 +36,11 @@ const CommentsList: React.FC<Props> = ({post}: Props): JSX.Element => {
     if (!commentData || !commentData.data) return null;
 
     return commentData.data.map((comment: Comment) => {
-      return <CommentCard key={comment.id} comment={comment} />;
+      return <CommentCard key={comment.id} comment={comment} post={post} />;
     });
   };
 
   return <View>{renderComments()}</View>;
 };
 
-export default CommentsList;
+export default CommentList;

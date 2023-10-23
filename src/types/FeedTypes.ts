@@ -40,3 +40,22 @@ export interface Comment {
 export interface Tag {
   name: string;
 }
+
+export interface PostCommentResponse {
+  id: number;
+  text: string;
+  user: User;
+  post: Post;
+  parent: ParentComment | null;
+  createdAt: string;
+  userId: number;
+  postId: number;
+}
+
+export interface ParentComment {
+  id: number;
+  text: string;
+  userId: number;
+  postId: number;
+  createdAt: string;
+}

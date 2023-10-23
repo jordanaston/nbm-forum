@@ -5,13 +5,13 @@ import AuthTitleDescription from '../components/auth/AuthTitleDescription';
 import NbmBackNavBar from '../components/auth/NbmBackNavBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
-import InputBox from '../components/core/Input';
+import Input from '../components/core/Input';
 import Button from '../components/core/Button';
 import ErrorAlertBox from '../components/core/ErrorAlertBox';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
-import {useLoginFormik} from '../utils/formik/LoginFormik';
+import {useLoginFormik} from '../hooks/formik/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
 import {useLoginMutation} from '../hooks/LoginMutation';
 import {sleep} from '../utils/SleepUtil';
@@ -77,7 +77,7 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
               />
             </View>
             <View className="mt-10">
-              <InputBox
+              <Input
                 placeholder="you@email.com"
                 inputBoxTitle="Email"
                 value={formik.values.email}
@@ -85,7 +85,7 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                 onBlur={formik.handleBlur('email')}
               />
               <View className="mt-2">
-                <InputBox
+                <Input
                   placeholder="Enter your password"
                   inputBoxTitle="Password"
                   isPasswordField={true}

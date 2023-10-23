@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -17,6 +17,9 @@ import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
 import CommentList from '../components/feed/CommentList';
 import useGetPostDataQuery from '../hooks/GetPostDataQuery';
+import CommentArrow from '../assets/svg/CommentArrow';
+import Input from '../components/core/Input';
+import {usePostCommentMutation} from '../hooks/PostCommentMutation';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -26,6 +29,20 @@ const PostScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const route = useRoute<RouteProp<MainStackParamList, 'PostScreen'>>();
 
   const {postRefetch} = useGetPostDataQuery();
+
+  const postCommentMutation = usePostCommentMutation();
+
+  const [commentText, setCommentText] = useState<string>('');
+
+  const handlePostComment = () => {
+    if (commentText.trim().length > 0) {
+      postCommentMutation.mutate({
+        postId: route.params.post.id,
+        text: commentText,
+      });
+      setCommentText('');
+    }
+  };
 
   return (
     <SafeAreaView className="flex-1">
@@ -59,6 +76,33 @@ const PostScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           </Text>
         </View>
         <CommentList post={route.params.post} />
+
+        <View className="mx-6 mb-10">
+          <View className="bg-ForumCharcoal h-[0.5px] mt-6" />
+          <View className="h-[34px] flex-row justify-between mt-5">
+            <View className="flex-1 justify-center mr-[8px] bg-ForumLightGray">
+              <Input
+                placeholder="Make a Comment"
+                placeholderTextColor={colors.forumCharcoal}
+                textSize="text-[14px]"
+                fontStyle="font-syne-semibold"
+                border="none"
+                height="h-[34px]"
+                onChangeText={text => setCommentText(text)}
+                value={commentText}
+                opacity="none"
+              />
+            </View>
+
+            <TouchableOpacity onPress={handlePostComment}>
+              <View className="flex items-center justify-center w-[34px] h-[34px] bg-ForumPurple">
+                <View className="rotate-[90deg]">
+                  <CommentArrow />
+                </View>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

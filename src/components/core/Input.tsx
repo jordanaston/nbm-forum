@@ -7,35 +7,50 @@ type Props = {
   placeholder: string;
   placeholderTextColor?: string;
   textSize?: string;
+  textColor?: string;
   fontStyle?: string;
+  border?: string;
+  borderColor?: string;
+  backgroundColor?: string;
+  opacity?: string;
   inputBoxTitle?: string;
   isPasswordField?: boolean;
+  height?: string;
   value: string;
   onChangeText: (text: string) => void;
-  onBlur: (e: any) => void;
+  onBlur?: (e: any) => void;
+  onSubmitEditing?: () => void;
 };
 
-const InputBox: React.FC<Props> = ({
+const Input: React.FC<Props> = ({
   placeholder,
   placeholderTextColor = colors.forumCharcoal,
   textSize = 'text-[16px]',
+  textColor = 'text-ForumCharcoal',
   fontStyle = 'font-syne-regular',
+  border = 'border',
+  borderColor = 'border-ForumCharcoal',
+  backgroundColor = 'bg-none',
+  opacity = 'opacity-60',
   inputBoxTitle,
   isPasswordField = false,
+  height = 'h-[50px]',
   value,
   onChangeText,
   onBlur,
+  onSubmitEditing,
 }: Props): JSX.Element => {
   const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
   return (
     <View>
       {inputBoxTitle && (
-        <Text className="text-[16px] font-syne-bold text-ForumCharcoal mb-2">
+        <Text className={`text-[16px] font-syne-bold ${textColor} mb-2`}>
           {inputBoxTitle}
         </Text>
       )}
-      <View className="flex-row justify-between border border-ForumCharcoal opacity-60">
+      <View
+        className={`flex-row justify-between ${backgroundColor} ${border} ${borderColor} ${opacity}`}>
         <TextInput
           placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
@@ -44,7 +59,8 @@ const InputBox: React.FC<Props> = ({
           value={value}
           onChangeText={onChangeText}
           onBlur={onBlur}
-          className={`h-[50px] ml-3 ${textSize} ${fontStyle}`}
+          onSubmitEditing={onSubmitEditing}
+          className={`${height} ml-3 ${textSize} ${fontStyle}`}
         />
         <PasswordToggle
           isPasswordField={isPasswordField}
@@ -56,4 +72,4 @@ const InputBox: React.FC<Props> = ({
   );
 };
 
-export default InputBox;
+export default Input;

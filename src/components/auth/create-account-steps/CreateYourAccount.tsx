@@ -1,7 +1,7 @@
 import {View} from 'react-native';
 import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
-import InputBox from '../../core/Input';
+import Input from '../../core/Input';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
 import {renderErrors} from '../../../utils/RenderErrorsUtil';
@@ -25,7 +25,7 @@ const CreateYourAccount: React.FC = (): JSX.Element => {
       </View>
       <View>
         <View className="mt-6">
-          <InputBox
+          <Input
             placeholder="Enter your first name here"
             inputBoxTitle="Your Name"
             value={formik.values.firstName}
@@ -34,7 +34,7 @@ const CreateYourAccount: React.FC = (): JSX.Element => {
           />
         </View>
         <View className="mt-2">
-          <InputBox
+          <Input
             placeholder="Enter your last name here"
             value={formik.values.lastName}
             onChangeText={formik.handleChange('lastName')}
@@ -42,7 +42,7 @@ const CreateYourAccount: React.FC = (): JSX.Element => {
           />
         </View>
         <View className="mt-2">
-          <InputBox
+          <Input
             placeholder="you@email.com"
             inputBoxTitle="Email"
             value={formik.values.email}
@@ -54,7 +54,7 @@ const CreateYourAccount: React.FC = (): JSX.Element => {
           />
         </View>
         <View className="mt-2">
-          <InputBox
+          <Input
             placeholder="Enter your mobile number here"
             inputBoxTitle="Phone"
             value={formik.values.telephone}

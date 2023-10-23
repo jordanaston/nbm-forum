@@ -5,7 +5,7 @@ import UploadProfilePicture from './UploadProfilePicture';
 import WhereAreYouLocated from './WhereAreYouLocated';
 import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {createAccountFormik} from '../../../utils/formik/CreateAccountFormik';
+import {createAccountFormik} from '../../../hooks/formik/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
 import {useCreateAccountMutation} from '../../../hooks/CreateAccountMutation';
 import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
