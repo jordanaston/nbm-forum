@@ -4,7 +4,7 @@ import {Comment, Post} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
 import PurpleDotPoint from '../../assets/svg/PurpleDotPoint';
 import {format} from 'date-fns';
-import {useDeleteCommentMutation} from '../../hooks/DeleteCommentMutation';
+import {useDeleteReplyOfReplyMutation} from '../../hooks/DeleteMutations';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import Button from '../core/Button';
 
@@ -19,10 +19,10 @@ const ReplyOnReplyCard: React.FC<Props> = ({
 }: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
 
-  const deleteCommentMutation = useDeleteCommentMutation();
+  const deleteReplyOfReplyMutation = useDeleteReplyOfReplyMutation();
 
   const handleDeleteReplyOfReply = () => {
-    deleteCommentMutation.mutate({
+    deleteReplyOfReplyMutation.mutate({
       postId: post.id,
       commentId: replyOnReply.id,
     });

@@ -15,7 +15,7 @@ export const usePostReplyOnReplyMutation = () => {
       postReplyOnReply(postId, commentId, text),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('replies');
+        queryClient.invalidateQueries('repliesOnReplies');
       },
       onError: (error: any) => {},
     },

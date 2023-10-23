@@ -16,7 +16,7 @@ const useGetReplyOnReplyDataQuery = (
     data: replyOnReplyData,
     error: replyOnReplyError,
     isLoading: replyOnReplyLoading,
-  } = useQuery(['replies', postId, commentId], () =>
+  } = useQuery(['repliesOnReplies', postId, commentId], () =>
     getRepliesFromReply(postId, commentId),
   );
 

@@ -8,7 +8,7 @@ import ReplyList from './ReplyList';
 import Input from '../core/Input';
 import {colors} from '../../constants/Colors';
 import {usePostReplyMutation} from '../../hooks/PostReplyMutation';
-import {useDeleteCommentMutation} from '../../hooks/DeleteCommentMutation';
+import {useDeleteCommentMutation} from '../../hooks/DeleteMutations';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import Button from '../core/Button';
 

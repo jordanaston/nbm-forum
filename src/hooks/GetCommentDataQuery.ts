@@ -23,3 +23,5 @@ const useGetCommentDataQuery = (postId: number): Props => {
 };
 
 export default useGetCommentDataQuery;
+
+
