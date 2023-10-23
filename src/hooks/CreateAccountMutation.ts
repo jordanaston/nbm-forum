@@ -9,19 +9,19 @@ import {Dispatch, SetStateAction} from 'react';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  setCurrentStep: Dispatch<SetStateAction<number>>;
+  setCurrentAccountStep: Dispatch<SetStateAction<number>>;
   formik: FormikProps<CreateAccountArgs>;
 };
 
 export const useCreateAccountMutation = ({
   navigation,
-  setCurrentStep,
+  setCurrentAccountStep,
   formik,
 }: Props) => {
   return useMutation(postCreateAccountDetails, {
     onSuccess: () => {
       goToLoginScreen({navigation, accountCreationSuccess: true});
-      setCurrentStep(0);
+      setCurrentAccountStep(0);
       formik.resetForm();
     },
     onError: (error: any) => {

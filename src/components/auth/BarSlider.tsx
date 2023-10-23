@@ -2,12 +2,14 @@ import React from 'react';
 import {View} from 'react-native';
 
 type Props = {
-  currentStep: number;
+  currentAccountStep: number;
 };
 
-const BarSlider: React.FC<Props> = ({currentStep}: Props): JSX.Element => {
+const BarSlider: React.FC<Props> = ({
+  currentAccountStep,
+}: Props): JSX.Element => {
   const getColor = (index: number) => {
-    return index <= currentStep + 1
+    return index <= currentAccountStep + 1
       ? 'bg-ForumPurple'
       : 'bg-ForumCharcoal opacity-20';
   };

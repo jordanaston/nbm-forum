@@ -37,7 +37,6 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             <Text className="font-syne-semibold text-ForumCharcoal text-[25px] text-left mb-[20px] mt-[15px]">
               Forum
             </Text>
-
             <View className="flex-row">
               <TouchableOpacity
                 onPress={() => goToCreatePostScreen({navigation})}>
@@ -53,14 +52,12 @@ const FeedScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
               </TouchableOpacity>
             </View>
           </View>
-          <View className="">
-            <SearchBar />
-            <TagFilterCarousel
-              selectedTag={selectedTag}
-              setSelectedTag={setSelectedTag}
-            />
-            <View className="h-[5] bg-ForumLightGray -mx-6 mt-4" />
-          </View>
+          <SearchBar />
+          <TagFilterCarousel
+            selectedTag={selectedTag}
+            setSelectedTag={setSelectedTag}
+          />
+          <View className="h-[5] bg-ForumLightGray -mx-6 mt-4" />
         </View>
         <View>
           <PostList selectedTag={selectedTag} navigation={navigation} />

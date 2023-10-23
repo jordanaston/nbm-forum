@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import CreateYourAccount from './CreateYourAccount';
 import LetsSecureYourAccount from './LetsSecureYourAccount';
 import UploadProfilePicture from './UploadProfilePicture';
@@ -12,32 +12,32 @@ import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  setIsImageUploading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsImageUploading: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useAccountCreationSteps = ({
   navigation,
   setIsImageUploading,
 }: Props): [JSX.Element | null, () => void, number, boolean] => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const [currentAccountStep, setCurrentAccountStep] = useState<number>(0);
 
-  const formik = createAccountFormik(currentStep, values => {
-    if (currentStep === 3) {
+  const formik = createAccountFormik(currentAccountStep, values => {
+    if (currentAccountStep === 3) {
       createAccountMutation.mutate(values);
     } else {
-      setCurrentStep(prev => prev + 1);
+      setCurrentAccountStep(prev => prev + 1);
     }
   });
 
   const createAccountMutation = useCreateAccountMutation({
     navigation,
-    setCurrentStep,
+    setCurrentAccountStep,
     formik,
   });
 
-  const wrappedStep = (Component: React.FC) => (
+  const wrappedStep = (CreateAccountComponent: React.FC) => (
     <FormikContext.Provider value={formik}>
-      <Component />
+      <CreateAccountComponent />
     </FormikContext.Provider>
   );
 
@@ -51,18 +51,18 @@ export const useAccountCreationSteps = ({
   ];
 
   const goBackOneStep = () => {
-    if (currentStep === 0) {
+    if (currentAccountStep === 0) {
       goToWelcomeScreen({navigation});
-    } else if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+    } else if (currentAccountStep > 0) {
+      setCurrentAccountStep(prev => prev - 1);
     }
     formik.setStatus(null);
   };
 
   return [
-    steps[currentStep] || null,
+    steps[currentAccountStep] || null,
     goBackOneStep,
-    currentStep,
+    currentAccountStep,
     createAccountMutation.isLoading,
   ];
 };

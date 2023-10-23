@@ -19,7 +19,7 @@ const CreateAccountScreen: React.FC<Props> = ({
   navigation,
 }: Props): JSX.Element => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
-  const [currentComponent, goBackOneStep, currentStep, isLoading] =
+  const [currentComponent, goBackOneStep, currentAccountStep, isLoading] =
     useAccountCreationSteps({navigation, setIsImageUploading});
 
   return (
@@ -34,11 +34,11 @@ const CreateAccountScreen: React.FC<Props> = ({
               navigation={navigation}
               onBackPress={goBackOneStep}
             />
-            <BarSlider currentStep={currentStep} />
+            <BarSlider currentAccountStep={currentAccountStep} />
             {currentComponent}
           </View>
 
-          {currentStep === 0 && (
+          {currentAccountStep === 0 && (
             <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">
               <Text className="text-ForumPurple text-[14px]">
                 Already have an account?{' '}
