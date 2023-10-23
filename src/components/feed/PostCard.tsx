@@ -7,7 +7,6 @@ import PurpleDotPoint from '../../assets/svg/PurpleDotPoint';
 import {format} from 'date-fns';
 import Button from '../core/Button';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
-import LikeIcon from '../../assets/svg/LikeIcon';
 import {goToPostScreen} from '../../utils/NavigationUtils';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -16,13 +15,19 @@ import {Image} from 'react-native';
 import {fetchResizedAvatar} from '../../utils/AvatarUtils';
 import {colors} from '../../constants/Colors';
 import ProfileIcon from '../../assets/svg/ProfileIcon';
+import LikeButton from './LikeButton';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
   post: Post;
+  postRefetch: any;
 };
 
-const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
+const PostCard: React.FC<Props> = ({
+  navigation,
+  post,
+  postRefetch,
+}: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
 
   const {commentData, commentLoading} = useGetCommentDataQuery(post.id);
@@ -30,6 +35,8 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
   const {data: resizedAvatar} = fetchResizedAvatar(post.user.avatar);
 
   const [avatarLoadError, setAvatarLoadError] = useState<boolean>(false);
+
+  const [hasLiked, setHasLiked] = useState<boolean>(false);
 
   return (
     <TouchableOpacity onPress={() => goToPostScreen({navigation, post})}>
@@ -106,8 +113,13 @@ const PostCard: React.FC<Props> = ({navigation, post}: Props): JSX.Element => {
             </Text>
           </View>
           <View className="flex-row items-center">
-            <View className="opacity-70">
-              <LikeIcon />
+            <View className="opacity-90">
+              <LikeButton
+                postId={post.id}
+                hasLiked={hasLiked}
+                setHasLiked={setHasLiked}
+                postRefetch={postRefetch}
+              />
             </View>
             <Text className="ml-0.5 my-1 text-[10px] text-ForumCharcoal">
               {post.likes}

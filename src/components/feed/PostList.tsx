@@ -15,7 +15,7 @@ const PostList: React.FC<Props> = ({
   selectedTag,
   navigation,
 }: Props): JSX.Element => {
-  const {postDataArray, postsError, postsLoading} =
+  const {postDataArray, postsError, postsLoading, postRefetch} =
     useGetPostDataQuery(selectedTag);
 
   if (postsLoading) {
@@ -34,7 +34,14 @@ const PostList: React.FC<Props> = ({
     if (!postDataArray) return null;
 
     return postDataArray.map(post => {
-      return <PostCard key={post.id} post={post} navigation={navigation} />;
+      return (
+        <PostCard
+          key={post.id}
+          post={post}
+          navigation={navigation}
+          postRefetch={postRefetch}
+        />
+      );
     });
   };
 

@@ -65,3 +65,23 @@ export const getCommentsFromPost = async (
     throw error;
   }
 };
+
+export const postLike = async (postId: number) => {
+  try {
+    const {data} = await nbmApi.post(`/posts/${postId}/like`);
+    console.log('POST LIKE: ', JSON.stringify(data.data, null, 3));
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteLike = async (postId: number) => {
+  try {
+    const {data} = await nbmApi.delete(`/posts/${postId}/like`);
+    console.log('DELETE LIKE: ', JSON.stringify(data.data, null, 3));
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};

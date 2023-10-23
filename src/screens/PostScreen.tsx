@@ -16,6 +16,7 @@ import PostCard from '../components/feed/PostCard';
 import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
 import CommentList from '../components/feed/CommentList';
+import useGetPostDataQuery from '../hooks/GetPostDataQuery';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -23,6 +24,8 @@ type Props = {
 
 const PostScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const route = useRoute<RouteProp<MainStackParamList, 'PostScreen'>>();
+
+  const {postRefetch} = useGetPostDataQuery();
 
   return (
     <SafeAreaView className="flex-1">
@@ -44,7 +47,11 @@ const PostScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           <View className="mt-1 w-[28]"></View>
         </View>
         <View>
-          <PostCard post={route.params.post} navigation={navigation} />
+          <PostCard
+            post={route.params.post}
+            navigation={navigation}
+            postRefetch={postRefetch}
+          />
         </View>
         <View className="mx-6">
           <Text className="text-[16px] font-syne-bold text-ForumCharcoal mt-4 mb-2 ">

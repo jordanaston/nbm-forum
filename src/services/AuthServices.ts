@@ -95,7 +95,11 @@ export const getProfilePicture = async ({
       },
     );
     return data;
-  } catch (error) {
+  } catch (error: any) {
+    console.error(
+      'Failed to fetch profile picture: ',
+      JSON.stringify(error.response?.data || error.message, null, 3),
+    );
     throw error;
   }
 };
