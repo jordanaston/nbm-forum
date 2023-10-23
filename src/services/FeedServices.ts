@@ -7,14 +7,14 @@ import {
   Comment,
   PostCommentResponse,
 } from '../types/FeedTypes';
-import {LikeResponse} from '../types/LikeTypes';
+import {DeleteResponse, LikeResponse} from '../types/ErrorTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 
 export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
   try {
     const requestBody: GetPostsArgs = {
       page: 1,
-      limit: 40,
+      limit: 50,
       tags,
     };
     const {data} = await nbmApi.post('/posts/_search', requestBody);
@@ -111,6 +111,21 @@ export const postReplyOnComment = async (
       commentId,
     };
     const {data} = await nbmApi.post(`/posts/${postId}/comments/`, body);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCommentFromPost = async (
+  postId: number,
+  commentId: number,
+): Promise<DeleteResponse> => {
+  try {
+    const {data} = await nbmApi.delete(
+      `/posts/${postId}/comments/${commentId}`,
+    );
+    console.log('DELETE COMMENT FROM POST: ', JSON.stringify(data, null, 3));
     return data;
   } catch (error) {
     throw error;

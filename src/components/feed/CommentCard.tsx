@@ -8,6 +8,9 @@ import ReplyList from './ReplyList';
 import Input from '../core/Input';
 import {colors} from '../../constants/Colors';
 import {usePostReplyMutation} from '../../hooks/PostReplyMutation';
+import {useDeleteCommentMutation} from '../../hooks/DeleteCommentMutation';
+import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
+import Button from '../core/Button';
 
 type Props = {
   post: Post;
@@ -15,6 +18,8 @@ type Props = {
 };
 
 const CommentCard: React.FC<Props> = ({post, comment}: Props): JSX.Element => {
+  const loggedInUserId = useLoggedInUserId();
+
   const postReplyMutation = usePostReplyMutation();
 
   const [replyText, setReplyText] = useState<string>('');
@@ -30,6 +35,15 @@ const CommentCard: React.FC<Props> = ({post, comment}: Props): JSX.Element => {
     }
   };
 
+  const deleteCommentMutation = useDeleteCommentMutation();
+
+  const handleDeleteComment = () => {
+    deleteCommentMutation.mutate({
+      postId: post.id,
+      commentId: comment.id,
+    });
+  };
+
   return (
     <View className="mx-6">
       <View className="flex-row mt-2">
@@ -43,6 +57,22 @@ const CommentCard: React.FC<Props> = ({post, comment}: Props): JSX.Element => {
         <Text className="text-ForumCharcoal opacity-50 font-syne-regular ml-2">
           {format(new Date(comment.createdAt), 'dd-MM-yyyy')}
         </Text>
+        {comment.user.id === loggedInUserId && (
+          <View className="ml-2 mt-[2px]">
+            <Button
+              onPress={handleDeleteComment}
+              text="Delete"
+              includeArrow={false}
+              backgroundColor="none"
+              border="none"
+              textColor="text-ForumPurple"
+              textSize="text-[12px]"
+              height=""
+              position=""
+              position2=""
+            />
+          </View>
+        )}
       </View>
       <Text className="font-syne-regular mb-4 mt-2 ml-1">{comment.text}</Text>
       <View className="flex-row">

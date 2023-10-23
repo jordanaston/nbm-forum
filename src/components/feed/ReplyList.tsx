@@ -38,7 +38,7 @@ const ReplyList: React.FC<Props> = ({post, comment}: Props): JSX.Element => {
     if (!replyData) return null;
 
     return replyData.map((reply: Comment) => {
-      return <ReplyCard key={reply.id} reply={reply} />;
+      return <ReplyCard key={reply.id} reply={reply} post={post} />;
     });
   };
 
