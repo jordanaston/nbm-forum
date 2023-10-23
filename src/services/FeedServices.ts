@@ -85,6 +85,24 @@ export const getRepliesFromComment = async (
   }
 };
 
+export const getRepliesFromReply = async (
+  postId: number,
+  commentId: number,
+): Promise<Comment[]> => {
+  try {
+    const requestParams: RequestParams = {
+      page: 1,
+      limit: 10,
+    };
+    const {data} = await nbmApi.get(`/posts/${postId}/comments/${commentId}`, {
+      params: requestParams,
+    });
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const postCommentOnPost = async (
   postId: number,
   text: string,
@@ -117,6 +135,23 @@ export const postReplyOnComment = async (
   }
 };
 
+export const postReplyOnReply = async (
+  postId: number,
+  commentId: number,
+  text: string,
+): Promise<PostCommentResponse> => {
+  try {
+    const body = {
+      text,
+      commentId,
+    };
+    const {data} = await nbmApi.post(`/posts/${postId}/comments/`, body);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteCommentFromPost = async (
   postId: number,
   commentId: number,
@@ -125,7 +160,6 @@ export const deleteCommentFromPost = async (
     const {data} = await nbmApi.delete(
       `/posts/${postId}/comments/${commentId}`,
     );
-    console.log('DELETE COMMENT FROM POST: ', JSON.stringify(data, null, 3));
     return data;
   } catch (error) {
     throw error;

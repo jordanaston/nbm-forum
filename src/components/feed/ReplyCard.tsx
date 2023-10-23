@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Comment, Post} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
@@ -7,6 +7,10 @@ import {format} from 'date-fns';
 import {useDeleteCommentMutation} from '../../hooks/DeleteCommentMutation';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import Button from '../core/Button';
+import ReplyOnReplyList from './ReplyOnReplyList';
+import Input from '../core/Input';
+import {colors} from '../../constants/Colors';
+import {usePostReplyOnReplyMutation} from '../../hooks/PostReplyOnReplyMutation';
 
 type Props = {
   post: Post;
@@ -16,9 +20,24 @@ type Props = {
 const ReplyCard: React.FC<Props> = ({post, reply}: Props): JSX.Element => {
   const loggedInUserId = useLoggedInUserId();
 
+  const postReplyOnReplyMutation = usePostReplyOnReplyMutation();
+
+  const [replyOnReplyText, setReplyOnReplyText] = useState<string>('');
+
+  const handlePostReplyOnReply = () => {
+    if (replyOnReplyText.trim().length > 0) {
+      postReplyOnReplyMutation.mutate({
+        postId: post.id,
+        commentId: reply.id,
+        text: replyOnReplyText,
+      });
+      setReplyOnReplyText('');
+    }
+  };
+
   const deleteCommentMutation = useDeleteCommentMutation();
 
-  const handleDeleteComment = () => {
+  const handleDeleteReply = () => {
     deleteCommentMutation.mutate({
       postId: post.id,
       commentId: reply.id,
@@ -41,7 +60,7 @@ const ReplyCard: React.FC<Props> = ({post, reply}: Props): JSX.Element => {
         {reply.user.id === loggedInUserId && (
           <View className="ml-2 mt-[2px]">
             <Button
-              onPress={handleDeleteComment}
+              onPress={handleDeleteReply}
               text="Delete"
               includeArrow={false}
               backgroundColor="none"
@@ -56,6 +75,28 @@ const ReplyCard: React.FC<Props> = ({post, reply}: Props): JSX.Element => {
         )}
       </View>
       <Text className="font-syne-regular mb-4 mt-2 ml-1">{reply.text}</Text>
+
+      <View className="flex-row">
+        <View className="w-[2px] bg-ForumCharcoal opacity-20 left-[8px] absolute top-[-4] bottom-[24px]" />
+        <View className="flex-1 -mr-6">
+          <ReplyOnReplyList post={post} reply={reply} />
+          <View className="ml-6 mb-2">
+            <View className="h-[2px] bg-ForumCharcoal opacity-20 absolute left-[-16px] w-[12px] top-1/2" />
+            <Input
+              placeholder="Write a reply..."
+              onChangeText={text => setReplyOnReplyText(text)}
+              value={replyOnReplyText}
+              textSize="text-[14px]"
+              border="none"
+              backgroundColor="bg-ForumLightGray"
+              placeholderTextColor={colors.forumCharcoal}
+              opacity="opacity-none"
+              height="h-[33px]"
+              onSubmitEditing={handlePostReplyOnReply}
+            />
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
