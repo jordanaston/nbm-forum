@@ -11,6 +11,7 @@ import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
 import {CreateAccountArgs} from '../types/CreateAccountTypes';
 import {User} from '../types/LoginTypes';
+import {QueryClient} from 'react-query';
 
 export const postLoginDetails = async ({
   email,
@@ -102,4 +103,9 @@ export const getProfilePicture = async ({
     );
     throw error;
   }
+};
+
+export const logout = async (queryClient: QueryClient): Promise<void> => {
+  await AsyncStorage.clear();
+  queryClient.clear();
 };

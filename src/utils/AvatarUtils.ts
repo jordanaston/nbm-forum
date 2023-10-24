@@ -39,8 +39,8 @@ export const handleAvatarUpload = async (
 
 export const fetchResizedAvatar = (
   fileName?: string | null,
-  width: number = 28,
-  height: number = 28,
+  width: number = 200,
+  height: number = 200,
 ): UseQueryResult<string | null, unknown> => {
   return useQuery<string | null, unknown>(
     ['resizedImage', fileName, width, height],

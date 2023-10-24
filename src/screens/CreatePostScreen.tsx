@@ -12,14 +12,12 @@ type Props = {
 const CreatePostScreen: React.FC<Props> = ({
   navigation,
 }: Props): JSX.Element => {
-  const [currentPostComponent, goBackOneStep, currentPostStep, isLoading] =
-    usePostCreationSteps({navigation});
+  const [currentPostComponent] = usePostCreationSteps({navigation});
 
   return (
     <SafeAreaView className="flex-1">
       <View className="mx-6">
         <StatusBar barStyle="dark-content" />
-
         {currentPostComponent}
       </View>
     </SafeAreaView>
