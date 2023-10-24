@@ -9,7 +9,10 @@ import {
 import {nbmApi} from './axios-instance/AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
 import axios from 'axios';
-import {CreateAccountArgs} from '../types/CreateAccountTypes';
+import {
+  CreateAccountArgs,
+  TermsAndConditionsResponse,
+} from '../types/CreateAccountTypes';
 import {User} from '../types/LoginTypes';
 import {QueryClient} from 'react-query';
 
@@ -104,6 +107,17 @@ export const getProfilePicture = async ({
     throw error;
   }
 };
+
+export const getTermsAndConditions =
+  async (): Promise<TermsAndConditionsResponse> => {
+    try {
+      const {data} = await nbmApi.get('/terms-conditions', {});
+      console.log('T&C RESPONSE: ', JSON.stringify(data, null, 3));
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
 
 export const logout = async (queryClient: QueryClient): Promise<void> => {
   await AsyncStorage.clear();

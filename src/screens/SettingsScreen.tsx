@@ -21,6 +21,7 @@ import LogoutIcon from '../assets/svg/LogoutIcon';
 import {useState} from 'react';
 import LoadingScreen from './LoadingScreen';
 import {useLogout} from '../utils/Logoututil';
+import TermsAndConditions from '../components/settings/TermsAndConditions';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -28,6 +29,7 @@ type Props = {
 
 const SettingsScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showTerms, setShowTerms] = useState(false);
 
   const handleLogout = useLogout({
     setIsLoading,
@@ -38,6 +40,8 @@ const SettingsScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
     <SafeAreaView className="flex-1 bg-white">
       {isLoading ? (
         <LoadingScreen />
+      ) : showTerms ? (
+        <TermsAndConditions setShowTerms={setShowTerms} />
       ) : (
         <View className="mx-6">
           <StatusBar barStyle="dark-content" />
@@ -77,7 +81,11 @@ const SettingsScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
               Legal
             </Text>
           </View>
-          <SettingsLink Icon={SettingsTermsIcon} label="Terms Of Service" />
+          <SettingsLink
+            Icon={SettingsTermsIcon}
+            label="Terms Of Service"
+            onPress={() => setShowTerms(true)}
+          />
           <SettingsLink Icon={SettingsPrivacyIcon} label="Privacy Policy" />
           <View className="mt-[20px] mb-4">
             <Text className="text-[18px] text-ForumCharcoal font-syne-bold">

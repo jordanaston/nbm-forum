@@ -17,3 +17,9 @@ export interface Address {
   postalCode: string;
   country: string;
 }
+
+export interface TermsAndConditionsResponse {
+  id: number;
+  description: string;
+  createdAt: string;
+}
