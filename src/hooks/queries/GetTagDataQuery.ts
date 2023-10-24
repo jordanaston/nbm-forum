@@ -13,7 +13,11 @@ const useGetTagDataQuery = (): Props => {
     data: tagData,
     error: tagError,
     isLoading: tagLoading,
-  } = useQuery('tags', getAllTags);
+  } = useQuery('tags', getAllTags, {
+    staleTime: 1000 * 60 * 5,
+    cacheTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
+  });
 
   return {
     tagData,

@@ -1,10 +1,8 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import {useCreatePostFormik} from '../../../context/CreatePostFormikContext';
 import XButtonIcon from '../../../assets/svg/XButtonIcon';
 import Button from '../../core/Button';
-import {usePostCreationSteps} from './CreatePostStepsParent';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {goToFeedScreen} from '../../../utils/NavigationUtils';
@@ -32,7 +30,28 @@ const SubmitPost: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           width="w-[88px]"
         />
       </View>
-      <Text>Submit Post</Text>
+
+      <View className="mt-10">
+        <Text className="text-ForumCharcoal font-syne-bold text-[25px]">
+          {formik.values.title}
+        </Text>
+      </View>
+      <View className="mt-6">
+        <Text className="text-ForumCharcoal font-syne-regular text-[14px]">
+          {formik.values.content}
+        </Text>
+        <View className="mt-6 flex-row">
+          {formik.values.tags.map((tag, index) => (
+            <View
+              key={index}
+              className="justify-center mr-4 bg-ForumPurple h-[30px] px-2">
+              <Text className="text-white font-syne-regular text-[14px]">
+                {tag}
+              </Text>
+            </View>
+          ))}
+        </View>
+      </View>
     </View>
   );
 };

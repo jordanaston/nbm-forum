@@ -9,6 +9,7 @@ import {goToFeedScreen} from '../../../utils/NavigationUtils';
 import Input from '../../core/Input';
 import {renderErrors} from '../../../utils/RenderErrorsUtil';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
+import {colors} from '../../../constants/Colors';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -56,7 +57,7 @@ const EnterPostDetails: React.FC<Props> = ({
           border=""
           marginLeft=""
           height=""
-          opacity=""
+          opacity="opacity-80"
           value={formik.values.title}
           onChangeText={formik.handleChange('title')}
           onBlur={formik.handleBlur('title')}
@@ -64,12 +65,13 @@ const EnterPostDetails: React.FC<Props> = ({
         <View className="mt-4">
           <Input
             placeholder="Enter your body text..."
+            placeholderTextColor={colors.forumCharcoal}
             textSize="text-[14px]"
             fontStyle="font-syne-medium"
             border=""
             marginLeft=""
             height=""
-            opacity=""
+            opacity="opacity-80"
             multiline={true}
             value={formik.values.content}
             onChangeText={formik.handleChange('content')}

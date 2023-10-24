@@ -18,7 +18,7 @@ const PostList: React.FC<Props> = ({
   const {postDataArray, postsError, postsLoading, postRefetch} =
     useGetPostDataQuery(selectedTag);
 
-  if (postsLoading) {
+  if (postsLoading && !postDataArray) {
     return (
       <StatusMessage message="Loading Posts..." textColor="text-ForumPurple" />
     );

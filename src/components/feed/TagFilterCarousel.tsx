@@ -1,7 +1,5 @@
 import React from 'react';
 import {FlatList, TouchableOpacity, View} from 'react-native';
-import {useQuery} from 'react-query';
-import {getAllTags} from '../../services/FeedServices';
 import {Text} from 'react-native-elements';
 import StatusMessage from '../core/StatusMessage';
 import useGetTagDataQuery from '../../hooks/queries/GetTagDataQuery';
@@ -15,7 +13,6 @@ const TagFilterCarousel: React.FC<Props> = ({
   selectedTag,
   setSelectedTag,
 }: Props): JSX.Element => {
-  
   const {tagData, tagError, tagLoading} = useGetTagDataQuery();
 
   if (tagLoading) {

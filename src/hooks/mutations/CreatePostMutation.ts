@@ -1,10 +1,8 @@
-import {useMutation} from 'react-query';
-import {postCreateAccountDetails} from '../../services/AuthServices';
+import {useMutation, useQueryClient} from 'react-query';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {FormikProps} from 'formik';
-import {CreateAccountArgs} from '../../types/CreateAccountTypes';
-import {goToFeedScreen, goToLoginScreen} from '../../utils/NavigationUtils';
+import {goToFeedScreen} from '../../utils/NavigationUtils';
 import {Dispatch, SetStateAction} from 'react';
 import {postCreatedPost} from '../../services/FeedServices';
 import {CreatePostArgs} from '../../types/FeedTypes';
@@ -20,8 +18,11 @@ export const useCreatePostMutation = ({
   setCurrentPostStep,
   formik,
 }: Props) => {
+  const queryClient = useQueryClient();
+
   return useMutation(postCreatedPost, {
     onSuccess: () => {
+      queryClient.invalidateQueries('posts');
       goToFeedScreen({navigation});
       setCurrentPostStep(0);
       formik.resetForm();

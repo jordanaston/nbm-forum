@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import {useCreatePostFormik} from '../../context/CreatePostFormikContext';
 import {Tag} from '../../types/FeedTypes';

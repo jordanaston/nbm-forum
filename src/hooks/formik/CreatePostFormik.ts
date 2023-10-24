@@ -27,10 +27,6 @@ export const createPostFormik = (
     validationSchema: currentValidationSchema,
     onSubmit: values => {
       onSubmit(values);
-      console.log(
-        'SUBMITTED POST FORM VALUES: ',
-        JSON.stringify(values, null, 3),
-      );
     },
   });
 };

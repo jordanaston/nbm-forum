@@ -198,7 +198,6 @@ export const postCreatedPost = async ({
       tags,
     };
     const {data} = await nbmApi.post('/posts', body);
-    console.log('POST CREATED POST: ', JSON.stringify(data.data, null, 3));
     return data.data;
   } catch (error) {
     throw error;

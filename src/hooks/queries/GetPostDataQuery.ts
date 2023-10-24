@@ -23,6 +23,8 @@ const useGetPostDataQuery = (selectedTag?: string | null): Props => {
     {
       refetchOnWindowFocus: false,
       refetchOnMount: false,
+      staleTime: 1000 * 60 * 5,
+      cacheTime: 1000 * 60 * 10,
     },
   );
 

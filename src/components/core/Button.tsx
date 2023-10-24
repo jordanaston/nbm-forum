@@ -49,7 +49,8 @@ const Button: React.FC<Props> = ({
         }
       }}
       disabled={disabled}>
-      <View className={`${position} ${border} ${height} ${width} ${borderColor}`}>
+      <View
+        className={`${position} ${border} ${height} ${width} ${borderColor}`}>
         <Text
           className={`${position2} ${textColor} ${fontStyle} ${textSize} ${underline}`}>
           {text}
