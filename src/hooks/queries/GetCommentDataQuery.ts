@@ -1,6 +1,6 @@
 import {useQuery} from 'react-query';
-import {getCommentsFromPost} from '../services/FeedServices';
-import {GetCommentsResponse} from '../types/FeedTypes';
+import {getCommentsFromPost} from '../../services/FeedServices';
+import {GetCommentsResponse} from '../../types/FeedTypes';
 
 type Props = {
   commentData: GetCommentsResponse | undefined;
@@ -23,5 +23,3 @@ const useGetCommentDataQuery = (postId: number): Props => {
 };
 
 export default useGetCommentDataQuery;
-
-

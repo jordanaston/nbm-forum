@@ -19,8 +19,12 @@ const CreateAccountScreen: React.FC<Props> = ({
   navigation,
 }: Props): JSX.Element => {
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
-  const [currentComponent, goBackOneStep, currentAccountStep, isLoading] =
-    useAccountCreationSteps({navigation, setIsImageUploading});
+  const [
+    currentAccountComponent,
+    goBackOneStep,
+    currentAccountStep,
+    isLoading,
+  ] = useAccountCreationSteps({navigation, setIsImageUploading});
 
   return (
     <SafeAreaView className="flex-1">
@@ -35,7 +39,7 @@ const CreateAccountScreen: React.FC<Props> = ({
               onBackPress={goBackOneStep}
             />
             <BarSlider currentAccountStep={currentAccountStep} />
-            {currentComponent}
+            {currentAccountComponent}
           </View>
 
           {currentAccountStep === 0 && (

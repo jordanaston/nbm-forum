@@ -5,7 +5,7 @@ import NotLikedIcon from '../../assets/svg/NotLikedIcon';
 import {
   useDeleteLikeMutation,
   usePostLikeMutation,
-} from '../../hooks/LikeUnlikeMutations';
+} from '../../hooks/mutations/LikeUnlikeMutations';
 
 interface Props {
   postId: number;

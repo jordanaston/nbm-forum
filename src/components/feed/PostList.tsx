@@ -4,7 +4,7 @@ import StatusMessage from '../core/StatusMessage';
 import PostCard from './PostCard';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import useGetPostDataQuery from '../../hooks/GetPostDataQuery';
+import useGetPostDataQuery from '../../hooks/queries/GetPostDataQuery';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

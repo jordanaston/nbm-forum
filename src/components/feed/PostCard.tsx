@@ -10,7 +10,7 @@ import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import {goToPostScreen} from '../../utils/NavigationUtils';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import useGetCommentDataQuery from '../../hooks/GetCommentDataQuery';
+import useGetCommentDataQuery from '../../hooks/queries/GetCommentDataQuery';
 import {Image} from 'react-native';
 import {fetchResizedAvatar} from '../../utils/AvatarUtils';
 import {colors} from '../../constants/Colors';

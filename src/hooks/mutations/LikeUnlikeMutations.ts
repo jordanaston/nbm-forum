@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from 'react-query';
-import {deleteLike, postLike} from '../services/FeedServices';
+import {deleteLike, postLike} from '../../services/FeedServices';
 
 export const usePostLikeMutation = () => {
   const queryClient = useQueryClient();

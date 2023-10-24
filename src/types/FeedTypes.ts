@@ -59,3 +59,19 @@ export interface ParentComment {
   postId: number;
   createdAt: string;
 }
+
+export interface CreatePostArgs {
+  title: string;
+  content: string;
+  tags: string[];
+}
+
+export interface CreatePostResponse {
+  id: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  user: User;
+  likes: number;
+  comments: number;
+}

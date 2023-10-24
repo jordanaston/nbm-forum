@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from 'react-query';
-import {postReplyOnReply} from '../services/FeedServices';
+import {postReplyOnComment} from '../../services/FeedServices';
 
 type Props = {
   postId: number;
@@ -7,15 +7,15 @@ type Props = {
   text: string;
 };
 
-export const usePostReplyOnReplyMutation = () => {
+export const usePostReplyMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
     ({postId, commentId, text}: Props) =>
-      postReplyOnReply(postId, commentId, text),
+      postReplyOnComment(postId, commentId, text),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries('repliesOnReplies');
+        queryClient.invalidateQueries('replies');
       },
       onError: (error: any) => {},
     },

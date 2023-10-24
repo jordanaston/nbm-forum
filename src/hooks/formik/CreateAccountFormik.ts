@@ -5,12 +5,12 @@ import * as yup from 'yup';
 import {CreateAccountArgs} from '../../types/CreateAccountTypes';
 
 export const createAccountFormik = (
-  currentStep: number,
+  currentAccountStep: number,
   onSubmit: (values: CreateAccountArgs) => void,
 ) => {
   let currentValidationSchema;
 
-  switch (currentStep) {
+  switch (currentAccountStep) {
     case 0:
       currentValidationSchema = userDetailsValidationSchema;
       break;
@@ -22,7 +22,7 @@ export const createAccountFormik = (
       break;
   }
 
-  return useFormik({
+  return useFormik<CreateAccountArgs>({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -42,7 +42,6 @@ export const createAccountFormik = (
     },
     validationSchema: currentValidationSchema,
     onSubmit: values => {
-      console.log('SUBMITTED FORM VALUES: ', JSON.stringify(values, null, 3));
       onSubmit(values);
     },
   });

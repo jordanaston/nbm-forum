@@ -16,10 +16,10 @@ import PostCard from '../components/feed/PostCard';
 import {useRoute} from '@react-navigation/native';
 import {RouteProp} from '@react-navigation/native';
 import CommentList from '../components/feed/CommentList';
-import useGetPostDataQuery from '../hooks/GetPostDataQuery';
+import useGetPostDataQuery from '../hooks/queries/GetPostDataQuery';
 import CommentArrow from '../assets/svg/CommentArrow';
 import Input from '../components/core/Input';
-import {usePostCommentMutation} from '../hooks/PostCommentMutation';
+import {usePostCommentMutation} from '../hooks/mutations/PostCommentMutation';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

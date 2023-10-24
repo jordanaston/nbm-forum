@@ -7,8 +7,8 @@ import {format} from 'date-fns';
 import ReplyList from './ReplyList';
 import Input from '../core/Input';
 import {colors} from '../../constants/Colors';
-import {usePostReplyMutation} from '../../hooks/PostReplyMutation';
-import {useDeleteCommentMutation} from '../../hooks/DeleteMutations';
+import {usePostReplyMutation} from '../../hooks/mutations/PostReplyMutation';
+import {useDeleteCommentMutation} from '../../hooks/mutations/DeleteMutations';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import Button from '../core/Button';
 

@@ -1,6 +1,6 @@
 import {useQuery} from 'react-query';
-import {getRepliesFromComment} from '../services/FeedServices';
-import {Comment} from '../types/FeedTypes';
+import {getRepliesFromComment} from '../../services/FeedServices';
+import {Comment} from '../../types/FeedTypes';
 
 type Props = {
   replyData: Comment[] | undefined;

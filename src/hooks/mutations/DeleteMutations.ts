@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from 'react-query';
-import {deleteCommentFromPost} from '../services/FeedServices';
+import {deleteCommentFromPost} from '../../services/FeedServices';
 
 type Props = {
   postId: number;

@@ -7,7 +7,7 @@ import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {createAccountFormik} from '../../../hooks/formik/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
-import {useCreateAccountMutation} from '../../../hooks/CreateAccountMutation';
+import {useCreateAccountMutation} from '../../../hooks/mutations/CreateAccountMutation';
 import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
 
 type Props = {
@@ -35,17 +35,17 @@ export const useAccountCreationSteps = ({
     formik,
   });
 
-  const wrappedStep = (CreateAccountComponent: React.FC) => (
+  const wrappedAccountStep = (CreateAccountComponent: React.FC) => (
     <FormikContext.Provider value={formik}>
       <CreateAccountComponent />
     </FormikContext.Provider>
   );
 
   const steps = [
-    wrappedStep(CreateYourAccount),
-    wrappedStep(WhereAreYouLocated),
-    wrappedStep(LetsSecureYourAccount),
-    wrappedStep(() => (
+    wrappedAccountStep(CreateYourAccount),
+    wrappedAccountStep(WhereAreYouLocated),
+    wrappedAccountStep(LetsSecureYourAccount),
+    wrappedAccountStep(() => (
       <UploadProfilePicture setImageUploading={setIsImageUploading} />
     )),
   ];

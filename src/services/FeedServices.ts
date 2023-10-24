@@ -6,18 +6,20 @@ import {
   GetCommentsResponse,
   Comment,
   PostCommentResponse,
+  CreatePostArgs,
+  CreatePostResponse,
 } from '../types/FeedTypes';
 import {DeleteResponse, LikeResponse} from '../types/ErrorTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 
 export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
   try {
-    const requestBody: GetPostsArgs = {
+    const body: GetPostsArgs = {
       page: 1,
       limit: 50,
       tags,
     };
-    const {data} = await nbmApi.post('/posts/_search', requestBody);
+    const {data} = await nbmApi.post('/posts/_search', body);
     return data.data;
   } catch (error) {
     throw error;
@@ -178,6 +180,25 @@ export const postLike = async (postId: number): Promise<LikeResponse> => {
 export const deleteLike = async (postId: number): Promise<LikeResponse> => {
   try {
     const {data} = await nbmApi.delete(`/posts/${postId}/like`);
+    return data.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const postCreatedPost = async ({
+  title,
+  content,
+  tags,
+}: CreatePostArgs): Promise<CreatePostResponse> => {
+  try {
+    const body = {
+      title,
+      content,
+      tags,
+    };
+    const {data} = await nbmApi.post('/posts', body);
+    console.log('POST CREATED POST: ', JSON.stringify(data.data, null, 3));
     return data.data;
   } catch (error) {
     throw error;

@@ -1,6 +1,6 @@
 import {useQuery} from 'react-query';
-import {getAllPosts} from '../services/FeedServices';
-import {Post} from '../types/FeedTypes';
+import {getAllPosts} from '../../services/FeedServices';
+import {Post} from '../../types/FeedTypes';
 
 type UseQueryReturnType = ReturnType<typeof useQuery>;
 

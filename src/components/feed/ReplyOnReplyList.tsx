@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import StatusMessage from '../core/StatusMessage';
 import {Comment, Post} from '../../types/FeedTypes';
 import ReplyOnReplyCard from './ReplyOnReplyCard';
-import useGetReplyOnReplyDataQuery from '../../hooks/GetReplyOnReplyDataQuery';
+import useGetReplyOnReplyDataQuery from '../../hooks/queries/GetReplyOnReplyDataQuery';
 
 type Props = {
   post: Post;

@@ -1,5 +1,5 @@
 import {useMutation, useQueryClient} from 'react-query';
-import {postCommentOnPost} from '../services/FeedServices';
+import {postCommentOnPost} from '../../services/FeedServices';
 
 type Props = {
   postId: number;

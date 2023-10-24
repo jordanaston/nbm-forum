@@ -13,7 +13,7 @@ import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
 import {useLoginFormik} from '../hooks/formik/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
-import {useLoginMutation} from '../hooks/LoginMutation';
+import {useLoginMutation} from '../hooks/mutations/LoginMutation';
 import {sleep} from '../utils/SleepUtil';
 import {renderErrors} from '../utils/RenderErrorsUtil';
 import {renderSuccesses} from '../utils/RenderSuccessesUtil';

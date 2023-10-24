@@ -4,13 +4,13 @@ import {Comment, Post} from '../../types/FeedTypes';
 import {Text} from 'react-native-elements';
 import PurpleDotPoint from '../../assets/svg/PurpleDotPoint';
 import {format} from 'date-fns';
-import {useDeleteReplyMutation} from '../../hooks/DeleteMutations';
+import {useDeleteReplyMutation} from '../../hooks/mutations/DeleteMutations';
 import {useLoggedInUserId} from '../../utils/FetchLoggedInUserIdUtil';
 import Button from '../core/Button';
 import ReplyOnReplyList from './ReplyOnReplyList';
 import Input from '../core/Input';
 import {colors} from '../../constants/Colors';
-import {usePostReplyOnReplyMutation} from '../../hooks/PostReplyOnReplyMutation';
+import {usePostReplyOnReplyMutation} from '../../hooks/mutations/PostReplyOnReplyMutation';
 
 type Props = {
   post: Post;

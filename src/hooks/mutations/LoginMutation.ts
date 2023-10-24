@@ -1,8 +1,8 @@
 import {useMutation} from 'react-query';
-import {postLoginDetails} from '../services/AuthServices';
+import {postLoginDetails} from '../../services/AuthServices';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {MainStackParamList} from '../navigation/MainStackNavigator';
-import {goToFeedScreen} from '../utils/NavigationUtils';
+import {MainStackParamList} from '../../navigation/MainStackNavigator';
+import {goToFeedScreen} from '../../utils/NavigationUtils';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
