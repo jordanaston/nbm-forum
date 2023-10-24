@@ -4,6 +4,7 @@ import {useQuery} from 'react-query';
 import {getAllTags} from '../../services/FeedServices';
 import {Text} from 'react-native-elements';
 import StatusMessage from '../core/StatusMessage';
+import useGetTagDataQuery from '../../hooks/queries/GetTagDataQuery';
 
 type Props = {
   selectedTag: string | null;
@@ -14,19 +15,16 @@ const TagFilterCarousel: React.FC<Props> = ({
   selectedTag,
   setSelectedTag,
 }: Props): JSX.Element => {
-  const {
-    data: tagDataArray,
-    error: tagsError,
-    isLoading: tagsLoading,
-  } = useQuery('tags', getAllTags);
+  
+  const {tagData, tagError, tagLoading} = useGetTagDataQuery();
 
-  if (tagsLoading) {
+  if (tagLoading) {
     return (
       <StatusMessage message="Loading Tags..." textColor="text-ForumPurple" />
     );
   }
 
-  if (tagsError) {
+  if (tagError) {
     return (
       <StatusMessage message="Error Loading Tags" textColor="text-ErrorRed" />
     );
@@ -58,18 +56,14 @@ const TagFilterCarousel: React.FC<Props> = ({
 
   return (
     <View>
-      {tagDataArray && (
+      {tagData && (
         <FlatList
-          data={tagDataArray}
+          data={tagData}
           horizontal
           showsHorizontalScrollIndicator={false}
           keyExtractor={tag => tag.name}
           renderItem={({item: tag, index}) => {
-            const styles = determineTagStyles(
-              tag.name,
-              index,
-              tagDataArray.length,
-            );
+            const styles = determineTagStyles(tag.name, index, tagData.length);
             return (
               <TouchableOpacity
                 onPress={() => handleTagPress(tag.name)}

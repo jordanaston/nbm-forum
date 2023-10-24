@@ -1,7 +1,7 @@
 import {useFormik} from 'formik';
-import * as yup from 'yup';
 import {CreatePostArgs} from '../../types/FeedTypes';
 import {titleAndContentValidationSchema} from '../../validation/TitleAndContentValidationSchema';
+import {tagsValidationSchema} from '../../validation/TagValidationSchema';
 
 export const createPostFormik = (
   currentPostStep: number,
@@ -14,7 +14,7 @@ export const createPostFormik = (
       currentValidationSchema = titleAndContentValidationSchema;
       break;
     case 1:
-      currentValidationSchema = yup.object({});
+      currentValidationSchema = tagsValidationSchema;
       break;
   }
 
