@@ -32,9 +32,9 @@ export const usePostCreationSteps = ({
     formik,
   });
 
-  const wrappedPostStep = (CreatePostComponent: React.FC) => (
+  const wrappedPostStep = (CreatePostComponent: React.FC<Props>) => (
     <FormikContext.Provider value={formik}>
-      <CreatePostComponent />
+      <CreatePostComponent navigation={navigation} />
     </FormikContext.Provider>
   );
 

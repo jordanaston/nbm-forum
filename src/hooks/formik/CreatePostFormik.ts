@@ -15,6 +15,10 @@ export const createPostFormik = (
 
     onSubmit: values => {
       onSubmit(values);
+      console.log(
+        'SUBMITTED POST FORM VALUES: ',
+        JSON.stringify(values, null, 3),
+      );
     },
   });
 };

@@ -16,6 +16,7 @@ type Props = {
   fontStyle?: string;
   textSize?: string;
   height?: string;
+  width?: string;
   position?: string;
   position2?: string;
   underline?: string;
@@ -34,6 +35,7 @@ const Button: React.FC<Props> = ({
   fontStyle = 'font-syne-regular',
   textSize = 'text-[16px]',
   height = 'h-[47px]',
+  width,
   position = 'flex-row items-center justify-center',
   position2 = 'text-center',
   underline,
@@ -47,7 +49,7 @@ const Button: React.FC<Props> = ({
         }
       }}
       disabled={disabled}>
-      <View className={`${position} ${border} ${height} ${borderColor}`}>
+      <View className={`${position} ${border} ${height} ${width} ${borderColor}`}>
         <Text
           className={`${position2} ${textColor} ${fontStyle} ${textSize} ${underline}`}>
           {text}
