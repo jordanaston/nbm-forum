@@ -14,10 +14,6 @@ export const useLoggedInUserId = (): number | null => {
   const {data: userId} = useQuery<number | null, Error>(
     'loggedInUserId',
     fetchLoggedInUserId,
-    {
-      staleTime: Infinity,
-      cacheTime: Infinity,
-    },
   );
 
   return userId ?? null;
