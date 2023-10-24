@@ -16,6 +16,8 @@ type Props = {
   inputBoxTitle?: string;
   isPasswordField?: boolean;
   height?: string;
+  marginLeft?: string;
+  multiline?: boolean;
   value: string;
   onChangeText: (text: string) => void;
   onBlur?: (e: any) => void;
@@ -35,6 +37,8 @@ const Input: React.FC<Props> = ({
   inputBoxTitle,
   isPasswordField = false,
   height = 'h-[50px]',
+  marginLeft = 'ml-3',
+  multiline = false,
   value,
   onChangeText,
   onBlur,
@@ -60,7 +64,8 @@ const Input: React.FC<Props> = ({
           onChangeText={onChangeText}
           onBlur={onBlur}
           onSubmitEditing={onSubmitEditing}
-          className={`${height} ml-3 ${textSize} ${fontStyle}`}
+          className={`${height} ${marginLeft} ${textSize} ${fontStyle}`}
+          multiline={multiline}
         />
         <PasswordToggle
           isPasswordField={isPasswordField}
