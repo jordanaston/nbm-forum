@@ -26,24 +26,13 @@ const LikeButton: React.FC<Props> = ({
 
   const handleLikePress = async () => {
     if (hasLiked) {
-      try {
-        await deleteLikeMutation.mutateAsync(postId);
-        setHasLiked(false);
-        postRefetch();
-      } catch (error: any) {
-        if (error.response.status === 403) {
-        }
-      }
+      await deleteLikeMutation.mutateAsync(postId);
+      setHasLiked(false);
+      postRefetch();
     } else {
-      try {
-        await postLikeMutation.mutateAsync(postId);
-        setHasLiked(true);
-        postRefetch();
-      } catch (error: any) {
-        if (error.response.status === 403) {
-          setHasLiked(true);
-        }
-      }
+      await postLikeMutation.mutateAsync(postId);
+      setHasLiked(true);
+      postRefetch();
     }
   };
 

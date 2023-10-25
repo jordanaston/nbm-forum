@@ -1,8 +1,8 @@
-import {View} from 'react-native';
+import {Alert, View} from 'react-native';
 import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
 import ProfilePictureButton from '../ProfilePictureButton';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import {handleAvatarUpload} from '../../../utils/AvatarUtils';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
@@ -27,6 +27,28 @@ const UploadProfilePicture: React.FC<Props> = ({
     }
     setImageUploading(false);
     formik.handleSubmit();
+  };
+
+  const handleSkipForNow = () => {
+    Alert.alert(
+      'Skip Profile Picture',
+      'Are you sure you want to create your account without adding a profile picture? You can always add one later in Settings.',
+      [
+        {
+          text: 'Back',
+
+          style: 'cancel',
+        },
+        {
+          text: 'Yes, create my account!',
+          onPress: () => {
+            setSelectedImage(null);
+            formik.setFieldValue('avatar', null);
+            formik.handleSubmit();
+          },
+        },
+      ],
+    );
   };
 
   return (
@@ -59,7 +81,7 @@ const UploadProfilePicture: React.FC<Props> = ({
 
       <View className="mt-6">
         <Button
-          onPress={() => {}}
+          onPress={handleSkipForNow}
           text="Skip for now"
           includeArrow={false}
           backgroundColor="bg-none"
