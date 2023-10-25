@@ -12,10 +12,6 @@ const TermsAndConditions: React.FC<Props> = ({
 }: Props): JSX.Element => {
   const {termsData, termsError, termsLoading} = useGetTermsAndConditionsQuery();
 
-  console.log('TERMS DATA: ', JSON.stringify(termsData, null, 3));
-  console.log('TERMS LOADING: ', JSON.stringify(termsLoading, null, 3));
-  console.log('TERMS ERROR: ', JSON.stringify(termsError, null, 3));
-
   if (termsLoading && !termsData) {
     return (
       <StatusMessage

@@ -3,9 +3,13 @@ import {postCreateAccountDetails} from '../../services/AuthServices';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {FormikProps} from 'formik';
-import {CreateAccountArgs, CreateAccountSteps} from '../../types/CreateAccountTypes';
+import {
+  CreateAccountArgs,
+  CreateAccountSteps,
+} from '../../types/CreateAccountTypes';
 import {goToLoginScreen} from '../../utils/NavigationUtils';
 import {Dispatch, SetStateAction} from 'react';
+import {AxiosError} from 'axios';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -24,7 +28,7 @@ export const useCreateAccountMutation = ({
       setCurrentAccountStep('CreateYourAccount');
       formik.resetForm();
     },
-    onError: (error: any) => {
+    onError: (error: AxiosError) => {
       if (error.response && error.response.status === 409) {
         formik.setStatus('Email or phone number already exists.');
       } else {

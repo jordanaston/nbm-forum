@@ -6,7 +6,7 @@ type UseQueryReturnType = ReturnType<typeof useQuery>;
 
 type Props = {
   postDataArray: Post[] | undefined;
-  postsError: any;
+  postsError: Error | null;
   postsLoading: boolean;
   postRefetch: UseQueryReturnType['refetch'];
 };
@@ -14,7 +14,7 @@ type Props = {
 const useGetPostDataQuery = (selectedTag?: string | null): Props => {
   const {
     data: postDataArray,
-    error: postsError,
+    error,
     isLoading: postsLoading,
     refetch: postRefetch,
   } = useQuery(
@@ -27,10 +27,10 @@ const useGetPostDataQuery = (selectedTag?: string | null): Props => {
       cacheTime: 1000 * 60 * 10,
     },
   );
-
+  
   return {
     postDataArray,
-    postsError,
+    postsError: error instanceof Error ? error : null,
     postsLoading,
     postRefetch,
   };

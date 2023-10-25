@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from 'react-query';
 import {postCommentOnPost} from '../../services/FeedServices';
+import {AxiosError} from 'axios';
 
 type Props = {
   postId: number;
@@ -15,7 +16,7 @@ export const usePostCommentMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries('comments');
       },
-      onError: (error: any) => {},
+      onError: (error: AxiosError) => {},
     },
   );
 };

@@ -4,14 +4,14 @@ import {Tag} from '../../types/FeedTypes';
 
 type Props = {
   tagData: Tag[] | undefined;
-  tagError: any;
+  tagError: Error | null;
   tagLoading: boolean;
 };
 
 const useGetTagDataQuery = (): Props => {
   const {
     data: tagData,
-    error: tagError,
+    error,
     isLoading: tagLoading,
   } = useQuery('tags', getAllTags, {
     staleTime: 1000 * 60 * 5,
@@ -21,7 +21,7 @@ const useGetTagDataQuery = (): Props => {
 
   return {
     tagData,
-    tagError,
+    tagError: error instanceof Error ? error : null,
     tagLoading,
   };
 };

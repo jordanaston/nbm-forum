@@ -6,12 +6,13 @@ import {
   useDeleteLikeMutation,
   usePostLikeMutation,
 } from '../../hooks/mutations/LikeUnlikeMutations';
+import {QueryObserverResult} from 'react-query';
 
 interface Props {
   postId: number;
   hasLiked: boolean;
   setHasLiked: (hasLiked: boolean) => void;
-  postRefetch: any;
+  postRefetch: () => Promise<QueryObserverResult<unknown, unknown>>;
 }
 
 const LikeButton: React.FC<Props> = ({

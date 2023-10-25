@@ -1,4 +1,10 @@
-import {View, Text, TextInput} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TextInputFocusEventData,
+  NativeSyntheticEvent,
+} from 'react-native';
 import {colors} from '../../constants/Colors';
 import {useState} from 'react';
 import PasswordToggle from '../auth/PasswordToggle';
@@ -20,7 +26,7 @@ type Props = {
   multiline?: boolean;
   value: string;
   onChangeText: (text: string) => void;
-  onBlur?: (e: any) => void;
+  onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onSubmitEditing?: () => void;
 };
 

@@ -4,7 +4,7 @@ import {Comment} from '../../types/FeedTypes';
 
 type Props = {
   replyOnReplyData: Comment[] | undefined;
-  replyOnReplyError: any;
+  replyOnReplyError: Error | null;
   replyOnReplyLoading: boolean;
 };
 
@@ -14,7 +14,7 @@ const useGetReplyOnReplyDataQuery = (
 ): Props => {
   const {
     data: replyOnReplyData,
-    error: replyOnReplyError,
+    error,
     isLoading: replyOnReplyLoading,
   } = useQuery(['repliesOnReplies', postId, commentId], () =>
     getRepliesFromReply(postId, commentId),
@@ -22,7 +22,7 @@ const useGetReplyOnReplyDataQuery = (
 
   return {
     replyOnReplyData,
-    replyOnReplyError,
+    replyOnReplyError: error instanceof Error ? error : null,
     replyOnReplyLoading,
   };
 };

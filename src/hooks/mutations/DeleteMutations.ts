@@ -1,5 +1,6 @@
 import {useMutation, useQueryClient} from 'react-query';
 import {deleteCommentFromPost} from '../../services/FeedServices';
+import {AxiosError} from 'axios';
 
 type Props = {
   postId: number;
@@ -15,7 +16,7 @@ export const useDeleteCommentMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries('comments');
       },
-      onError: (error: any) => {
+      onError: (error: AxiosError) => {
         console.error('Error deleting the comment:', error);
       },
     },
@@ -31,7 +32,7 @@ export const useDeleteReplyMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries('replies');
       },
-      onError: (error: any) => {
+      onError: (error: AxiosError) => {
         console.error('Error deleting the comment:', error);
       },
     },
@@ -47,7 +48,7 @@ export const useDeleteReplyOfReplyMutation = () => {
       onSuccess: () => {
         queryClient.invalidateQueries('repliesOnReplies');
       },
-      onError: (error: any) => {
+      onError: (error: AxiosError) => {
         console.error('Error deleting the comment:', error);
       },
     },

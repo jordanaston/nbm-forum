@@ -16,11 +16,12 @@ import {fetchResizedAvatar} from '../../utils/AvatarUtils';
 import {colors} from '../../constants/Colors';
 import ProfileIcon from '../../assets/svg/ProfileIcon';
 import LikeButton from './LikeButton';
+import {QueryObserverResult} from 'react-query';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
   post: Post;
-  postRefetch: any;
+  postRefetch: () => Promise<QueryObserverResult<unknown, unknown>>;
 };
 
 const PostCard: React.FC<Props> = ({

@@ -4,20 +4,20 @@ import {TermsAndConditionsResponse} from '../../types/CreateAccountTypes';
 
 type Props = {
   termsData: TermsAndConditionsResponse | undefined;
-  termsError: any;
+  termsError: Error | null;
   termsLoading: boolean;
 };
 
 const useGetTermsAndConditionsQuery = (): Props => {
   const {
     data: termsData,
-    error: termsError,
+    error,
     isLoading: termsLoading,
   } = useQuery('termsAndConditions', getTermsAndConditions);
 
   return {
     termsData,
-    termsError,
+    termsError: error instanceof Error ? error : null,
     termsLoading,
   };
 };

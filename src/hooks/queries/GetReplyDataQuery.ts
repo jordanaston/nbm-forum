@@ -4,14 +4,14 @@ import {Comment} from '../../types/FeedTypes';
 
 type Props = {
   replyData: Comment[] | undefined;
-  replyError: any;
+  replyError: Error | null;
   replyLoading: boolean;
 };
 
 const useGetReplyDataQuery = (postId: number, commentId: number): Props => {
   const {
     data: replyData,
-    error: replyError,
+    error,
     isLoading: replyLoading,
   } = useQuery(['replies', postId, commentId], () =>
     getRepliesFromComment(postId, commentId),
@@ -19,7 +19,7 @@ const useGetReplyDataQuery = (postId: number, commentId: number): Props => {
 
   return {
     replyData,
-    replyError,
+    replyError: error instanceof Error ? error : null,
     replyLoading,
   };
 };

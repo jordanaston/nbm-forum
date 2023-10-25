@@ -4,20 +4,20 @@ import {GetCommentsResponse} from '../../types/FeedTypes';
 
 type Props = {
   commentData: GetCommentsResponse | undefined;
-  commentError: any;
+  commentError: Error | null;
   commentLoading: boolean;
 };
 
 const useGetCommentDataQuery = (postId: number): Props => {
   const {
     data: commentData,
-    error: commentError,
+    error,
     isLoading: commentLoading,
   } = useQuery(['comments', postId], () => getCommentsFromPost(postId));
 
   return {
     commentData,
-    commentError,
+    commentError: error instanceof Error ? error : null,
     commentLoading,
   };
 };

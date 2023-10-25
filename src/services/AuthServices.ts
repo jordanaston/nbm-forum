@@ -8,7 +8,7 @@ import {
 } from '../types/ProfilePictureTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import {
   CreateAccountArgs,
   TermsAndConditionsResponse,
@@ -99,10 +99,12 @@ export const getProfilePicture = async ({
       },
     );
     return data;
-  } catch (error: any) {
+  } catch (error) {
+    const axiosError = error as AxiosError;
+
     console.error(
       'Failed to fetch profile picture: ',
-      JSON.stringify(error.response?.data || error.message, null, 3),
+      JSON.stringify(axiosError.response?.data || axiosError.message, null, 3),
     );
     throw error;
   }

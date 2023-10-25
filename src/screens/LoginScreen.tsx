@@ -18,6 +18,7 @@ import {sleep} from '../utils/SleepUtil';
 import {renderErrors} from '../utils/RenderErrorsUtil';
 import {renderSuccesses} from '../utils/RenderSuccessesUtil';
 import {useRoute} from '@react-navigation/native';
+import {AxiosError} from 'axios';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -37,8 +38,10 @@ const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
           email: values.email,
           password: values.password,
         });
-      } catch (error: any) {
-        if (error.response && error.response.status === 401) {
+      } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response && axiosError.response.status === 401) {
           formik.setStatus('Incorrect password for this email.');
         } else {
           formik.setStatus('An unexpected error occurred.');
