@@ -8,6 +8,7 @@ import EnterPostDetails from './EnterPostDetails';
 import SelectACatagory from './SelectACatagory';
 import SubmitPost from './SubmitPost';
 import {createPostFormik} from '../../../hooks/formik/CreatePostFormik';
+import {CreatePostSteps} from '../../../types/FeedTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -15,14 +16,15 @@ type Props = {
 
 export const usePostCreationSteps = ({
   navigation,
-}: Props): [JSX.Element | null, () => void, number, boolean] => {
-  const [currentPostStep, setCurrentPostStep] = useState<number>(0);
+}: Props): [JSX.Element | null, () => void, CreatePostSteps, boolean] => {
+  const [currentPostStep, setCurrentPostStep] =
+    useState<CreatePostSteps>('EnterPostDetails');
 
   const formik = createPostFormik(currentPostStep, values => {
-    if (currentPostStep === 2) {
+    if (currentPostStep === 'SubmitPost') {
       createPostMutation.mutate(values);
     } else {
-      setCurrentPostStep(prev => prev + 1);
+      advanceToNextStep(currentPostStep);
     }
   });
 
@@ -38,17 +40,36 @@ export const usePostCreationSteps = ({
     </FormikContext.Provider>
   );
 
-  const steps = [
-    wrappedPostStep(EnterPostDetails),
-    wrappedPostStep(SelectACatagory),
-    wrappedPostStep(SubmitPost),
-  ];
+  const steps: {[key in CreatePostSteps]: JSX.Element} = {
+    EnterPostDetails: wrappedPostStep(EnterPostDetails),
+    SelectACatagory: wrappedPostStep(SelectACatagory),
+    SubmitPost: wrappedPostStep(SubmitPost),
+  };
+
+  const advanceToNextStep = (current: CreatePostSteps) => {
+    switch (current) {
+      case 'EnterPostDetails':
+        setCurrentPostStep('SelectACatagory');
+        break;
+      case 'SelectACatagory':
+        setCurrentPostStep('SubmitPost');
+        break;
+      case 'SubmitPost':
+        break;
+    }
+  };
 
   const goBackOneStep = () => {
-    if (currentPostStep === 0) {
-      goToFeedScreen({navigation});
-    } else if (currentPostStep > 0) {
-      setCurrentPostStep(prev => prev - 1);
+    switch (currentPostStep) {
+      case 'EnterPostDetails':
+        goToFeedScreen({navigation});
+        break;
+      case 'SelectACatagory':
+        setCurrentPostStep('EnterPostDetails');
+        break;
+      case 'SubmitPost':
+        setCurrentPostStep('SelectACatagory');
+        break;
     }
     formik.setStatus(null);
   };

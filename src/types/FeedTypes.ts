@@ -75,3 +75,8 @@ export interface CreatePostResponse {
   likes: number;
   comments: number;
 }
+
+export type CreatePostSteps =
+  | 'EnterPostDetails'
+  | 'SelectACatagory'
+  | 'SubmitPost';

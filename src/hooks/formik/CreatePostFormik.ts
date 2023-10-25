@@ -1,19 +1,19 @@
 import {useFormik} from 'formik';
-import {CreatePostArgs} from '../../types/FeedTypes';
+import {CreatePostArgs, CreatePostSteps} from '../../types/FeedTypes';
 import {titleAndContentValidationSchema} from '../../validation/TitleAndContentValidationSchema';
 import {tagsValidationSchema} from '../../validation/TagValidationSchema';
 
 export const createPostFormik = (
-  currentPostStep: number,
+  currentPostStep: CreatePostSteps,
   onSubmit: (values: CreatePostArgs) => void,
 ) => {
   let currentValidationSchema;
 
   switch (currentPostStep) {
-    case 0:
+    case 'EnterPostDetails':
       currentValidationSchema = titleAndContentValidationSchema;
       break;
-    case 1:
+    case 'SelectACatagory':
       currentValidationSchema = tagsValidationSchema;
       break;
   }

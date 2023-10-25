@@ -5,11 +5,11 @@ import {FormikProps} from 'formik';
 import {goToFeedScreen} from '../../utils/NavigationUtils';
 import {Dispatch, SetStateAction} from 'react';
 import {postCreatedPost} from '../../services/FeedServices';
-import {CreatePostArgs} from '../../types/FeedTypes';
+import {CreatePostArgs, CreatePostSteps} from '../../types/FeedTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  setCurrentPostStep: Dispatch<SetStateAction<number>>;
+  setCurrentPostStep: Dispatch<SetStateAction<CreatePostSteps>>;
   formik: FormikProps<CreatePostArgs>;
 };
 
@@ -24,7 +24,7 @@ export const useCreatePostMutation = ({
     onSuccess: () => {
       queryClient.invalidateQueries('posts');
       goToFeedScreen({navigation});
-      setCurrentPostStep(0);
+      setCurrentPostStep('EnterPostDetails');
       formik.resetForm();
     },
     onError: (error: any) => {},
