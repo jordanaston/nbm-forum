@@ -2,7 +2,7 @@ import {Alert, View} from 'react-native';
 import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
 import ProfilePictureButton from '../ProfilePictureButton';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {useCreateAccountFormik} from '../../../context/CreateAccountFormikContext';
 import {handleAvatarUpload} from '../../../utils/AvatarUtils';
 import ErrorAlertBox from '../../core/ErrorAlertBox';
