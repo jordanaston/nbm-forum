@@ -18,7 +18,7 @@ const ReplyOnReplyList: React.FC<Props> = ({
   const {replyOnReplyData, replyOnReplyError, replyOnReplyLoading} =
     useGetReplyOnReplyDataQuery(post.id, reply.id);
 
-  if (replyOnReplyLoading) {
+  if (replyOnReplyLoading && !replyOnReplyData) {
     return (
       <StatusMessage
         message="Loading Replies..."

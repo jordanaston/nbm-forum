@@ -16,7 +16,7 @@ const ReplyList: React.FC<Props> = ({post, comment}: Props): JSX.Element => {
     comment.id,
   );
 
-  if (replyLoading) {
+  if (replyLoading && !replyData) {
     return (
       <StatusMessage
         message="Loading Replies..."
