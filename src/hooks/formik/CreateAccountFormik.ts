@@ -1,23 +1,26 @@
 import {useFormik} from 'formik';
 import {createPasswordValidationSchema} from '../../validation/PasswordValidationSchema';
 import {userDetailsValidationSchema} from '../../validation/UserDetailsValidationSchema';
-import {CreateAccountArgs} from '../../types/CreateAccountTypes';
+import {
+  CreateAccountArgs,
+  CreateAccountSteps,
+} from '../../types/CreateAccountTypes';
 import {addressValidationSchema} from '../../validation/AddressValidationSchema';
 
 export const createAccountFormik = (
-  currentAccountStep: number,
+  currentAccountStep: CreateAccountSteps,
   onSubmit: (values: CreateAccountArgs) => void,
 ) => {
   let currentValidationSchema;
 
   switch (currentAccountStep) {
-    case 0:
+    case 'CreateYourAccount':
       currentValidationSchema = userDetailsValidationSchema;
       break;
-    case 1:
+    case 'WhereAreYouLocated':
       currentValidationSchema = addressValidationSchema;
       break;
-    case 2:
+    case 'LetsSecureYourAccount':
       currentValidationSchema = createPasswordValidationSchema;
       break;
   }

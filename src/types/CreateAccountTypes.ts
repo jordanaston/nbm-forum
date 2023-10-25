@@ -31,3 +31,9 @@ export interface TermsAndConditionsResponse {
   description: string;
   createdAt: string;
 }
+
+export type CreateAccountSteps =
+  | 'CreateYourAccount'
+  | 'WhereAreYouLocated'
+  | 'LetsSecureYourAccount'
+  | 'UploadProfilePicture';

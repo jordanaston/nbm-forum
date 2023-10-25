@@ -42,7 +42,7 @@ const CreateAccountScreen: React.FC<Props> = ({
             {currentAccountComponent}
           </View>
 
-          {currentAccountStep === 0 && (
+          {currentAccountStep === 'CreateYourAccount' && (
             <View className="absolute bottom-10 left-0 right-0 flex-row justify-center">
               <Text className="text-ForumPurple text-[14px]">
                 Already have an account?{' '}

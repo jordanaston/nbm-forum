@@ -9,6 +9,7 @@ import {createAccountFormik} from '../../../hooks/formik/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
 import {useCreateAccountMutation} from '../../../hooks/mutations/CreateAccountMutation';
 import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
+import {CreateAccountSteps} from '../../../types/CreateAccountTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -18,14 +19,15 @@ type Props = {
 export const useAccountCreationSteps = ({
   navigation,
   setIsImageUploading,
-}: Props): [JSX.Element | null, () => void, number, boolean] => {
-  const [currentAccountStep, setCurrentAccountStep] = useState<number>(0);
+}: Props): [JSX.Element | null, () => void, CreateAccountSteps, boolean] => {
+  const [currentAccountStep, setCurrentAccountStep] =
+    useState<CreateAccountSteps>('CreateYourAccount');
 
   const formik = createAccountFormik(currentAccountStep, values => {
-    if (currentAccountStep === 3) {
+    if (currentAccountStep === 'UploadProfilePicture') {
       createAccountMutation.mutate(values);
     } else {
-      setCurrentAccountStep(prev => prev + 1);
+      advanceToNextStep(currentAccountStep);
     }
   });
 
@@ -41,20 +43,45 @@ export const useAccountCreationSteps = ({
     </FormikContext.Provider>
   );
 
-  const steps = [
-    wrappedAccountStep(CreateYourAccount),
-    wrappedAccountStep(WhereAreYouLocated),
-    wrappedAccountStep(LetsSecureYourAccount),
-    wrappedAccountStep(() => (
+  const steps: {[key in CreateAccountSteps]: JSX.Element} = {
+    CreateYourAccount: wrappedAccountStep(CreateYourAccount),
+    WhereAreYouLocated: wrappedAccountStep(WhereAreYouLocated),
+    LetsSecureYourAccount: wrappedAccountStep(LetsSecureYourAccount),
+    UploadProfilePicture: wrappedAccountStep(() => (
       <UploadProfilePicture setImageUploading={setIsImageUploading} />
     )),
-  ];
+  };
+
+  const advanceToNextStep = (current: CreateAccountSteps) => {
+    switch (current) {
+      case 'CreateYourAccount':
+        setCurrentAccountStep('WhereAreYouLocated');
+        break;
+      case 'WhereAreYouLocated':
+        setCurrentAccountStep('LetsSecureYourAccount');
+        break;
+      case 'LetsSecureYourAccount':
+        setCurrentAccountStep('UploadProfilePicture');
+        break;
+      case 'UploadProfilePicture':
+        break;
+    }
+  };
 
   const goBackOneStep = () => {
-    if (currentAccountStep === 0) {
-      goToWelcomeScreen({navigation});
-    } else if (currentAccountStep > 0) {
-      setCurrentAccountStep(prev => prev - 1);
+    switch (currentAccountStep) {
+      case 'CreateYourAccount':
+        goToWelcomeScreen({navigation});
+        break;
+      case 'WhereAreYouLocated':
+        setCurrentAccountStep('CreateYourAccount');
+        break;
+      case 'LetsSecureYourAccount':
+        setCurrentAccountStep('WhereAreYouLocated');
+        break;
+      case 'UploadProfilePicture':
+        setCurrentAccountStep('LetsSecureYourAccount');
+        break;
     }
     formik.setStatus(null);
   };
