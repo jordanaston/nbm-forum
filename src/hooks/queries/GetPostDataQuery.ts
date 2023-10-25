@@ -1,38 +1,26 @@
-import {useQuery} from 'react-query';
+import {useInfiniteQuery} from 'react-query';
 import {getAllPosts} from '../../services/FeedServices';
-import {Post} from '../../types/FeedTypes';
 
-type UseQueryReturnType = ReturnType<typeof useQuery>;
-
-type Props = {
-  postDataArray: Post[] | undefined;
-  postsError: Error | null;
-  postsLoading: boolean;
-  postRefetch: UseQueryReturnType['refetch'];
-};
-
-const useGetPostDataQuery = (selectedTag?: string | null): Props => {
-  const {
-    data: postDataArray,
-    error,
-    isLoading: postsLoading,
-    refetch: postRefetch,
-  } = useQuery(
+const useGetPostDataQuery = (selectedTag?: string | null) => {
+  const queryInfo = useInfiniteQuery(
     ['posts', selectedTag],
-    () => getAllPosts(selectedTag ? [selectedTag] : []),
+    ({pageParam = 1}) =>
+      getAllPosts(selectedTag ? [selectedTag] : [], pageParam),
     {
+      getNextPageParam: (lastPage, pages) => {
+        if (lastPage.length === 0) return undefined;
+        return pages.length + 1;
+      },
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       staleTime: 1000 * 60 * 5,
       cacheTime: 1000 * 60 * 10,
     },
   );
-  
+
   return {
-    postDataArray,
-    postsError: error instanceof Error ? error : null,
-    postsLoading,
-    postRefetch,
+    ...queryInfo,
+    postRefetch: queryInfo.refetch,
   };
 };
 

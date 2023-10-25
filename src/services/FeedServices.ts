@@ -12,11 +12,15 @@ import {
 import {DeleteResponse, LikeResponse} from '../types/ErrorTypes';
 import {nbmApi} from './axios-instance/AxiosInstance';
 
-export const getAllPosts = async (tags: string[] = []): Promise<Post[]> => {
+export const getAllPosts = async (
+  tags: string[] = [],
+  page = 1,
+  limit = 5,
+): Promise<Post[]> => {
   try {
     const body: GetPostsArgs = {
-      page: 1,
-      limit: 50,
+      page,
+      limit,
       tags,
     };
     const {data} = await nbmApi.post('/posts/_search', body);

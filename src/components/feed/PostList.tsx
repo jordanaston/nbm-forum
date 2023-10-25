@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {View} from 'react-native';
 import StatusMessage from '../core/StatusMessage';
 import PostCard from './PostCard';
 import {MainStackParamList} from '../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import useGetPostDataQuery from '../../hooks/queries/GetPostDataQuery';
+import Button from '../core/Button';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
@@ -15,25 +16,28 @@ const PostList: React.FC<Props> = ({
   selectedTag,
   navigation,
 }: Props): JSX.Element => {
-  const {postDataArray, postsError, postsLoading, postRefetch} =
+  const {data, error, isLoading, fetchNextPage, hasNextPage, postRefetch} =
     useGetPostDataQuery(selectedTag);
 
-  if (postsLoading && !postDataArray) {
+  const allPosts = useMemo(() => {
+    if (!data || !data.pages) return [];
+    return data.pages.flat();
+  }, [data]);
+
+  if (isLoading && allPosts.length === 0) {
     return (
       <StatusMessage message="Loading Posts..." textColor="text-ForumPurple" />
     );
   }
 
-  if (postsError) {
+  if (error) {
     return (
       <StatusMessage message="Error Loading Posts" textColor="text-ErrorRed" />
     );
   }
 
   const renderPosts = () => {
-    if (!postDataArray) return null;
-
-    return postDataArray.map(post => {
+    return allPosts.map(post => {
       return (
         <PostCard
           key={post.id}
@@ -45,7 +49,24 @@ const PostList: React.FC<Props> = ({
     });
   };
 
-  return <View>{renderPosts()}</View>;
+  return (
+    <View>
+      {renderPosts()}
+      {hasNextPage && (
+        <View className="mt-2">
+          <Button
+            text="Load more posts..."
+            onPress={() => fetchNextPage()}
+            backgroundColor=""
+            textColor="text-ForumCharcoal opacity-70"
+            border=""
+            includeArrow={false}
+            fontStyle="font-syne-semibold"
+          />
+        </View>
+      )}
+    </View>
+  );
 };
 
 export default PostList;
