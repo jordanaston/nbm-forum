@@ -58,10 +58,10 @@ const PostList: React.FC<Props> = ({
             text="Load more posts..."
             onPress={() => fetchNextPage()}
             backgroundColor=""
-            textColor="text-ForumCharcoal opacity-70"
+            textColor="text-ForumPurple opacity-70"
             border=""
             includeArrow={false}
-            fontStyle="font-syne-semibold"
+            fontStyle="font-syne-medium"
           />
         </View>
       )}
