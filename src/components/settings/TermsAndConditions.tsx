@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import useGetTermsAndConditionsQuery from '../../hooks/queries/GetTermsAndConditionsQuery';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import StatusMessage from '../core/StatusMessage';
 
 type Props = {

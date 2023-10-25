@@ -31,15 +31,46 @@ const GooglePlacesInput: React.FC<Props> = ({formik}: Props): JSX.Element => {
             placeholderTextColor: `${colors.forumCharcoal}`,
             returnKeyType: 'search',
           }}
-          onPress={(data: any) => {
-            if (data.terms) {
+          onPress={(
+            data: GooglePlaceData,
+            details: GooglePlaceDetail | null = null,
+          ) => {
+            if (details) {
+              const address = details.address_components;
+              const streetNumber = address?.find(component =>
+                component.types.includes('street_number'),
+              )?.long_name;
+              const route = address?.find(component =>
+                component.types.includes('route'),
+              )?.long_name;
+              const locality = address?.find(component =>
+                component.types.includes('locality'),
+              )?.long_name;
+              const administrativeArea = address?.find(component =>
+                component.types.includes('administrative_area_level_1'),
+              )?.short_name;
+              const country = address?.find(component =>
+                component.types.includes('country'),
+              )?.long_name;
+              const postalCode = address?.find(component =>
+                component.types.includes('postal_code'),
+              )?.long_name;
+
               formik.setFieldValue('address', {
-                number: data.terms[0]?.value || '',
-                street: data.terms[1]?.value || '',
-                city: data.terms[2]?.value || '',
-                state: data.terms[3]?.value || '',
-                country: data.terms[4]?.value || '',
-                postalCode: '0000',
+                number: streetNumber || '',
+                street: route || '',
+                city: locality || '',
+                state: administrativeArea || '',
+                country: country || '',
+                postalCode: postalCode || '',
+                fullAddress: details.formatted_address,
+                streetName: route || '',
+                streetNumber: streetNumber || '',
+                googlePlaceId: details.place_id,
+                lng: details.geometry.location.lng,
+                lat: details.geometry.location.lat,
+                suburb: locality || '',
+                postcode: postalCode || '',
               });
             }
           }}

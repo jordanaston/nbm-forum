@@ -16,6 +16,14 @@ export interface Address {
   state: string;
   postalCode: string;
   country: string;
+  fullAddress?: string;
+  streetName?: string;
+  streetNumber?: string;
+  googlePlaceId?: string;
+  lng?: number;
+  lat?: number;
+  suburb?: string;
+  postcode?: string;
 }
 
 export interface TermsAndConditionsResponse {
