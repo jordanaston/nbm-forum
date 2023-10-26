@@ -10,7 +10,6 @@ import {FormikContext} from '../../../context/CreateAccountFormikContext';
 import {useCreateAccountMutation} from '../../../hooks/mutations/CreateAccountMutation';
 import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
 import {CreateAccountSteps} from '../../../types/CreateAccountTypes';
-import {ScrollView} from 'react-native';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;

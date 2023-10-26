@@ -34,12 +34,12 @@ const CreateAccountScreen: React.FC<Props> = ({
         <>
           <View className="mx-6">
             <StatusBar barStyle="dark-content" />
-              <NbmBackNavBar
-                navigation={navigation}
-                onBackPress={goBackOneStep}
-              />
-            <View className='mb-4'>
-            <BarSlider currentAccountStep={currentAccountStep} />
+            <NbmBackNavBar
+              navigation={navigation}
+              onBackPress={goBackOneStep}
+            />
+            <View className="mb-4">
+              <BarSlider currentAccountStep={currentAccountStep} />
             </View>
             {currentAccountComponent}
           </View>
