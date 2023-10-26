@@ -54,10 +54,6 @@ export const createAccountFormik = (
 
     validationSchema: currentValidationSchema,
     onSubmit: values => {
-      console.log(
-        'CREATE ACCOUNT FORM DETAILS: ',
-        JSON.stringify(values, null, 3),
-      );
       onSubmit(values);
     },
   });

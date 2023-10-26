@@ -74,12 +74,9 @@ const GooglePlacesInput: React.FC<Props> = ({formik}: Props): JSX.Element => {
               });
             }
           }}
-          onFail={error =>
-            console.log(
-              'Google Places Autocomplete Error: ',
-              JSON.stringify(error, null, 3),
-            )
-          }
+          onFail={error => {
+            throw error;
+          }}
           query={{
             key: Config.GOOGLE_PLACES_API_KEY,
             language: 'en',

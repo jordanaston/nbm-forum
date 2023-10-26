@@ -114,7 +114,6 @@ export const getTermsAndConditions =
   async (): Promise<TermsAndConditionsResponse> => {
     try {
       const {data} = await nbmApi.get('/terms-conditions', {});
-      console.log('T&C RESPONSE: ', JSON.stringify(data, null, 3));
       return data;
     } catch (error) {
       throw error;

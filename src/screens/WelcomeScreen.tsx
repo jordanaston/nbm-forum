@@ -16,7 +16,7 @@ type Props = {
 
 const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   return (
-    <View className="bg-white flex-1">
+    <View className="flex-1">
       <StatusBar barStyle="light-content" />
       <View className="">
         <View className="bg-ForumPurple h-[470px] justify-center items-center">
@@ -41,7 +41,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                 text="Sign In"
                 arrowColor={colors.forumPurple}
                 textColor="text-ForumPurple"
-                backgroundColor="bg-white"
+                backgroundColor="bg-none"
               />
             </View>
           </View>
