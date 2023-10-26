@@ -62,6 +62,7 @@ const PostList: React.FC<Props> = ({
             border=""
             includeArrow={false}
             fontStyle="font-syne-medium"
+            textSize="text-[14px]"
           />
         </View>
       )}

@@ -8,7 +8,7 @@ type Props = {
 
 const StatusMessage: React.FC<Props> = ({message, textColor}: Props) => (
   <View className="justify-center items-center my-4">
-    <Text className={`font-syne-regular text-[12px] ${textColor}`}>
+    <Text className={`font-syne-regular text-[12px] opacity-70 ${textColor}`}>
       {message}
     </Text>
   </View>
