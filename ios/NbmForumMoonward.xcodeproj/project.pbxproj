@@ -551,10 +551,13 @@
 			baseConfigurationReference = CE45C08DADEF3AB3A9ED0F6B /* Pods-NbmForumMoonward.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDDJMTYF42;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NbmForumMoonward/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "NBM Forum";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,9 +581,12 @@
 			baseConfigurationReference = 1BED6E7B9D01EC4E2524DC50 /* Pods-NbmForumMoonward.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JDDJMTYF42;
 				INFOPLIST_FILE = NbmForumMoonward/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "NBM Forum";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

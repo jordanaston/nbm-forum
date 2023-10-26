@@ -1,4 +1,10 @@
-import {Alert, View} from 'react-native';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  View,
+} from 'react-native';
 import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
 import ProfilePictureButton from '../ProfilePictureButton';
@@ -52,49 +58,52 @@ const UploadProfilePicture: React.FC<Props> = ({
   };
 
   return (
-    <View>
-      <View className="mt-10">
-        <AuthTitleDescription
-          title="Upload a Profile Picture"
-          description="Let’s put a name to a face. Upload a profile picture to complete your profile. This is an optional step."
-        />
-      </View>
-      <View className="mt-8">
-        <ProfilePictureButton
-          selectedImage={selectedImage}
-          setSelectedImage={setSelectedImage}
-        />
-      </View>
-      <View className="mt-8">
-        <Button
-          onPress={handleSetAvatar}
-          disabled={!selectedImage}
-          text="Create my Account"
-        />
-      </View>
-
-      {formik.status && (
-        <View className="mt-8">
-          <ErrorAlertBox text={formik.status} />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <ScrollView>
+        <View className="mt-2">
+          <AuthTitleDescription
+            title="Upload a Profile Picture"
+            description="Let’s put a name to a face. Upload a profile picture to complete your profile. This is an optional step."
+          />
         </View>
-      )}
+        <View className="mt-8">
+          <ProfilePictureButton
+            selectedImage={selectedImage}
+            setSelectedImage={setSelectedImage}
+          />
+        </View>
+        <View className="mt-8">
+          <Button
+            onPress={handleSetAvatar}
+            disabled={!selectedImage}
+            text="Create my Account"
+          />
+        </View>
 
-      <View className="mt-6">
-        <Button
-          onPress={handleSkipForNow}
-          text="Skip for now"
-          includeArrow={false}
-          backgroundColor="bg-none"
-          textColor="text-ForumCharcoal"
-          textSize="text-[14px]"
-          fontStyle="font-syne-medium"
-          underline="underline"
-          border=""
-          height=""
-          position=""
-        />
-      </View>
-    </View>
+        {formik.status && (
+          <View className="mt-8">
+            <ErrorAlertBox text={formik.status} />
+          </View>
+        )}
+
+        <View className="mt-6">
+          <Button
+            onPress={handleSkipForNow}
+            text="Skip for now"
+            includeArrow={false}
+            backgroundColor="bg-none"
+            textColor="text-ForumCharcoal"
+            textSize="text-[14px]"
+            fontStyle="font-syne-medium"
+            underline="underline"
+            border=""
+            height=""
+            position=""
+          />
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
