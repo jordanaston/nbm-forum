@@ -558,6 +558,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = NbmForumMoonward/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NBM Forum";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,6 +588,7 @@
 				DEVELOPMENT_TEAM = JDDJMTYF42;
 				INFOPLIST_FILE = NbmForumMoonward/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "NBM Forum";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
