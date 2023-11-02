@@ -6,7 +6,7 @@ const PlusIcon: React.FC = (): JSX.Element => {
   return (
     <Svg width={32} height={32}>
       <Path
-        fill={colors.ForumPurple}
+        fill={colors.forumPurple}
         d="M25.333 17.333h-8v8h-2.666v-8h-8v-2.666h8v-8h2.666v8h8v2.666Z"
       />
     </Svg>

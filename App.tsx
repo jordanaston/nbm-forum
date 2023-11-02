@@ -1,16 +1,17 @@
 import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import MainStackNavigator from './src/navigation/MainStackNavigator';
+import {QueryClient, QueryClientProvider} from 'react-query';
 
-import {SafeAreaView, Text, View} from 'react-native';
+const queryClient = new QueryClient();
 
-function App() {
+function App(): JSX.Element {
   return (
-    <SafeAreaView className='flex-1'>
-      <View className='flex-1 justify-center items-center'>
-        <Text className="text-ForumCharcoal font-syne-medium">
-          Hello World
-        </Text>
-      </View>
-    </SafeAreaView>
+    <QueryClientProvider client={queryClient}>
+      <NavigationContainer>
+        <MainStackNavigator />
+      </NavigationContainer>
+    </QueryClientProvider>
   );
 }
 

@@ -8,15 +8,16 @@ module.exports = {
         ForumPurple: '#6537FF',
         ForumLightGray: '#E8E8E8',
         ForumCharcoal: '#383939',
+        ErrorRed: '#FA6464'
       },
       textColor: {
         ForumCharcoal: '#383939',
         ForumPurple: '#6537FF',
+        ErrorRed: '#FA6464'
       },
       borderColor: {
         ForumPurple: '#6537FF',
         ForumLightGray: '#E8E8E8',
-        ForumBlack: '010214',
         ForumCharcoal: '#383939',
         ForumBlack: '#010214',
       },
@@ -41,3 +42,4 @@ module.exports = {
   },
   plugins: [],
 };
+
