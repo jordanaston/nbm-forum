@@ -5,30 +5,29 @@ import AuthTitleDescription from '../components/auth/AuthTitleDescription';
 import NbmBackNavBar from '../components/auth/NbmBackNavBar';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {MainStackParamList} from '../navigation/MainStackNavigator';
-import InputBox from '../components/core/Input';
+import Input from '../components/core/Input';
 import Button from '../components/core/Button';
 import ErrorAlertBox from '../components/core/ErrorAlertBox';
 import LoadingScreen from './LoadingScreen';
 import {RouteProp} from '@react-navigation/native';
 import SuccessAlertBox from '../components/core/SuccessAlertBox';
-import {useLoginFormik} from '../utils/formik/LoginFormik';
+import {useLoginFormik} from '../hooks/formik/LoginFormik';
 import DontHaveAccountCreateOneHere from '../components/auth/DontHaveAccountCreateOneHere';
-import {useLoginMutation} from '../hooks/LoginMutation';
+import {useLoginMutation} from '../hooks/mutations/LoginMutation';
 import {sleep} from '../utils/SleepUtil';
 import {renderErrors} from '../utils/RenderErrorsUtil';
 import {renderSuccesses} from '../utils/RenderSuccessesUtil';
+import {useRoute} from '@react-navigation/native';
+import {AxiosError} from 'axios';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  route: RouteProp<MainStackParamList, 'LoginScreen'>;
 };
 
-const LoginScreen: React.FC<Props> = ({
-  navigation,
-  route,
-}: Props): JSX.Element => {
+const LoginScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   const loginMutation = useLoginMutation({navigation});
-  const accountCreationSuccess = route.params?.accountCreationSuccess;
+  const {accountCreationSuccess} =
+    useRoute<RouteProp<MainStackParamList, 'LoginScreen'>>().params || {};
 
   const formik = useLoginFormik({
     onSubmit: async values => {
@@ -39,8 +38,10 @@ const LoginScreen: React.FC<Props> = ({
           email: values.email,
           password: values.password,
         });
-      } catch (error: any) {
-        if (error.response && error.response.status === 401) {
+      } catch (error) {
+        const axiosError = error as AxiosError;
+
+        if (axiosError.response && axiosError.response.status === 401) {
           formik.setStatus('Incorrect password for this email.');
         } else {
           formik.setStatus('An unexpected error occurred.');
@@ -79,7 +80,7 @@ const LoginScreen: React.FC<Props> = ({
               />
             </View>
             <View className="mt-10">
-              <InputBox
+              <Input
                 placeholder="you@email.com"
                 inputBoxTitle="Email"
                 value={formik.values.email}
@@ -87,7 +88,7 @@ const LoginScreen: React.FC<Props> = ({
                 onBlur={formik.handleBlur('email')}
               />
               <View className="mt-2">
-                <InputBox
+                <Input
                   placeholder="Enter your password"
                   inputBoxTitle="Password"
                   isPasswordField={true}

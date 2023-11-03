@@ -5,11 +5,14 @@ export interface LoginArgs {
 
 export interface LoginResponse {
   accessToken: string;
-  user: {
-    id: number;
-    email: string;
-    firstName: string;
-    lastName: string;
-    telephone: string;
-  };
+  user: User;
+}
+
+export interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  avatar?: string | null;
+  email: string;
+  telephone: string;
 }

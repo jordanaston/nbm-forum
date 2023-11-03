@@ -6,6 +6,8 @@ type FormikValuesWithErrors = {
   email?: string;
   password?: string;
   telephone?: string;
+  title?: string;
+  content?: string;
 };
 
 type Props = {
@@ -30,6 +32,10 @@ export const renderErrors = ({
       return errors.password;
     case touched.telephone && !!errors.telephone:
       return errors.telephone;
+    case touched.title && !!errors.title:
+      return errors.title;
+    case touched.content && !!errors.content:
+      return errors.content;
     case !!status:
       return status;
     default:

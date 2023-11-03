@@ -16,12 +16,24 @@ export interface Address {
   state: string;
   postalCode: string;
   country: string;
+  fullAddress?: string;
+  streetName?: string;
+  streetNumber?: string;
+  googlePlaceId?: string;
+  lng?: number;
+  lat?: number;
+  suburb?: string;
+  postcode?: string;
 }
 
-export interface CreateAccountResponse {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  telephone: string;
+export interface TermsAndConditionsResponse {
+  id: number;
+  description: string;
+  createdAt: string;
 }
+
+export type CreateAccountSteps =
+  | 'CreateYourAccount'
+  | 'WhereAreYouLocated'
+  | 'LetsSecureYourAccount'
+  | 'UploadProfilePicture';

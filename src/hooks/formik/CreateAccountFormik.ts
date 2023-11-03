@@ -1,28 +1,31 @@
 import {useFormik} from 'formik';
 import {createPasswordValidationSchema} from '../../validation/PasswordValidationSchema';
 import {userDetailsValidationSchema} from '../../validation/UserDetailsValidationSchema';
-import * as yup from 'yup';
-import {CreateAccountArgs} from '../../types/CreateAccountTypes';
+import {
+  CreateAccountArgs,
+  CreateAccountSteps,
+} from '../../types/CreateAccountTypes';
+import {addressValidationSchema} from '../../validation/AddressValidationSchema';
 
 export const createAccountFormik = (
-  currentStep: number,
+  currentAccountStep: CreateAccountSteps,
   onSubmit: (values: CreateAccountArgs) => void,
 ) => {
   let currentValidationSchema;
 
-  switch (currentStep) {
-    case 0:
+  switch (currentAccountStep) {
+    case 'CreateYourAccount':
       currentValidationSchema = userDetailsValidationSchema;
       break;
-    case 1:
-      currentValidationSchema = yup.object({});
+    case 'WhereAreYouLocated':
+      currentValidationSchema = addressValidationSchema;
       break;
-    case 2:
+    case 'LetsSecureYourAccount':
       currentValidationSchema = createPasswordValidationSchema;
       break;
   }
 
-  return useFormik({
+  return useFormik<CreateAccountArgs>({
     initialValues: {
       firstName: '',
       lastName: '',
@@ -35,14 +38,22 @@ export const createAccountFormik = (
         state: '',
         postalCode: '',
         country: '',
+        fullAddress: '',
+        streetName: '',
+        streetNumber: '',
+        googlePlaceId: '',
+        lng: 0,
+        lat: 0,
+        suburb: '',
+        postcode: '',
       },
       avatar: '',
       password: '',
       confirmPassword: '',
     },
+
     validationSchema: currentValidationSchema,
     onSubmit: values => {
-      console.log('SUBMITTED FORM VALUES: ', JSON.stringify(values, null, 3));
       onSubmit(values);
     },
   });

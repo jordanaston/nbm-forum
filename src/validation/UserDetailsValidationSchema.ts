@@ -17,7 +17,10 @@ const emailValidation = yup
 
 const telephoneValidation = yup
   .string()
-  .matches(/^[0-9]{10}$/, 'Telephone number must be exactly 10 digits.')
+  .matches(
+    /^(?:\+61|0)4\d{8}$/,
+    "Invalid Australian phone number format. Please use '04' or '+614' followed by 8 digits.",
+  )
   .required('Telephone is required.');
 
 export const userDetailsValidationSchema = yup.object().shape({

@@ -6,13 +6,15 @@ import {
   UploadImageArgs,
   UploadImageResponse,
 } from '../types/ProfilePictureTypes';
-import {nbmApi} from './AxiosInstance';
+import {nbmApi} from './axios-instance/AxiosInstance';
 import {HARDCODED_TOKEN} from '@env';
-import axios from 'axios';
+import axios, {AxiosError} from 'axios';
 import {
   CreateAccountArgs,
-  CreateAccountResponse,
+  TermsAndConditionsResponse,
 } from '../types/CreateAccountTypes';
+import {User} from '../types/LoginTypes';
+import {QueryClient} from 'react-query';
 
 export const postLoginDetails = async ({
   email,
@@ -21,11 +23,9 @@ export const postLoginDetails = async ({
   try {
     const {data} = await nbmApi.post('/auth/login', {email, password});
     await AsyncStorage.multiSet([
-      ['accessToken', JSON.stringify(data.accessToken)],
+      ['accessToken', data.accessToken],
+      ['loggedInUserId', String(data.user.id)],
     ]);
-
-    await AsyncStorage.getItem('accessToken');
-
     return data;
   } catch (error) {
     throw error;
@@ -41,7 +41,7 @@ export const postCreateAccountDetails = async ({
   avatar,
   password,
   confirmPassword,
-}: CreateAccountArgs): Promise<CreateAccountResponse> => {
+}: CreateAccountArgs): Promise<User> => {
   try {
     const {data} = await nbmApi.post('/auth/register', {
       firstName,
@@ -74,7 +74,7 @@ export const getAwsUrl = async ({
       },
     });
     return data;
-  } catch (error: any) {
+  } catch (error) {
     throw error;
   }
 };
@@ -100,6 +100,27 @@ export const getProfilePicture = async ({
     );
     return data;
   } catch (error) {
+    const axiosError = error as AxiosError;
+
+    console.error(
+      'Failed to fetch profile picture: ',
+      JSON.stringify(axiosError.response?.data || axiosError.message, null, 3),
+    );
     throw error;
   }
+};
+
+export const getTermsAndConditions =
+  async (): Promise<TermsAndConditionsResponse> => {
+    try {
+      const {data} = await nbmApi.get('/terms-conditions', {});
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+export const logout = async (queryClient: QueryClient): Promise<void> => {
+  await AsyncStorage.clear();
+  queryClient.clear();
 };

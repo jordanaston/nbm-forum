@@ -1,13 +1,32 @@
 import React from 'react';
 import {View} from 'react-native';
+import {CreateAccountSteps} from '../../types/CreateAccountTypes';
 
 type Props = {
-  currentStep: number;
+  currentAccountStep: CreateAccountSteps;
 };
 
-const BarSlider: React.FC<Props> = ({currentStep}: Props): JSX.Element => {
+const BarSlider: React.FC<Props> = ({
+  currentAccountStep,
+}: Props): JSX.Element => {
+  const getNumericStep = (step: CreateAccountSteps): number => {
+    switch (step) {
+      case 'CreateYourAccount':
+        return 1;
+      case 'WhereAreYouLocated':
+        return 2;
+      case 'LetsSecureYourAccount':
+        return 3;
+      case 'UploadProfilePicture':
+        return 4;
+      default:
+        return 1;
+    }
+  };
+
   const getColor = (index: number) => {
-    return index <= currentStep + 1
+    const numericStep = getNumericStep(currentAccountStep);
+    return index <= numericStep
       ? 'bg-ForumPurple'
       : 'bg-ForumCharcoal opacity-20';
   };

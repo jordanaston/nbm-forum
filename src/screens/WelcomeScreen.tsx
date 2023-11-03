@@ -16,9 +16,9 @@ type Props = {
 
 const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
   return (
-    <View>
+    <View className="flex-1">
       <StatusBar barStyle="light-content" />
-      <View>
+      <View className="">
         <View className="bg-ForumPurple h-[470px] justify-center items-center">
           <View className="rotate-[33.68deg] w-[169px]">
             <RocketLogo color={colors.white} width={'169'} height={'256'} />
@@ -30,7 +30,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
             description="Time to get all the answers you need in a forum made for designers
             and developers!"
           />
-          <View className="mt-8">
+          <View className="mt-4">
             <Button
               onPress={() => goToCreateAccountScreen({navigation})}
               text="Create an Account"
@@ -41,7 +41,7 @@ const WelcomeScreen: React.FC<Props> = ({navigation}: Props): JSX.Element => {
                 text="Sign In"
                 arrowColor={colors.forumPurple}
                 textColor="text-ForumPurple"
-                backgroundColor="bg-white"
+                backgroundColor="bg-none"
               />
             </View>
           </View>

@@ -1,68 +1,95 @@
-import React, {useState} from 'react';
+import React, {Dispatch, SetStateAction, useState} from 'react';
 import CreateYourAccount from './CreateYourAccount';
 import LetsSecureYourAccount from './LetsSecureYourAccount';
 import UploadProfilePicture from './UploadProfilePicture';
 import WhereAreYouLocated from './WhereAreYouLocated';
 import {MainStackParamList} from '../../../navigation/MainStackNavigator';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {createAccountFormik} from '../../../utils/formik/CreateAccountFormik';
+import {createAccountFormik} from '../../../hooks/formik/CreateAccountFormik';
 import {FormikContext} from '../../../context/CreateAccountFormikContext';
-import {useCreateAccountMutation} from '../../../hooks/CreateAccountMutation';
+import {useCreateAccountMutation} from '../../../hooks/mutations/CreateAccountMutation';
 import {goToWelcomeScreen} from '../../../utils/NavigationUtils';
+import {CreateAccountSteps} from '../../../types/CreateAccountTypes';
 
 type Props = {
   navigation: NativeStackNavigationProp<MainStackParamList>;
-  setIsImageUploading: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsImageUploading: Dispatch<SetStateAction<boolean>>;
 };
 
 export const useAccountCreationSteps = ({
   navigation,
   setIsImageUploading,
-}: Props): [JSX.Element | null, () => void, number, boolean] => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+}: Props): [JSX.Element | null, () => void, CreateAccountSteps, boolean] => {
+  const [currentAccountStep, setCurrentAccountStep] =
+    useState<CreateAccountSteps>('CreateYourAccount');
 
-  const formik = createAccountFormik(currentStep, values => {
-    if (currentStep === 3) {
+  const formik = createAccountFormik(currentAccountStep, values => {
+    if (currentAccountStep === 'UploadProfilePicture') {
       createAccountMutation.mutate(values);
     } else {
-      setCurrentStep(prev => prev + 1);
+      advanceToNextStep(currentAccountStep);
     }
   });
 
   const createAccountMutation = useCreateAccountMutation({
     navigation,
-    setCurrentStep,
+    setCurrentAccountStep,
     formik,
   });
 
-  const wrappedStep = (Component: React.FC) => (
+  const wrappedAccountStep = (CreateAccountComponent: React.FC) => (
     <FormikContext.Provider value={formik}>
-      <Component />
+      <CreateAccountComponent />
     </FormikContext.Provider>
   );
 
-  const steps = [
-    wrappedStep(CreateYourAccount),
-    wrappedStep(WhereAreYouLocated),
-    wrappedStep(LetsSecureYourAccount),
-    wrappedStep(() => (
+  const steps: {[key in CreateAccountSteps]: JSX.Element} = {
+    CreateYourAccount: wrappedAccountStep(CreateYourAccount),
+    WhereAreYouLocated: wrappedAccountStep(WhereAreYouLocated),
+    LetsSecureYourAccount: wrappedAccountStep(LetsSecureYourAccount),
+    UploadProfilePicture: wrappedAccountStep(() => (
       <UploadProfilePicture setImageUploading={setIsImageUploading} />
     )),
-  ];
+  };
+
+  const advanceToNextStep = (current: CreateAccountSteps) => {
+    switch (current) {
+      case 'CreateYourAccount':
+        setCurrentAccountStep('WhereAreYouLocated');
+        break;
+      case 'WhereAreYouLocated':
+        setCurrentAccountStep('LetsSecureYourAccount');
+        break;
+      case 'LetsSecureYourAccount':
+        setCurrentAccountStep('UploadProfilePicture');
+        break;
+      case 'UploadProfilePicture':
+        break;
+    }
+  };
 
   const goBackOneStep = () => {
-    if (currentStep === 0) {
-      goToWelcomeScreen({navigation});
-    } else if (currentStep > 0) {
-      setCurrentStep(prev => prev - 1);
+    switch (currentAccountStep) {
+      case 'CreateYourAccount':
+        goToWelcomeScreen({navigation});
+        break;
+      case 'WhereAreYouLocated':
+        setCurrentAccountStep('CreateYourAccount');
+        break;
+      case 'LetsSecureYourAccount':
+        setCurrentAccountStep('WhereAreYouLocated');
+        break;
+      case 'UploadProfilePicture':
+        setCurrentAccountStep('LetsSecureYourAccount');
+        break;
     }
     formik.setStatus(null);
   };
 
   return [
-    steps[currentStep] || null,
+    steps[currentAccountStep] || null,
     goBackOneStep,
-    currentStep,
+    currentAccountStep,
     createAccountMutation.isLoading,
   ];
 };

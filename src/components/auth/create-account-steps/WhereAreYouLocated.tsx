@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {KeyboardAvoidingView, Platform, View} from 'react-native';
 import AuthTitleDescription from '../AuthTitleDescription';
 import Button from '../../core/Button';
 import GooglePlacesInput from '../GooglePlacesInput';
@@ -8,8 +8,9 @@ const WhereAreYouLocated: React.FC = (): JSX.Element => {
   const formik = useCreateAccountFormik();
 
   return (
-    <View className="">
-      <View className="mt-10">
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View className="mt-2">
         <AuthTitleDescription
           title="Where are you Located?"
           description="Add your address. Select your address from the suggested address below. "
@@ -38,7 +39,7 @@ const WhereAreYouLocated: React.FC = (): JSX.Element => {
           }
         />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

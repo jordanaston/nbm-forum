@@ -22,7 +22,7 @@ const ProfilePictureButton: React.FC<Props> = ({
 
     launchImageLibrary(options, response => {
       if (response.didCancel) {
-        console.log('User cancelled image picker');
+        return;
       } else if (response.assets && response.assets[0].uri) {
         let imageUri = response.assets[0].uri;
         setSelectedImage(imageUri);
