@@ -1,14 +1,23 @@
 
 
 
-<img src="./src/assets/images/nbm-splash-screen.png" alt="Splash Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-welcome-screen.png" alt="Welcome Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-create-account-screen.png" alt="Create Account Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-loading-screen.png" alt="Loading Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-login-screen.png" alt="Login Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-feed-screen.png" alt="Feed Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-feed-comments-screen.png" alt="Feed Comments Screen Screenshot" width="300"/>
-<img src="./src/assets/images/nbm-settings-screen.png" alt="Settings Screen Screenshot" width="300"/>
+<table>
+  <tr>
+    <td><img src="./src/assets/images/nbm-splash-screen.png" alt="Splash Screen Screenshot" width="300"/></td>
+    <td><img src="./src/assets/images/nbm-welcome-screen.png" alt="Welcome Screen Screenshot" width="300"/></td>
+    <td><img src="./src/assets/images/nbm-create-account-screen.png" alt="Create Account Screen Screenshot" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="./src/assets/images/nbm-loading-screen.png" alt="Loading Screen Screenshot" width="300"/></td>
+    <td><img src="./src/assets/images/nbm-login-screen.png" alt="Login Screen Screenshot" width="300"/></td>
+    <td><img src="./src/assets/images/nbm-feed-screen.png" alt="Feed Screen Screenshot" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="./src/assets/images/nbm-feed-comments-screen.png" alt="Feed Comments Screen Screenshot" width="300"/></td>
+    <td><img src="./src/assets/images/nbm-settings-screen.png" alt="Settings Screen Screenshot" width="300"/></td>
+  </tr>
+</table>
+
 
 
 
